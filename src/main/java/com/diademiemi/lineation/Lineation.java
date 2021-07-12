@@ -31,6 +31,7 @@ public class Lineation extends JavaPlugin {
     PluginManager pm = getServer().getPluginManager();
 
     pm.addPermission(new Permission("lineation.help"));
+    pm.addPermission(new Permission("lineation.reload"));
 
     getCommand("lineation").setExecutor(new CommandExec());
 

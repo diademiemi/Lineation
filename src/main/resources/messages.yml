@@ -1,8 +1,20 @@
 PREFIX: '&f&l[&8&lL&f&lA&8&l] '
-HELP_INDEX: "
-  &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r\n
-   &7/lineation help &r: View this message\n
-   &7/lineation reload &r: Reload config files"
+HELP_INDEX: |2-
+   &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r
+   &7/lineation help &r: View this message
+   &7/lineation line help &r: View commands relating to lines
+   &7/lineation reload &r: Reload config files
+HELP_LINE: |2-
+   &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r
+   &7/lineation line create <start/finish> <name> &r: Create a line. If there is a worldedit selection it is used for the area
+   &7/lineation line remove <name> &r: Remove a line
+   &7/lineation line list <type> &r: List all lines, type is optional
+   &7/lineation line <name> enable &r: Enables this line
+   &7/lineation line <name> disable &r: Disables this line
+   &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
+   &7/lineation line <name> start &r: Closes line. In case of finish line, announces results to chat
+   &7/lineation line <name> set area &r: (re)Defines area for line using worldedit selection
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
-SUCCESS_RELOAD: "&7Reload successful!"
+SUCCESS_RELOAD: '&7Reload successful!'
+

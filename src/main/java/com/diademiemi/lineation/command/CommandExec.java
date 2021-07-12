@@ -32,19 +32,77 @@ public class CommandExec implements CommandExecutor {
                             else player.sendMessage(Message.ERROR_NO_PERMS);
                             break;
                         case "reload":
-                            if (player.hasPermission("volleyball.reload")) {
+                            if (player.hasPermission("lineation.reload")) {
                                 Config.getLineConfig().reloadConfig();
                                 Config.getDefaultsConfig().reloadConfig();
                                 Config.getMessageConfig().reloadConfig();
                                 player.sendMessage(Message.SUCCESS_RELOAD);
                             } else player.sendMessage(Message.ERROR_NO_PERMS);
                             break;
+                        case "line": 
+                            if (args.length > 1) {
+                                switch (args[1].toLowerCase()) {
+                                    case "create":
+                                        if (args.length > 2) {
+                                            switch (args[2].toLowerCase()) {
+                                                case "start":
+                                                    if (player.hasPermission("lineation.line.help")) {
+                                                        player.sendMessage(Message.HELP_LINE);
+                                                    } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                    break;
+                                                default:
+                                                    player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                            }
+                                        }
+                                        break;
+                                    case "list":
+                                        if (args.length > 2) {
+                                            switch (args[2].toLowerCase()) {
+                                                case "start":
+                                                    if (player.hasPermission("lineation.line.list")) {
+                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                        // player.sendMesage(Message.COURT_LIST.replace("$LINES$",
+                                                        //             Lines.getStartLines().keySet().toString()
+                                                        //                 .replace("[", "").replace("]", "")));
+                                                    } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                    break;
+                                                case "finish":
+                                                    if (player.hasPermission("lineation.line.list")) {
+                                                        // player.sendMesage(Message.COURT_LIST.replace("$LINES$",
+                                                        //             Lines.getFinishLines().keySet().toString()
+                                                        //                 .replace("[", "").replace("]", "")));
+                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                    } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                    break;
+                                                default:
+                                                    player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                            }
+                                        } else if (player.hasPermission("lineation.line.list")) {
+                                                        // player.sendMessage(Message.COURT_LIST.replace("$LINES$",
+                                                        //             Lines.getLines().keySet().toString()
+                                                        //                 .replace("[", "").replace("]", "")));
+                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                            } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    case "help":
+                                        if (player.hasPermission("lineation.line.help")) {
+                                            player.sendMessage(Message.HELP_LINE);
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    default:
+                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                }
+                            } else if (player.hasPermission("lineation.line.help")) {
+                                        player.sendMessage(Message.HELP_LINE);
+                                     } else player.sendMessage(Message.ERROR_NO_PERMS);
+                        break;
                         default:
                             player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                    }
-                } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-            }
-        } else sender.sendMessage("Please run this command as a player.");
+                        }
+                    } else if (player.hasPermission("lineation.help")) player.sendMessage(Message.HELP_INDEX);
+                        else player.sendMessage(Message.ERROR_NO_PERMS);
+                }
+            } else sender.sendMessage("Please run this command as a player.");
         return true;
     }
 }

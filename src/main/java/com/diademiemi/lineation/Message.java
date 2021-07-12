@@ -14,6 +14,7 @@ public class Message {
 
     public static String PREFIX;
     public static String HELP_INDEX;
+    public static String HELP_LINE;
     public static String ERROR_NO_PERMS;
     public static String ERROR_UNKNOWN_ARGS;
     public static String SUCCESS_RELOAD;
@@ -24,6 +25,7 @@ public class Message {
     public static void reloadMessages() {
         PREFIX = format(messageConfig.getConfig().getString("PREFIX"));
         HELP_INDEX = format(messageConfig.getConfig().getString("HELP_INDEX"));
+        HELP_LINE = format(messageConfig.getConfig().getString("HELP_LINE"));
         ERROR_NO_PERMS = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_PERMS"));
         ERROR_UNKNOWN_ARGS = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_ARGS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
