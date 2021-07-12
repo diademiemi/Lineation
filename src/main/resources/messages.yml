@@ -1,0 +1,8 @@
+PREFIX: '&f&l[&8&lL&f&lA&8&l] '
+HELP_INDEX: "
+  &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r\n
+   &7/lineation help &r: View this message\n
+   &7/lineation reload &r: Reload config files"
+ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
+ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
+SUCCESS_RELOAD: "&7Reload successful!"
