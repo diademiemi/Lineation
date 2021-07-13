@@ -6,16 +6,6 @@ group 'com.diademiemi.lineation'
 version '0.1.0'
 
 repositories {
-    // maven {
-    // url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-
-    // // As of Gradle 5.1, you can limit this to only those
-    // // dependencies you expect from it
-    // content {
-    //   includeGroup 'org.bukkit'
-    //   includeGroup 'org.spigotmc'
-    // }
-  // }
   /*
    As Spigot-API depends on the Bungeecord ChatComponent-API,
   we need to add the Sonatype OSS repository, as Gradle,
@@ -28,15 +18,12 @@ repositories {
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://maven.sk89q.com/repo/' }
 }
 
 dependencies {
      compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
-// // Pick only one of these and read the comment in the repositories block.
-  // compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
-  // compileOnly 'org.bukkit:bukkit:1.17-R0.1-SNAPSHOT' // The Bukkit API with no shadowing.
-  // compileOnly 'org.spigotmc:spigot:1.17-R0.1-SNAPSHOT' // The full Spigot server with no shadowing. Requires mavenLocal.
-  // compileOnly 'org.bukkit:craftbukkit:1.17-R0.1-SNAPSHOT' // The full CraftBukkit server with no shadowing. Requires mavenLocal.
+     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.3.0-SNAPSHOT'
 }
 
  test {

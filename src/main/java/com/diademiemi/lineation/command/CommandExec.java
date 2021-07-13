@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Config;
+import com.diademiemi.lineation.line.Line;
 
 /**
  * Command class for listening for lineation command
@@ -60,28 +61,25 @@ public class CommandExec implements CommandExecutor {
                                             switch (args[2].toLowerCase()) {
                                                 case "start":
                                                     if (player.hasPermission("lineation.line.list")) {
-                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                                        // player.sendMesage(Message.COURT_LIST.replace("$LINES$",
-                                                        //             Lines.getStartLines().keySet().toString()
-                                                        //                 .replace("[", "").replace("]", "")));
+                                                        player.sendMessage(Message.LINE_LIST.replace("$LINES$",
+                                                                    Line.getStartLines().keySet().toString()
+                                                                        .replace("[", "").replace("]", "")));
                                                     } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 case "finish":
                                                     if (player.hasPermission("lineation.line.list")) {
-                                                        // player.sendMesage(Message.COURT_LIST.replace("$LINES$",
-                                                        //             Lines.getFinishLines().keySet().toString()
-                                                        //                 .replace("[", "").replace("]", "")));
-                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                        player.sendMessage(Message.LINE_LIST.replace("$LINES$",
+                                                                    Line.getFinishLines().keySet().toString()
+                                                                        .replace("[", "").replace("]", "")));
                                                     } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 default:
                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                             }
                                         } else if (player.hasPermission("lineation.line.list")) {
-                                                        // player.sendMessage(Message.COURT_LIST.replace("$LINES$",
-                                                        //             Lines.getLines().keySet().toString()
-                                                        //                 .replace("[", "").replace("]", "")));
-                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                        player.sendMessage(Message.LINE_LIST.replace("$LINES$",
+                                                                    Line.getLines().keySet().toString()
+                                                                        .replace("[", "").replace("]", "")));
                                             } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     case "help":
