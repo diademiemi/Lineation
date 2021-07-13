@@ -58,9 +58,9 @@ public class Line {
      *
      * @param name line name
      */
-    public Line(String type, String name) {
-        this.type = type;
+    public Line(String name, String type) {
         this.name = name;
+        this.type = type;
         started = false;
         world = Lineation.getInstance().getServer().getWorlds().get(0);
 

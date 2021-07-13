@@ -30,7 +30,8 @@ public class LineIO {
      * @param name name of line to load
      */
     private static void loadLine(String name) {
-        Line line = new Line(name);
+        String type = lineConfig.getConfig().getString(name + ".type");
+        Line line = new Line(name, type);
         if (lineConfig.getConfig().get(name + ".type" ) != null)
             line.setType(lineConfig.getConfig().getString(name + ".type"));
         if (lineConfig.getConfig().get(name + ".line") != null) {
@@ -71,12 +72,13 @@ public class LineIO {
         lineConfig.getConfig().set(name + ".type", line.getType());
         if (line.getBounds() != null) {
             double[][] bounds = line.getBounds();
-            lineConfig.getConfig().set(name + ".court.min.x", bounds[0][0]);
-            lineConfig.getConfig().set(name + ".court.min.y", bounds[0][1]);
-            lineConfig.getConfig().set(name + ".court.min.z", bounds[0][2]);
-            lineConfig.getConfig().set(name + ".court.max.x", bounds[1][0]);
-            lineConfig.getConfig().set(name + ".court.max.y", bounds[1][1]);
-            lineConfig.getConfig().set(name + ".court.max.z", bounds[1][2]);
+            lineConfig.getConfig().set(name + ".line.min.x", bounds[0][0]);
+            lineConfig.getConfig().set(name + ".line.min.y", bounds[0][1]);
+            lineConfig.getConfig().set(name + ".line.min.z", bounds[0][2]);
+            lineConfig.getConfig().set(name + ".line.max.x", bounds[1][0]);
+            lineConfig.getConfig().set(name + ".line.max.y", bounds[1][1]);
+            lineConfig.getConfig().set(name + ".line.max.z", bounds[1][2]);
+            lineConfig.getConfig().set(name + ".world", line.getWorld().getName());
         }
 
         lineConfig.saveConfig();
