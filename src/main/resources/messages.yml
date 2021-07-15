@@ -1,33 +1,37 @@
 PREFIX: '&f&l[&8&lL&f&lA&8&l] '
 HELP_INDEX: |2-
-   &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r
+   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
    &7/lineation help &r: View this message
    &7/lineation line help &r: View commands relating to lines
    &7/lineation reload &r: Reload config files
 HELP_LINE: |2-
-   &f&l[ &8&l-&f&l-&8&l- &f&lL&8&li&f&ln&8&le&f&la&8&lt&f&li&8&lo&f&ln&l &8&l-&f&l-&8&l-&f&l ]&r
-   &7/lineation line create <start/finish> <name> &r: Create a line. If there is a worldedit selection it is used for the area
+   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+   &7/lineation line create <start/finish> <name> &r: Create a line
    &7/lineation line remove <name> &r: Remove a line
    &7/lineation line list <type> &r: List all lines, type is optional
+   &7/lineation line <name> info &r: Gets information about specified line
    &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
    &7/lineation line <name> stop &r: Closes line. In case of finish line, announces results to chat
-   &7/lineation line <name> set bounds &r: (re)Defines bounds for line using worldedit selection
+   &7/lineation line <name> setbounds &r: Defines bounds for line using worldedit selection
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
-ERROR_MISSING_ARGS: '&7Missing arguments: &7&l$MISSING$'
-ERROR_UNKNOWN_LINE: '&7Unknown line: &7&l$LINE$'
+ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
+ERROR_UNKNOWN_LINE: '&7Unknown line: &f&l$LINE$'
 ERROR_NULL_BOUNDS: '&7Make a cuboid selection with WorldEdit first!'
 ERROR_INVALID_NAME: '&7This name is not allowed!'
 ERROR_LINE_EXISTS: '&7 A line with this name already exists!'
 SUCCESS_RELOAD: '&7Reload successful!'
-SUCCESS_LINE_CREATED: '&7Created &7&l$LINE$&r&7 successfully'
-SUCCESS_SET_BOUNDS: '&7Bounds set successfully for &7&l$LINE$&r&7!'
-SUCCESS_LINE_REMOVED: '&7Removed &7&l$LINE$&r&7 successfully'
-SUCCESS_LINE_SELECTED: '&7&l$LINE$&r&7 Selected!' 
+SUCCESS_LINE_STARTED: '&7Line &f&l$LINE$&r&7 has been started!'
+SUCCESS_LINE_STOPPED: '&7Line &f&l$LINE$&r&7 has been stopped!'
+SUCCESS_LINE_CREATED: '&7Created &f&l$LINE$&r&7 successfully'
+SUCCESS_SET_BOUNDS: '&7Bounds set successfully for &f&l$LINE$&r&7!'
+SUCCESS_LINE_REMOVED: '&7Removed &f&l$LINE$&r&7 successfully'
+SUCCESS_LINE_SELECTED: '&f&l$LINE$&r&7 Selected!' 
 LINE_INFO: |2-
-  &8&lL&f&li&8&ln&le &8&lI&f&ln&8&lf&f&lo
+  &f&lLine Info
   &8- &7Name: $NAME$
   &8- &7Started: $STARTED$
+  &8- &7Type: $TYPE$
   &8- &7World: $WORLD$
   &8- &7Bounds: $BOUNDS$
 LINE_LIST: '&7Lines: &f $LINES$'

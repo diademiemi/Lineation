@@ -15,6 +15,7 @@ import com.diademiemi.lineation.Lineation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
     /**
      * lineation line handler
@@ -84,11 +85,23 @@ public class Line {
         }
 
         public static HashMap<String, Line> getStartLines() {
-            return lines;
+            HashMap<String, Line> startLines = new HashMap<String, Line>();
+            for(Map.Entry<String, Line> entry: lines.entrySet()) {
+                if (entry.getValue().getType() == "start") {
+                    startLines.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return startLines;
         }
 
         public static HashMap<String, Line> getFinishLines() {
-            return lines;
+            HashMap<String, Line> finishLines = new HashMap<String, Line>();
+            for(Map.Entry<String, Line> entry: lines.entrySet()) {
+                if (entry.getValue().getType() == "finish") {
+                    finishLines.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return finishLines;
         }
 
         /**
@@ -311,9 +324,10 @@ public class Line {
                 player.sendMessage(Message.LINE_INFO
                         .replace("$NAME$", name)
                         .replace("$STARTED$", Boolean.toString(isStarted()))
+                        .replace("$TYPE$", type)
                         .replace("$WORLD$", world.getName())
                         .replace("$BOUNDS$",
-                            "(" + bounds[0][0] + "," + bounds[0][1] + "," + bounds[0][2] + "} -> )" +
+                            "(" + bounds[0][0] + "," + bounds[0][1] + "," + bounds[0][2] + ") -> (" +
                             bounds[1][0] + "," + bounds[1][1] + "," + bounds[1][2] + ")"));
             } catch (Exception e) {
                 player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", name));

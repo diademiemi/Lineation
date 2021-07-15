@@ -34,9 +34,13 @@ public class Lineation extends JavaPlugin {
 
         pm.addPermission(new Permission("lineation.help"));
         pm.addPermission(new Permission("lineation.reload"));
+        pm.addPermission(new Permission("lineation.line.help"));
         pm.addPermission(new Permission("lineation.line.list"));
         pm.addPermission(new Permission("lineation.line.create"));
         pm.addPermission(new Permission("lineation.line.remove"));
+        pm.addPermission(new Permission("lineation.line.setbounds"));
+        pm.addPermission(new Permission("lineation.line.start"));
+        pm.addPermission(new Permission("lineation.line.stop"));
 
         getCommand("lineation").setExecutor(new CommandExec());
 

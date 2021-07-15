@@ -49,21 +49,6 @@ public class CommandExec implements CommandExecutor {
                                         if (args.length > 2) {
                                             switch (args[2].toLowerCase()) {
                                                 case "start":
-                                                    if (player.hasPermission("lineation.line.create")) {
-                                                        if (args.length > 3) {
-                                                            if (Line.getLines().get(args[3]) == null) {
-                                                                if (!args[3].equalsIgnoreCase("help")
-                                                                    && !args[3].equalsIgnoreCase("create")
-                                                                    && !args[3].equalsIgnoreCase("remove")
-                                                                    && !args[3].equalsIgnoreCase("list")) {
-                                                                    new Line(args[3], args[2]);
-                                                                    player.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
-                                                                } else player.sendMessage(Message.ERROR_INVALID_NAME);
-                                                            } else player.sendMessage(Message.ERROR_LINE_EXISTS);
-                                                        } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<name>"));
-                                                        break;
-                                                    } else player.sendMessage(Message.ERROR_NO_PERMS);
-                                                    break;
                                                 case "finish":
                                                     if (player.hasPermission("lineation.line.create")) {
                                                         if (args.length > 3) {
@@ -120,7 +105,7 @@ public class CommandExec implements CommandExecutor {
                                                 Line.getLines().remove(args[2]);
                                                 player.sendMessage(Message.SUCCESS_LINE_REMOVED
                                                         .replace("$LINE$", args[2]));
-                                            } else player.sendMessage(Message.ERROR_UNKNOWN_LINE);
+                                            } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     case "help":
@@ -129,7 +114,40 @@ public class CommandExec implements CommandExecutor {
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     default:
-                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                        if (Line.getLines().get(args[1]) != null) {
+                                            if (args.length > 2) {
+                                                Line line = Line.getLines().get(args[1]);
+                                                switch (args[2].toLowerCase()) {
+                                                    case "info":
+                                                        if (player.hasPermission("lineation.line.info")) {
+                                                            line.getLineInfo(player, args[1]);
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    case "setbounds":
+                                                        if (player.hasPermission("lineation.line.setbounds")) {
+                                                            line.setBounds(player);
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    case "start":
+                                                        if (player.hasPermission("lineation.line.start")) {
+                                                            line.setStarted(true);
+                                                            player.sendMessage(Message.SUCCESS_LINE_STARTED
+                                                                    .replace("$LINE$", args[1]));
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    case "stop":
+                                                        if (player.hasPermission("lineation.line.stop")) {
+                                                            line.setStarted(false);
+                                                            player.sendMessage(Message.SUCCESS_LINE_STOPPED
+                                                                    .replace("$LINE$", args[1]));
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    default:
+                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                }
+                                            } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                
+                                        } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));            
                                         break;
                                 }
                             } else if (player.hasPermission("lineation.line.help")) {

@@ -23,6 +23,8 @@ public class Message {
     public static String ERROR_INVALID_NAME;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
+    public static String SUCCESS_LINE_STARTED;
+    public static String SUCCESS_LINE_STOPPED;
     public static String SUCCESS_LINE_CREATED;
     public static String SUCCESS_SET_BOUNDS;
     public static String SUCCESS_LINE_REMOVED;
@@ -45,6 +47,8 @@ public class Message {
         ERROR_INVALID_NAME = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_NAME"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
+        SUCCESS_LINE_STARTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STARTED"));
+        SUCCESS_LINE_STOPPED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STOPPED"));
         SUCCESS_LINE_CREATED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_CREATED"));
         SUCCESS_SET_BOUNDS = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_BOUNDS"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
