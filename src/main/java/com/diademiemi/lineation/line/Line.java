@@ -87,7 +87,7 @@ public class Line {
         public static HashMap<String, Line> getStartLines() {
             HashMap<String, Line> startLines = new HashMap<String, Line>();
             for(Map.Entry<String, Line> entry: lines.entrySet()) {
-                if (entry.getValue().getType() == "start") {
+                if (entry.getValue().getType().equalsIgnoreCase("start")) {
                     startLines.put(entry.getKey(), entry.getValue());
                 }
             }
@@ -97,7 +97,7 @@ public class Line {
         public static HashMap<String, Line> getFinishLines() {
             HashMap<String, Line> finishLines = new HashMap<String, Line>();
             for(Map.Entry<String, Line> entry: lines.entrySet()) {
-                if (entry.getValue().getType() == "finish") {
+                if (entry.getValue().getType().equalsIgnoreCase("finish")) {
                     finishLines.put(entry.getKey(), entry.getValue());
                 }
             }
