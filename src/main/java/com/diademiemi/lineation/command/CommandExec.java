@@ -33,7 +33,7 @@ public class CommandExec implements CommandExecutor {
                         case "help":
                             if (args.length > 1) {
                                 switch (args[1].toLowerCase()) {
-                                    case "line":
+                                    case "lines":
                                         if (player.hasPermission("lineation.help")) {
                                             player.sendMessage(Message.HELP_LINE);
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
@@ -47,8 +47,6 @@ public class CommandExec implements CommandExecutor {
                             } else if (player.hasPermission("lineation.help")) {
                                 player.sendMessage(Message.HELP_INDEX);
                             } else player.sendMessage(Message.ERROR_NO_PERMS);
-                            if (player.hasPermission("lineation.help")) player.sendMessage(Message.HELP_INDEX);
-                            else player.sendMessage(Message.ERROR_NO_PERMS);
                             break;
                         case "reload":
                             if (player.hasPermission("lineation.reload")) {

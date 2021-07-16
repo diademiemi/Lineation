@@ -34,6 +34,8 @@ public class LineIO {
         Line line = new Line(name, type);
         if (lineConfig.getConfig().get(name + ".type" ) != null)
             line.setType(lineConfig.getConfig().getString(name + ".type"));
+        if (lineConfig.getConfig().get(name + "option.messagereach" ) != null)
+            line.setType(lineConfig.getConfig().getString(name + ".option.messagereach"));
         if (lineConfig.getConfig().get(name + ".line") != null) {
             double[][] area = new double[2][3];
             area[0][0] = lineConfig.getConfig().getDouble(name + ".area.min.x");
@@ -70,6 +72,8 @@ public class LineIO {
         String name = line.getName();
 
         lineConfig.getConfig().set(name + ".type", line.getType());
+        lineConfig.getConfig().set(name + ".option.messagereach", line.getMessageReach());
+
         if (line.getArea() != null) {
             double[][] area = line.getArea();
             lineConfig.getConfig().set(name + ".area.min.x", area[0][0]);
