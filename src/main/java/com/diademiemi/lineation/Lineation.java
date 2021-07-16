@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.diademiemi.lineation.command.CommandExec;
+import com.diademiemi.lineation.command.CommandTabComplete;
 import com.diademiemi.lineation.line.LineListener;
 import com.diademiemi.lineation.line.LineIO;
 
@@ -44,8 +45,10 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.setarea"));
         pm.addPermission(new Permission("lineation.line.start"));
         pm.addPermission(new Permission("lineation.line.stop"));
+        pm.addPermission(new Permission("lineation.line.option.messagereach"));
 
         getCommand("lineation").setExecutor(new CommandExec());
+        getCommand("lineation").setTabCompleter(new CommandTabComplete());
 
         new BukkitRunnable() {
             @Override

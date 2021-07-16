@@ -175,8 +175,10 @@ public class CommandExec implements CommandExecutor {
                                                                         switch (args[4].toLowerCase()) {
                                                                             case "world":
                                                                             case "all":
-                                                                                line.setMessageReach(args[4]);
-                                                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                if (player.hasPermission("lineation.line.option.messagereach")) {
+                                                                                    line.setMessageReach(args[4]);
+                                                                                    player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                                                 break;
                                                                             default:
                                                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);

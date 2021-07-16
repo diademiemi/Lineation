@@ -13,7 +13,9 @@ HELP_LINE: |2-
    &7/lineation line <name> info &r: Gets information about specified line
    &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
    &7/lineation line <name> stop &r: Closes line. In case of finish line, announces results to chat
-   &7/lineation line <name> setarea &r: Defines area for line using worldedit selection
+   &7/lineation line <name> setarea &r: Defines area for detection using worldedit selection
+   &7/lineation line <name> setline &r: Defines area to fill when stopped using worldedit selection
+   &7/lineation line <name> getwinners &r: Returns last winners of this line
 HELP_OPTION: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7/lineation line <name> option messagereach <all/world/int>&r: Sets reach for message
@@ -41,6 +43,14 @@ LINE_INFO: |2-
   &8- &7Type: $TYPE$
   &8- &7World: $WORLD$
   &8- &7Area: $AREA$
+  &8- &7Borders: $BORDERS$
+LINE_OPTIONS: |2-
+  &f&lLine Options
+  &8- &7Teleport location: $TELEPORTLOCATION$
+  &8- &7Close on wins: $ALLOWEDWINNERS$
+  &8- &7Message reach: $MESSAGEREACH$
+  &8- &7Allowed gamemodes: $GAMEMODES$
+  &8- &7Linked line: $LINKED$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'
 PLAYER_FINISHED: '&f&l$NAME$&r&7 has finished in &f&l$PLACE$&r&7 place!'
