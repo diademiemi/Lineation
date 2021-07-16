@@ -12,12 +12,12 @@ HELP_LINE: |2-
    &7/lineation line <name> info &r: Gets information about specified line
    &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
    &7/lineation line <name> stop &r: Closes line. In case of finish line, announces results to chat
-   &7/lineation line <name> setbounds &r: Defines bounds for line using worldedit selection
+   &7/lineation line <name> setarea &r: Defines area for line using worldedit selection
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
 ERROR_UNKNOWN_LINE: '&7Unknown line: &f&l$LINE$'
-ERROR_NULL_BOUNDS: '&7Make a cuboid selection with WorldEdit first!'
+ERROR_NULL_AREA: '&7Make a cuboid selection with WorldEdit first!'
 ERROR_INVALID_NAME: '&7This name is not allowed!'
 ERROR_NOT_FINISH: '&7The line &f&l$LINE$&r&7 is not a finish line!'
 ERROR_LINE_EXISTS: '&7 A line with this name already exists!'
@@ -25,7 +25,7 @@ SUCCESS_RELOAD: '&7Reload successful!'
 SUCCESS_LINE_STARTED: '&7Line &f&l$LINE$&r&7 has been started!'
 SUCCESS_LINE_STOPPED: '&7Line &f&l$LINE$&r&7 has been stopped!'
 SUCCESS_LINE_CREATED: '&7Created &f&l$LINE$&r&7 successfully'
-SUCCESS_SET_BOUNDS: '&7Bounds set successfully for &f&l$LINE$&r&7!'
+SUCCESS_SET_AREA: '&7Area set successfully for &f&l$LINE$&r&7!'
 SUCCESS_LINE_REMOVED: '&7Removed &f&l$LINE$&r&7 successfully'
 SUCCESS_LINE_SELECTED: '&f&l$LINE$&r&7 Selected!' 
 LINE_INFO: |2-
@@ -34,6 +34,6 @@ LINE_INFO: |2-
   &8- &7Started: $STARTED$
   &8- &7Type: $TYPE$
   &8- &7World: $WORLD$
-  &8- &7Bounds: $BOUNDS$
+  &8- &7Area: $AREA$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'

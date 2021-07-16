@@ -45,9 +45,9 @@ public class Line {
     private boolean started;
 
     /**
-     * line bounds
+     * line area
      */
-    private double[][] bounds;
+    private double[][] area;
 
     /**
      * world
@@ -75,13 +75,13 @@ public class Line {
         started = false;
         world = Lineation.getInstance().getServer().getWorlds().get(0);
 
-        bounds = new double[2][3];
-        bounds[0][0] = 0;
-        bounds[0][1] = 0;
-        bounds[0][2] = 0;
-        bounds[1][0] = 0;
-        bounds[1][1] = 0;
-        bounds[1][2] = 0;
+        area = new double[2][3];
+        area[0][0] = 0;
+        area[0][1] = 0;
+        area[0][2] = 0;
+        area[1][0] = 0;
+        area[1][1] = 0;
+        area[1][2] = 0;
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<Player>();
@@ -237,78 +237,78 @@ public class Line {
         }
         
         /**
-         * get line bounds
+         * get line area
          *
-         * @return 2D array bounds
+         * @return 2D array area
          */
-        public double[][] getBounds() {
-            return bounds;
+        public double[][] getArea() {
+            return area;
         }
 
         /**
-         * use worldedit to set bounds of line
+         * use worldedit to set area of line
          *
          * @param player worldedit player
          */
-        private void setBounds(Player player, double[][] bounds) {
+        private void setArea(Player player, double[][] area) {
             WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
 
             com.sk89q.worldedit.regions.Region selection;
             try {
                 selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
             } catch (Exception e) {
-                player.sendMessage(Message.ERROR_NULL_BOUNDS);
+                player.sendMessage(Message.ERROR_NULL_AREA);
                 return;
             }
 
             if (selection != null) {
-                bounds[0][0] = selection.getMinimumPoint().getX();
-                bounds[0][1] = selection.getMinimumPoint().getY();
-                bounds[0][2] = selection.getMinimumPoint().getZ();
-                bounds[1][0] = selection.getMaximumPoint().getX();
-                bounds[1][1] = selection.getMaximumPoint().getY();
-                bounds[1][2] = selection.getMaximumPoint().getZ();
+                area[0][0] = selection.getMinimumPoint().getX();
+                area[0][1] = selection.getMinimumPoint().getY();
+                area[0][2] = selection.getMinimumPoint().getZ();
+                area[1][0] = selection.getMaximumPoint().getX();
+                area[1][1] = selection.getMaximumPoint().getY();
+                area[1][2] = selection.getMaximumPoint().getZ();
                 world = BukkitAdapter.adapt(selection.getWorld());
 
-                player.sendMessage(Message.SUCCESS_SET_BOUNDS.replace("$LINE$", name));
+                player.sendMessage(Message.SUCCESS_SET_AREA.replace("$LINE$", name));
 
             } else {
-                player.sendMessage(Message.ERROR_NULL_BOUNDS);
+                player.sendMessage(Message.ERROR_NULL_AREA);
             }
         }
 
         /**
-         * set line bounds
+         * set line area
          *
-         * @param bounds 2D array bounds
+         * @param area 2D array area
          */
-        public void setBounds(double[][] bounds) {
-            this.bounds = bounds;
+        public void setArea(double[][] area) {
+            this.area = area;
         }
 
         /**
-         * set line bounds with worldedit
+         * set line area with worldedit
          *
          * @param player worldedit player
          */
-        public void setBounds(Player player) {
-            setBounds(player, bounds);
+        public void setArea(Player player) {
+            setArea(player, area);
         }
 
         /**
-         * check if location is in bounds
+         * check if location is in area
          *
          * @param l location to check
-         * @return true if location is in bounds
+         * @return true if location is in area
          */
         public boolean contains(Location l) {
             try {
-                double minx = bounds[0][0];
-                double miny = bounds[0][1];
-                double minz = bounds[0][2];
-                double maxx = bounds[1][0];
-                double maxy = bounds[1][1];
-                double maxz = bounds[1][2];
+                double minx = area[0][0];
+                double miny = area[0][1];
+                double minz = area[0][2];
+                double maxx = area[1][0];
+                double maxy = area[1][1];
+                double maxz = area[1][2];
                 double tox = l.getBlock().getLocation().getX();
                 double toy = l.getBlock().getLocation().getY();
                 double toz = l.getBlock().getLocation().getZ();
@@ -321,9 +321,9 @@ public class Line {
         }
 
         /**
-         * get list of players in bounds
+         * get list of players in area
          *
-         * @return list of players in bounds
+         * @return list of players in area
          */
         public ArrayList<Player> getPlayers() {
             ArrayList<Player> players = new ArrayList<>();
@@ -339,26 +339,26 @@ public class Line {
         }
 
         /**
-         * check if player is in bounds
+         * check if player is in area
          * shouldnt be needed
          *
-         * @param player player to see if bounds contains
-         * @return true if player is in bounds
+         * @param player player to see if area contains
+         * @return true if player is in area
          */
         public boolean contains(Player player) {
             return getPlayers().contains(player);
         }
         
         /**
-         * select bounds with worldedit
+         * select area with worldedit
          *
          * @param player player to do the selecting
          */
         public void select(Player player) {
         
             try {
-                BlockVector3 min = BlockVector3.at(bounds[0][0], bounds[0][1], bounds[0][2]);
-                BlockVector3 max = BlockVector3.at(bounds[1][0], bounds[1][1], bounds[1][2]);
+                BlockVector3 min = BlockVector3.at(area[0][0], area[0][1], area[0][2]);
+                BlockVector3 max = BlockVector3.at(area[1][0], area[1][1], area[1][2]);
 
                 com.sk89q.worldedit.entity.Player weplayer = BukkitAdapter.adapt(player);
                 LocalSession ls = WorldEdit.getInstance().getSessionManager().get(weplayer);
@@ -374,7 +374,7 @@ public class Line {
         /**
          * get line the player is in
          *
-         * @param player player to check for bounds
+         * @param player player to check for area
          * @return line player is on
          */
         public static Line get(Player player) {

@@ -37,15 +37,15 @@ public class LineTools {
      * @param player Player
      */
     public static void getLineInfo(Line line, Player player) {
-        double[][] bounds = line.getBounds();
+        double[][] area = line.getArea();
         player.sendMessage(Message.LINE_INFO
                 .replace("$NAME$", line.getName())
                 .replace("$STARTED$", Boolean.toString(line.isStarted()))
                 .replace("$TYPE$", line.getType())
                 .replace("$WORLD$", line.getWorld().getName())
-                .replace("$BOUNDS$",
-                    "(" + bounds[0][0] + "," + bounds[0][1] + "," + bounds[0][2] + ") -> (" +
-                    bounds[1][0] + "," + bounds[1][1] + "," + bounds[1][2] + ")"));
+                .replace("$AREA$",
+                    "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
+                    area[1][0] + "," + area[1][1] + "," + area[1][2] + ")"));
     }
     
     public static void getWinnersString(Line line, Player player) {

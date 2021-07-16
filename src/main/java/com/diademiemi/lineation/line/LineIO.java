@@ -35,15 +35,15 @@ public class LineIO {
         if (lineConfig.getConfig().get(name + ".type" ) != null)
             line.setType(lineConfig.getConfig().getString(name + ".type"));
         if (lineConfig.getConfig().get(name + ".line") != null) {
-            double[][] bounds = new double[2][3];
-            bounds[0][0] = lineConfig.getConfig().getDouble(name + ".line.min.x");
-            bounds[0][1] = lineConfig.getConfig().getDouble(name + ".line.min.y");
-            bounds[0][2] = lineConfig.getConfig().getDouble(name + ".line.min.z");
-            bounds[1][0] = lineConfig.getConfig().getDouble(name + ".line.max.x");
-            bounds[1][1] = lineConfig.getConfig().getDouble(name + ".line.max.y");
-            bounds[1][2] = lineConfig.getConfig().getDouble(name + ".line.max.z");
+            double[][] area = new double[2][3];
+            area[0][0] = lineConfig.getConfig().getDouble(name + ".line.min.x");
+            area[0][1] = lineConfig.getConfig().getDouble(name + ".line.min.y");
+            area[0][2] = lineConfig.getConfig().getDouble(name + ".line.min.z");
+            area[1][0] = lineConfig.getConfig().getDouble(name + ".line.max.x");
+            area[1][1] = lineConfig.getConfig().getDouble(name + ".line.max.y");
+            area[1][2] = lineConfig.getConfig().getDouble(name + ".line.max.z");
             String world = lineConfig.getConfig().getString(name + ".world");
-            line.setBounds(bounds);
+            line.setArea(area);
             line.setWorld(Lineation.getInstance().getServer().getWorld(world));
         }
     }
@@ -70,14 +70,14 @@ public class LineIO {
         String name = line.getName();
 
         lineConfig.getConfig().set(name + ".type", line.getType());
-        if (line.getBounds() != null) {
-            double[][] bounds = line.getBounds();
-            lineConfig.getConfig().set(name + ".line.min.x", bounds[0][0]);
-            lineConfig.getConfig().set(name + ".line.min.y", bounds[0][1]);
-            lineConfig.getConfig().set(name + ".line.min.z", bounds[0][2]);
-            lineConfig.getConfig().set(name + ".line.max.x", bounds[1][0]);
-            lineConfig.getConfig().set(name + ".line.max.y", bounds[1][1]);
-            lineConfig.getConfig().set(name + ".line.max.z", bounds[1][2]);
+        if (line.getArea() != null) {
+            double[][] area = line.getArea();
+            lineConfig.getConfig().set(name + ".line.min.x", area[0][0]);
+            lineConfig.getConfig().set(name + ".line.min.y", area[0][1]);
+            lineConfig.getConfig().set(name + ".line.min.z", area[0][2]);
+            lineConfig.getConfig().set(name + ".line.max.x", area[1][0]);
+            lineConfig.getConfig().set(name + ".line.max.y", area[1][1]);
+            lineConfig.getConfig().set(name + ".line.max.z", area[1][2]);
             lineConfig.getConfig().set(name + ".world", line.getWorld().getName());
         }
 

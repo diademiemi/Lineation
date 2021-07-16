@@ -139,9 +139,9 @@ public class CommandExec implements CommandExecutor {
                                                             } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[2]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
-                                                    case "setbounds":
+                                                    case "setarea":
                                                         if (player.hasPermission("lineation.line.setarea")) {
-                                                            line.setBounds(player);
+                                                            line.setArea(player);
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "start":
