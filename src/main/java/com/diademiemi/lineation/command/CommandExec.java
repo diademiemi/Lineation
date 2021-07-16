@@ -176,16 +176,20 @@ public class CommandExec implements CommandExecutor {
                                                                             case "world":
                                                                             case "all":
                                                                                 line.setMessageReach(args[4]);
+                                                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                 break;
                                                                             default:
                                                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
+                                                                        break;
                                                                     } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                     break;
                                                                 default:
                                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                             }
+                                                            break;
                                                         } else player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                        break;
                                                     default:
                                                         player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help lines"));
                                                 }

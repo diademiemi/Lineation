@@ -37,7 +37,7 @@ public class LineTools {
                 for (Player p : players) {
                     p.sendMessage(Message.PLAYER_FINISHED
                             .replace("$NAME$", player.getName())
-                            .replace("$PlACE$", Message.ordinal(place)));
+                            .replace("$PLACE$", Message.ordinal(place)));
                 }
                 break;
             case "all":

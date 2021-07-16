@@ -32,6 +32,7 @@ public class Message {
     public static String SUCCESS_SET_AREA;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_LINE_SELECTED;
+    public static String SUCCESS_OPTION_SET;
     public static String LINE_INFO;
     public static String LINE_LIST;
     public static String LINE_WINNERS;
@@ -61,6 +62,7 @@ public class Message {
         SUCCESS_SET_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_AREA"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_LINE_SELECTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_SELECTED"));
+        SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         LINE_INFO = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO"));
         LINE_LIST = PREFIX + format(messageConfig.getConfig().getString("LINE_LIST"));
         LINE_WINNERS = PREFIX + format(messageConfig.getConfig().getString("LINE_WINNERS"));

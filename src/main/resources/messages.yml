@@ -33,6 +33,7 @@ SUCCESS_LINE_CREATED: '&7Created &f&l$LINE$&r&7 successfully'
 SUCCESS_SET_AREA: '&7Area set successfully for &f&l$LINE$&r&7!'
 SUCCESS_LINE_REMOVED: '&7Removed &f&l$LINE$&r&7 successfully'
 SUCCESS_LINE_SELECTED: '&f&l$LINE$&r&7 Selected!' 
+SUCCESS_OPTION_SET: '&7Set option successfully!'
 LINE_INFO: |2-
   &f&lLine Info
   &8- &7Name: $NAME$
