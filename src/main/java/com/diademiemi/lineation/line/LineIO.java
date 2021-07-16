@@ -31,12 +31,13 @@ public class LineIO {
      */
     private static void loadLine(String name) {
         String type = lineConfig.getConfig().getString(name + ".type");
+        String messageReach = lineConfig.getConfig().getString(name + "option.messagereach");
         Line line = new Line(name, type);
         if (lineConfig.getConfig().get(name + ".type" ) != null)
             line.setType(lineConfig.getConfig().getString(name + ".type"));
         if (lineConfig.getConfig().get(name + "option.messagereach" ) != null)
             line.setMessageReach(lineConfig.getConfig().getString(name + ".option.messagereach"));
-        if (lineConfig.getConfig().get(name + ".line") != null) {
+        if (lineConfig.getConfig().get(name + ".area") != null) {
             double[][] area = new double[2][3];
             area[0][0] = lineConfig.getConfig().getDouble(name + ".area.min.x");
             area[0][1] = lineConfig.getConfig().getDouble(name + ".area.min.y");

@@ -63,7 +63,8 @@ public class LineTools {
                 .replace("$WORLD$", line.getWorld().getName())
                 .replace("$AREA$",
                     "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
-                    area[1][0] + "," + area[1][1] + "," + area[1][2] + ")"));
+                    area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
+                .replace(".0", "");
     }
     
     public static void getWinnersString(Line line, Player player) {
