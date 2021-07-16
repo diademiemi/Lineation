@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.diademiemi.lineation.command.CommandExec;
+import com.diademiemi.lineation.line.LineListener;
 import com.diademiemi.lineation.line.LineIO;
 
 public class Lineation extends JavaPlugin { 
@@ -31,6 +32,8 @@ public class Lineation extends JavaPlugin {
         Message.reloadMessages();
 
         PluginManager pm = getServer().getPluginManager();
+
+        pm.registerEvents(new LineListener(), plugin);
 
         pm.addPermission(new Permission("lineation.help"));
         pm.addPermission(new Permission("lineation.reload"));

@@ -10,6 +10,8 @@ import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Config;
 import com.diademiemi.lineation.line.Line;
 import com.diademiemi.lineation.line.LineIO;
+import com.diademiemi.lineation.line.LineTools;
+
 /**
  * Command class for listening for lineation command
  *
@@ -89,6 +91,13 @@ public class CommandExec implements CommandExecutor {
                                                                         .replace("[", "").replace("]", "")));
                                                     } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
+                                                case "started":
+                                                    if (player.hasPermission("lineation.line.list")) {
+                                                        player.sendMessage(Message.LINE_LIST.replace("$LINES$",
+                                                                    Line.getStartedLines().keySet().toString()
+                                                                        .replace("[", "").replace("]", "")));
+                                                    } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                    break;
                                                 default:
                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                     break;
@@ -120,24 +129,31 @@ public class CommandExec implements CommandExecutor {
                                                 switch (args[2].toLowerCase()) {
                                                     case "info":
                                                         if (player.hasPermission("lineation.line.info")) {
-                                                            line.getLineInfo(player, args[1]);
+                                                            LineTools.getLineInfo(line, player);
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    case "getwinners":
+                                                        if (player.hasPermission("lineation.line.getwinners")) {
+                                                            if (line.getType().equalsIgnoreCase("finish")) {
+                                                                LineTools.getWinnersString(line, player);
+                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[2]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "setbounds":
-                                                        if (player.hasPermission("lineation.line.setbounds")) {
+                                                        if (player.hasPermission("lineation.line.setarea")) {
                                                             line.setBounds(player);
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "start":
                                                         if (player.hasPermission("lineation.line.start")) {
-                                                            line.setStarted(true);
+                                                            LineTools.startLine(line);
                                                             player.sendMessage(Message.SUCCESS_LINE_STARTED
                                                                     .replace("$LINE$", args[1]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "stop":
                                                         if (player.hasPermission("lineation.line.stop")) {
-                                                            line.setStarted(false);
+                                                            LineTools.stopLine(line);
                                                             player.sendMessage(Message.SUCCESS_LINE_STOPPED
                                                                     .replace("$LINE$", args[1]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);

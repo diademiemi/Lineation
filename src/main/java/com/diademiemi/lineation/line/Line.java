@@ -30,6 +30,11 @@ public class Line {
     private static HashMap<String, Line> lines = new HashMap<>();
 
     /**
+     * hashmap of started lines
+     */
+    private static HashMap<String, Line> startedLines = new HashMap<>();
+
+    /**
      * line name
      */
     private String name;
@@ -55,6 +60,11 @@ public class Line {
     private String type;
 
     /**
+     * winners (only for finish type)
+     */
+    private ArrayList<Player> winners;
+
+    /**
      * create line with defaults and provided name
      *
      * @param name line name
@@ -73,6 +83,9 @@ public class Line {
         bounds[1][1] = 0;
         bounds[1][2] = 0;
 
+        if (type.equalsIgnoreCase("finish")) {
+            winners = new ArrayList<Player>();
+        }
         lines.put(name, this);
     }
         /**
@@ -104,6 +117,11 @@ public class Line {
             return finishLines;
         }
 
+        public static HashMap<String, Line> getStartedLines() {
+            return startedLines;
+        }
+
+
         /**
          * get line name
          *
@@ -112,6 +130,7 @@ public class Line {
         public String getName() {
             return name;
         }
+
         /** 
          * names/renames this line
          *
@@ -157,6 +176,7 @@ public class Line {
          */
         public void setStarted(boolean started) {
             this.started = started;
+            startedLines.put(name, this);
         }
 
         /**
@@ -166,6 +186,45 @@ public class Line {
          */
         public World getWorld() {
             return world;
+        }
+
+        /**
+         * get winners of finish line
+         *
+         * @return winners list
+         */
+        public ArrayList getWinners() {
+            return winners;
+        }
+
+        /**
+         * add winner to winners list
+         *
+         * @param Player player
+         */
+        public void addWinner(Player player) {
+            winners.add(player);
+        }
+
+        /**
+         * clear winners list
+         *
+         */
+        public void clearWinners() {
+            winners.clear();
+        }
+        
+        /**
+         * check if player is winner
+         *
+         * @param player player
+         */
+        public boolean isWinner(Player player) {
+            if (winners != null && !winners.isEmpty()) {
+                if (winners.contains(player)) {
+                    return true;
+                } else return false;
+            } else return false;
         }
 
         /**
@@ -311,29 +370,7 @@ public class Line {
                 player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", name));
             }
         }
-
-        /**
-         * message the line using formatted LINE_INFO message
-         * 
-         * @param player player user
-         * @param string line name
-         */
-        public void getLineInfo(Player player, String name) {
-            
-            try {
-                player.sendMessage(Message.LINE_INFO
-                        .replace("$NAME$", name)
-                        .replace("$STARTED$", Boolean.toString(isStarted()))
-                        .replace("$TYPE$", type)
-                        .replace("$WORLD$", world.getName())
-                        .replace("$BOUNDS$",
-                            "(" + bounds[0][0] + "," + bounds[0][1] + "," + bounds[0][2] + ") -> (" +
-                            bounds[1][0] + "," + bounds[1][1] + "," + bounds[1][2] + ")"));
-            } catch (Exception e) {
-                player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", name));
-            }
-        }
-
+        
         /**
          * get line the player is in
          *
