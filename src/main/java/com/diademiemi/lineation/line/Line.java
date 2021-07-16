@@ -60,6 +60,11 @@ public class Line {
     private String type;
 
     /**
+     * message reach
+     */
+    private String messageReach;
+
+    /**
      * winners (only for finish type)
      */
     private ArrayList<Player> winners;
@@ -73,7 +78,8 @@ public class Line {
         this.name = name;
         this.type = type;
         started = false;
-        world = Lineation.getInstance().getServer().getWorlds().get(0);
+        world = Lineation.getInstance().getServer().getWorlds().get(0); 
+        messageReach = "world";
 
         area = new double[2][3];
         area[0][0] = 0;
@@ -143,7 +149,7 @@ public class Line {
         }
 
         /**
-         * get line type
+        * get line type
          *
          * @return line type
          */
@@ -158,6 +164,22 @@ public class Line {
          */
         public void setType(String type) {
             this.type = type;
+        }
+
+        /**
+         * get message reach
+         */
+        public String getMessageReach() {
+            return messageReach;
+        }
+        
+        /**
+         * set message reach
+         *
+         * @param string messageReach
+         */
+        public void setMessageReach(String messageReach) {
+            this.messageReach = messageReach;
         }
 
         /**

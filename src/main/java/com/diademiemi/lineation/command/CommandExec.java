@@ -31,6 +31,22 @@ public class CommandExec implements CommandExecutor {
                 if (args.length > 0) {
                     switch (args[0].toLowerCase()) {
                         case "help":
+                            if (args.length > 1) {
+                                switch (args[1].toLowerCase()) {
+                                    case "line":
+                                        if (player.hasPermission("lineation.help")) {
+                                            player.sendMessage(Message.HELP_LINE);
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    case "options":
+                                        if (player.hasPermission("lineation.help")) {
+                                            player.sendMessage(Message.HELP_OPTION);
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                }
+                            } else if (player.hasPermission("lineation.help")) {
+                                player.sendMessage(Message.HELP_INDEX);
+                            } else player.sendMessage(Message.ERROR_NO_PERMS);
                             if (player.hasPermission("lineation.help")) player.sendMessage(Message.HELP_INDEX);
                             else player.sendMessage(Message.ERROR_NO_PERMS);
                             break;
@@ -117,11 +133,6 @@ public class CommandExec implements CommandExecutor {
                                             } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
-                                    case "help":
-                                        if (player.hasPermission("lineation.line.help")) {
-                                            player.sendMessage(Message.HELP_LINE);
-                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
-                                        break;
                                     default:
                                         if (Line.getLines().get(args[1]) != null) {
                                             if (args.length > 2) {
@@ -158,15 +169,34 @@ public class CommandExec implements CommandExecutor {
                                                                     .replace("$LINE$", args[1]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
+                                                    case "option":
+                                                        if (args.length > 3) {
+                                                            switch (args[3].toLowerCase()) {
+                                                                case "messagereach":
+                                                                    if (args.length > 4) {
+                                                                        switch (args[4].toLowerCase()) {
+                                                                            case "world":
+                                                                            case "all":
+                                                                                line.setMessageReach(args[4]);
+                                                                                break;
+                                                                            default:
+                                                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                        }
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
+                                                                default:
+                                                                    player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                            }
+                                                        } else player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                     default:
-                                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                        player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help lines"));
                                                 }
                                             } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                 
                                         } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));            
                                         break;
                                 }
-                            } else if (player.hasPermission("lineation.line.help")) {
+                            } else if (player.hasPermission("lineation.help")) {
                                         player.sendMessage(Message.HELP_LINE);
                                      } else player.sendMessage(Message.ERROR_NO_PERMS);
                         break;

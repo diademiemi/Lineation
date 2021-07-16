@@ -9,6 +9,7 @@ import org.bukkit.World;
 import com.diademiemi.lineation.Message;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * line tools
@@ -25,11 +26,28 @@ public class LineTools {
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player)) {
             line.addWinner(player);
-            player.sendMessage("yippeee you won!!!!!!");
-            Bukkit.broadcastMessage("yeehawwww");
+            finishMessage(line, player, line.getWinners().size());
         }
     }
-   
+  
+    public static void finishMessage(Line line, Player player, Integer place) {
+        switch (line.getMessageReach()) {
+            case "world":
+                List<Player> players = line.getWorld().getPlayers();
+                for (Player p : players) {
+                    p.sendMessage(Message.PLAYER_FINISHED
+                            .replace("$NAME$", player.getName())
+                            .replace("$PlACE$", Message.ordinal(place)));
+                }
+                break;
+            case "all":
+                Bukkit.broadcastMessage(Message.PLAYER_FINISHED
+                        .replace("$NAME$", player.getName())
+                        .replace("$PLACE$", Message.ordinal(place)));
+                break;
+        }
+    }
+
     /**
      * get line info
      *
