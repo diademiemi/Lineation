@@ -153,6 +153,27 @@ public class CommandExec implements CommandExecutor {
                                                             line.setArea(player);
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
+                                                    case "removeborder":
+                                                        if (player.hasPermission("lineation.line.removeborder")) {
+                                                            if (args.length > 3) {
+                                                                switch (args[3].toLowerCase()) {
+                                                                    case "all":
+                                                                        line.clearBorders();
+                                                                        player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
+                                                                        break;
+                                                                    default:
+                                                                        try { 
+                                                                            int i = Integer.parseInt(args[3]);
+                                                                            line.removeBorder(i);
+                                                                        } catch (Exception e) {
+                                                                            player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                        }
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
                                                     case "start":
                                                         if (player.hasPermission("lineation.line.start")) {
                                                             LineTools.startLine(line);

@@ -56,6 +56,17 @@ public class LineTools {
      */
     public static void getLineInfo(Line line, Player player) {
         double[][] area = line.getArea();
+        StringBuilder bordersString = new StringBuilder("");
+        ArrayList<double[][]> borders = line.getBorders();
+        int i = 1;
+        for (double[][] b : borders) {
+            if (i> 1) {
+                bordersString.append(", ");
+            }
+            bordersString.append(i);
+            bordersString.append(": " + "(" + b[0][0] + "," + b[0][1] + "," + b[0][2] + ") -> )" +
+                    b[1][0] + "," + b[1][1] + "," + b[1][2] + ")");
+        }
         player.sendMessage(Message.LINE_INFO
                 .replace("$NAME$", line.getName())
                 .replace("$STARTED$", Boolean.toString(line.isStarted()))
@@ -64,7 +75,10 @@ public class LineTools {
                 .replace("$AREA$",
                     "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
                     area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
-                .replace(".0", ""));
+                .replace(".0", "")
+                .replace("$BORDERS$", bordersString));
+                    
+
     }
     
     public static void getWinnersString(Line line, Player player) {
@@ -75,8 +89,7 @@ public class LineTools {
             if (i > 1) {
                 winnersString.append(", ");
             }
-            winnersString.append(Message.ordinal(i));
-            winnersString.append(": ");
+            winnersString.append(Message.ordinal(i) + ": ");
             winnersString.append(p);
             i++;
         }

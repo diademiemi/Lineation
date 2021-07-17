@@ -88,7 +88,8 @@ public class CommandTabComplete implements TabCompleter {
                         if (player.hasPermission("lineation.line.info")) tabList.add("info");
                         if (player.hasPermission("lineation.line.start")) tabList.add("start");
                         if (player.hasPermission("lineation.line.stop")) tabList.add("stop");
-                        if (player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
+                        if (player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
+                        if (player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
                         if (player.hasPermission("lineation.line.setline")) tabList.add("setline");
                         if (player.hasPermission("lineation.line.getwinners")) tabList.add("getwinners");
                         if (player.hasPermission("lineation.line.list")) tabList.add("option");
@@ -96,9 +97,10 @@ public class CommandTabComplete implements TabCompleter {
                     if ("info".startsWith(args[2]) && player.hasPermission("lineation.line.info")) tabList.add("info");
                     if ("start".startsWith(args[2]) && player.hasPermission("lineation.line.start")) tabList.add("start");
                     if ("stop".startsWith(args[2]) && player.hasPermission("lineation.line.stop")) tabList.add("stop");
-                    if ("setarea".startsWith(args[2]) && player.hasPermission("lineation.setarea")) tabList.add("setarea");
-                    if ("setline".startsWith(args[2]) && player.hasPermission("lineation.setline")) tabList.add("setline");
-                    if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.getwinners")) tabList.add("getwinners");
+                    if ("setarea".startsWith(args[2]) && player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
+                    if ("addborder".startsWith(args[2]) && player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
+                    if ("removeborder".startsWith(args[2]) && player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
+                    if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.line.getwinners")) tabList.add("getwinners");
                     if ("option".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("option"); 
 
                 } else if (args[1].equalsIgnoreCase("create")) {
@@ -143,6 +145,11 @@ public class CommandTabComplete implements TabCompleter {
                             if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
                         }
                         if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
+                    } else if (args[2].equalsIgnoreCase("info")) {
+                        if (args[3].equalsIgnoreCase("")) {
+                            if (player.hasPermission("lineation.line.info.options")) tabList.add("options");
+                        }
+                        if ("options".startsWith(args[3]) && player.hasPermission("lineation.line.info.options")) tabList.add("options");
                     }
                 }
             }

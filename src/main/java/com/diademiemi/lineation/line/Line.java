@@ -50,6 +50,11 @@ public class Line {
     private double[][] area;
 
     /**
+     * line lines
+     */
+    private ArrayList<double[][]> borders;
+
+    /**
      * world
      */
     private World world;
@@ -88,6 +93,8 @@ public class Line {
         area[1][0] = 0;
         area[1][1] = 0;
         area[1][2] = 0;
+
+        borders = new ArrayList<double[][]>();
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
@@ -330,6 +337,81 @@ public class Line {
          */
         public void setArea(Player player) {
             setArea(player, area);
+        }
+
+        /**
+         * use worldedit to add a border
+         *
+         * @param player worldedit player
+         */
+        private void addBorder(Player player, ArrayList<double[][]> borders) {
+            WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+            com.sk89q.worldedit.regions.Region selection;
+            try {
+                selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
+            } catch (Exception e) {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+                return;
+            }
+            double[][] border = new double[2][3];
+
+            if (selection != null) {
+                border[0][0] = selection.getMinimumPoint().getX();
+                border[0][1] = selection.getMinimumPoint().getY();
+                border[0][2] = selection.getMinimumPoint().getZ();
+                border[1][0] = selection.getMaximumPoint().getX();
+                border[1][1] = selection.getMaximumPoint().getY();
+                border[1][2] = selection.getMaximumPoint().getZ();
+                world = BukkitAdapter.adapt(selection.getWorld());
+                
+                borders.add(border);
+                player.sendMessage(Message.SUCCESS_SET_AREA.replace("$LINE$", name));
+
+            } else {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+            }
+        }
+
+        /**
+         * add line border
+         * 
+         * @param area 2D array area
+         */
+        public void addBorder(double[][] border) {
+            borders.add(border);
+        }
+
+        /**
+         * add line border
+         *
+         * @param player worldedit player
+         */
+        public void addBorder(Player player) {
+            addBorder(player, borders);
+        }
+        
+        /**
+         * remove a border by number
+         *
+         * @param int i
+         */
+        public void removeBorder(int i) {
+            borders.remove(i - 1);
+        }
+
+        /**
+         * remove all borders
+         */
+        public void clearBorders() {
+            borders.clear();
+        }
+            
+        /**
+         * get all borders
+         */
+        public ArrayList<double[][]> getBorders() {
+            return borders;
         }
 
         /**
