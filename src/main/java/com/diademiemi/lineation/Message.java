@@ -30,6 +30,7 @@ public class Message {
     public static String SUCCESS_LINE_STOPPED;
     public static String SUCCESS_LINE_CREATED;
     public static String SUCCESS_SET_AREA;
+    public static String SUCCESS_SET_BORDER;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_BORDER_REMOVED;
     public static String SUCCESS_LINE_SELECTED;
@@ -61,6 +62,7 @@ public class Message {
         SUCCESS_LINE_STOPPED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STOPPED"));
         SUCCESS_LINE_CREATED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_CREATED"));
         SUCCESS_SET_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_AREA"));
+        SUCCESS_SET_BORDER = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_BORDER"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
         SUCCESS_LINE_SELECTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_SELECTED"));

@@ -54,6 +54,20 @@ public class LineIO {
             line.setArea(area);
             line.setWorld(Lineation.getInstance().getServer().getWorld(world));
         }
+        
+        int i = 1;
+        double[][] b = new double[2][3];
+        while (lineConfig.getConfig().get(name + ".border." + i + ".min.x" ) != null) {
+            b[0][0] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.x");
+            b[0][1] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.y");
+            b[0][2] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.z");
+            b[1][0] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".max.x");
+            b[1][1] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".max.y");
+            b[1][2] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".max.z");
+            line.addBorder(b);
+            i++;
+        }
+
         if (type.equalsIgnoreCase("finish")) {
             if (lineConfig.getConfig().get(name + ".lastwinners") != null) {
                 line.setWinners((ArrayList<String>)lineConfig.getConfig().getStringList(name + ".lastwinners"));
@@ -95,6 +109,19 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".area.max.z", area[1][2]);
             lineConfig.getConfig().set(name + ".world", line.getWorld().getName());
         }
+        if (line.getBorders() != null) {
+            int i = 1;
+            for (double[][] b : line.getBorders()) {
+                lineConfig.getConfig().set(name + ".border." + i + ".min.x", b[0][0]);
+                lineConfig.getConfig().set(name + ".border." + i + ".min.y", b[0][1]);
+                lineConfig.getConfig().set(name + ".border." + i + ".min.z", b[0][2]);
+                lineConfig.getConfig().set(name + ".border." + i + ".max.x", b[1][0]);
+                lineConfig.getConfig().set(name + ".border." + i + ".max.y", b[1][1]);
+                lineConfig.getConfig().set(name + ".border." + i + ".max.z", b[1][2]);
+                i++;
+            }
+        }
+
         if (line.getType().equalsIgnoreCase("finish")) {
             ArrayList<String> winners = line.getWinners();
 

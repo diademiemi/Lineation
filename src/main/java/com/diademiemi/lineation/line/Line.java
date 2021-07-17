@@ -55,6 +55,11 @@ public class Line {
     private ArrayList<double[][]> borders;
 
     /**
+     * list of blocks for opening sequence or to close
+     */
+    private ArrayList<String> blockSequence;
+
+    /**
      * world
      */
     private World world;
@@ -95,6 +100,8 @@ public class Line {
         area[1][2] = 0;
 
         borders = new ArrayList<double[][]>();
+        blockSequence = new ArrayList<String>();
+        blockSequence.add("GLASS");
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
@@ -356,17 +363,16 @@ public class Line {
             }
             double[][] border = new double[2][3];
 
-            if (selection != null) {
+            if (selection != null && world == BukkitAdapter.adapt(selection.getWorld())) {
                 border[0][0] = selection.getMinimumPoint().getX();
                 border[0][1] = selection.getMinimumPoint().getY();
                 border[0][2] = selection.getMinimumPoint().getZ();
                 border[1][0] = selection.getMaximumPoint().getX();
                 border[1][1] = selection.getMaximumPoint().getY();
                 border[1][2] = selection.getMaximumPoint().getZ();
-                world = BukkitAdapter.adapt(selection.getWorld());
-                
+
                 borders.add(border);
-                player.sendMessage(Message.SUCCESS_SET_AREA.replace("$LINE$", name));
+                player.sendMessage(Message.SUCCESS_SET_BORDER.replace("$LINE$", name));
 
             } else {
                 player.sendMessage(Message.ERROR_NULL_AREA);
@@ -412,6 +418,13 @@ public class Line {
          */
         public ArrayList<double[][]> getBorders() {
             return borders;
+        }
+
+        /**
+         * get blocksequence
+         */
+        public ArrayList<String> getBlockSequence() {
+            return blockSequence;
         }
 
         /**
