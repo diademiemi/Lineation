@@ -80,6 +80,11 @@ public class Line {
     private ArrayList<String> winners;
 
     /**
+     * max winners (only for finish type)
+     */
+    private Integer maxWinners;
+
+    /**
      * create line with defaults and provided name
      *
      * @param name line name
@@ -105,7 +110,9 @@ public class Line {
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
+            maxWinners = 3;
         }
+
         lines.put(name, this);
     }
         /**
@@ -276,6 +283,24 @@ public class Line {
                     return true;
                 } else return false;
             } else return false;
+        }
+
+        /**
+         * get maximum winners
+         *
+         * @return int
+         */
+        public int getMaxWinners() {
+            return maxWinners;
+        }
+
+        /**
+         * set maximum winners
+         * 
+         * @param int i
+         */
+        public void setMaxWinners(int i) {
+            maxWinners = i;
         }
 
         /**

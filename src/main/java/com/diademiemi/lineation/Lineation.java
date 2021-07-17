@@ -48,6 +48,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.start"));
         pm.addPermission(new Permission("lineation.line.stop"));
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
+        pm.addPermission(new Permission("lineation.line.option.maxwins"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());

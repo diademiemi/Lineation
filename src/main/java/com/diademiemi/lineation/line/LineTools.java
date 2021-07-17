@@ -40,6 +40,9 @@ public class LineTools {
         if (!line.isWinner(player)) {
             line.addWinner(player);
             finishMessage(line, player, line.getWinners().size());
+            if (line.getWinners().size() == line.getMaxWinners()) {
+                LineTools.stopLine(line);
+            }
         }
     }
   

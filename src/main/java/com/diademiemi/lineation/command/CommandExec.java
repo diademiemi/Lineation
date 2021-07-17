@@ -196,6 +196,19 @@ public class CommandExec implements CommandExecutor {
                                                     case "option":
                                                         if (args.length > 3) {
                                                             switch (args[3].toLowerCase()) {
+                                                                case "maxwins":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.maxwins")) {
+                                                                            try {
+                                                                                int i = Integer.parseInt(args[4]);
+                                                                                line.setMaxWinners(i);
+                                                                            } catch (Exception e) {
+                                                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                            }
+                                                                            break;
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
                                                                 case "messagereach":
                                                                     if (args.length > 4) {
                                                                         switch (args[4].toLowerCase()) {

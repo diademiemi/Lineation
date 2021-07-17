@@ -72,6 +72,9 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".lastwinners") != null) {
                 line.setWinners((ArrayList<String>)lineConfig.getConfig().getStringList(name + ".lastwinners"));
             }
+            if (lineConfig.getConfig().get(name + ".maxwinners") != null) {
+                line.setMaxWinners(lineConfig.getConfig().getInt(name + ".maxwinners"));
+            }
         }
     }
     
@@ -124,8 +127,10 @@ public class LineIO {
 
         if (line.getType().equalsIgnoreCase("finish")) {
             ArrayList<String> winners = line.getWinners();
+            int maxWinners = line.getMaxWinners();
 
             lineConfig.getConfig().set(name + ".lastwinners", winners);
+            lineConfig.getConfig().set(name + ".maxwinners", maxWinners);
         }
 
         lineConfig.saveConfig();
