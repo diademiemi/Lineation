@@ -61,11 +61,12 @@ public class LineTools {
         int i = 1;
         for (double[][] b : borders) {
             if (i> 1) {
-                bordersString.append(", ");
+                bordersString.append("\n");
             }
             bordersString.append(i);
-            bordersString.append(": " + "(" + b[0][0] + "," + b[0][1] + "," + b[0][2] + ") -> )" +
+            bordersString.append(": " + "(" + b[0][0] + "," + b[0][1] + "," + b[0][2] + ") -> (" +
                     b[1][0] + "," + b[1][1] + "," + b[1][2] + ")");
+            i++;
         }
         player.sendMessage(Message.LINE_INFO
                 .replace("$NAME$", line.getName())

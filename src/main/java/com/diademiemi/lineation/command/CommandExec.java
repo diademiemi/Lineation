@@ -153,6 +153,11 @@ public class CommandExec implements CommandExecutor {
                                                             line.setArea(player);
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
+                                                    case "addborder":
+                                                        if (player.hasPermission("lineation.line.addborder")) {
+                                                            line.addBorder(player);
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
                                                     case "removeborder":
                                                         if (player.hasPermission("lineation.line.removeborder")) {
                                                             if (args.length > 3) {
