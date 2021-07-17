@@ -202,6 +202,7 @@ public class CommandExec implements CommandExecutor {
                                                                             try {
                                                                                 int i = Integer.parseInt(args[4]);
                                                                                 line.setMaxWinners(i);
+                                                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                             } catch (Exception e) {
                                                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                             }
