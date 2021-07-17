@@ -139,7 +139,7 @@ public class LineTools {
         ArrayList<double[][]> borders = line.getBorders();
         String blockFrom = line.getBlockSequence().get(0);
         for (double[][] b : borders) {
-            replaceBlocks(b, world, "AIR", blockFrom);
+            replaceBlocks(b, world, "air", blockFrom);
         }
     }
 
@@ -179,7 +179,7 @@ public class LineTools {
         ArrayList<double[][]> borders = line.getBorders();
         String blockTo = line.getBlockSequence().get(0);
         for (double[][] b : borders) {
-            replaceBlocks(b, world, blockTo, "AIR");
+            replaceBlocks(b, world, blockTo, "air");
         }
     }
 

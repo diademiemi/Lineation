@@ -101,7 +101,7 @@ public class Line {
 
         borders = new ArrayList<double[][]>();
         blockSequence = new ArrayList<String>();
-        blockSequence.add("GLASS");
+        blockSequence.add("glass");
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
