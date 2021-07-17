@@ -69,10 +69,16 @@ public class LineTools {
     
     public static void getWinnersString(Line line, Player player) {
         StringBuilder winnersString = new StringBuilder("");
-        ArrayList<Player> winners = line.getWinners();
-        for (Player p : winners) {
-            winnersString.append(p.getName());
-            winnersString.append(", ");
+        ArrayList<String> winners = line.getWinners();
+        int i = 1;
+        for (String p : winners) {
+            if (i > 1) {
+                winnersString.append(", ");
+            }
+            winnersString.append(Message.ordinal(i));
+            winnersString.append(": ");
+            winnersString.append(p);
+            i++;
         }
         player.sendMessage(Message.LINE_WINNERS
                 .replace("$NAMES$", winnersString)); 
@@ -85,7 +91,7 @@ public class LineTools {
      * @param line line
      */
     public static void startStartLine(Line line) {
-        line.setStarted(true);
+        line.setStarted();
     }
 
     /**
@@ -95,7 +101,7 @@ public class LineTools {
      */
     public static void startFinishLine(Line line) {
         line.clearWinners();
-        line.setStarted(true);
+        line.setStarted();
     }
 
     /**
@@ -120,7 +126,7 @@ public class LineTools {
      * @param line line
      */
     public static void stopStartLine(Line line) {
-        line.setStarted(false);
+        line.setStopped();
     }
 
     /** 
@@ -129,7 +135,7 @@ public class LineTools {
      * @param line line
      */
     public static void stopFinishLine(Line line) {
-        line.setStarted(false);
+        line.setStopped();
     }
 
     /**

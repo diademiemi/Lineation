@@ -1,8 +1,13 @@
 package com.diademiemi.lineation.line;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import com.diademiemi.lineation.Lineation;
 import com.diademiemi.lineation.Config;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Class to load and save lines to file
  *
@@ -49,6 +54,11 @@ public class LineIO {
             line.setArea(area);
             line.setWorld(Lineation.getInstance().getServer().getWorld(world));
         }
+        if (type.equalsIgnoreCase("finish")) {
+            if (lineConfig.getConfig().get(name + ".lastwinners") != null) {
+                line.setWinners((ArrayList<String>)lineConfig.getConfig().getStringList(name + ".lastwinners"));
+            }
+        }
     }
     
     /** 
@@ -84,6 +94,11 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".area.max.y", area[1][1]);
             lineConfig.getConfig().set(name + ".area.max.z", area[1][2]);
             lineConfig.getConfig().set(name + ".world", line.getWorld().getName());
+        }
+        if (line.getType().equalsIgnoreCase("finish")) {
+            ArrayList<String> winners = line.getWinners();
+
+            lineConfig.getConfig().set(name + ".lastwinners", winners);
         }
 
         lineConfig.saveConfig();

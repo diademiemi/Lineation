@@ -67,7 +67,7 @@ public class Line {
     /**
      * winners (only for finish type)
      */
-    private ArrayList<Player> winners;
+    private ArrayList<String> winners;
 
     /**
      * create line with defaults and provided name
@@ -90,7 +90,7 @@ public class Line {
         area[1][2] = 0;
 
         if (type.equalsIgnoreCase("finish")) {
-            winners = new ArrayList<Player>();
+            winners = new ArrayList<String>();
         }
         lines.put(name, this);
     }
@@ -192,13 +192,19 @@ public class Line {
         }
 
         /**
-         * start or stop a line
-         *
-         * @param started true to start
+         * start a line
          */
-        public void setStarted(boolean started) {
-            this.started = started;
+        public void setStarted() {
+            started = true;
             startedLines.put(name, this);
+        }
+
+        /**
+         * stop a line
+         */
+        public void setStopped() {
+            started = false;
+            startedLines.remove(this.name);
         }
 
         /**
@@ -225,7 +231,16 @@ public class Line {
          * @param Player player
          */
         public void addWinner(Player player) {
-            winners.add(player);
+            winners.add(player.getName());
+        }
+
+        /**
+         * sets winners list
+         *
+         * @param List strings
+         */
+        public void setWinners(ArrayList<String> winners) {
+            this.winners = winners;
         }
 
         /**
@@ -243,7 +258,7 @@ public class Line {
          */
         public boolean isWinner(Player player) {
             if (winners != null && !winners.isEmpty()) {
-                if (winners.contains(player)) {
+                if (winners.contains(player.getName())) {
                     return true;
                 } else return false;
             } else return false;
