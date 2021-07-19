@@ -100,6 +100,25 @@ public class LineTools {
     }
 
     /**
+     * get line options info
+     *
+     * @param line Line
+     * @param player Player
+     */
+    public static void getLineOptions(Line line, Player player) {
+        player.sendMessage(Message.LINE_OPTIONS
+                .replace("$NAME$", line.getName())
+                .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
+                .replace("$TELEPORTLOCATION$", "TO IMPLEMENT")
+                .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
+                .replace("$MESSAGEREACH$", line.getMessageReach())
+                .replace("$GAMEMODES$", line.getGameModesString())
+                .replace("$LINKED$", "TO IMPLEMENT"));
+                    
+
+    }
+
+    /**
      * get winners
      * 
      * @param line Line

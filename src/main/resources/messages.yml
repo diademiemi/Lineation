@@ -48,6 +48,7 @@ LINE_INFO: |2-
   &8- &7Borders: $BORDERS$
 LINE_OPTIONS: |2-
   &f&lLine Options
+  &8- &7Block sequence: $BLOCKSEQUENCE$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Close on wins: $ALLOWEDWINNERS$
   &8- &7Message reach: $MESSAGEREACH$

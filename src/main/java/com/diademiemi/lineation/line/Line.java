@@ -523,6 +523,23 @@ public class Line {
         }
 
         /**
+         * get blocksequence as string
+         */
+        public String getBlockSequenceString() {
+            StringBuilder blockSequenceString = new StringBuilder("");
+
+            int i = 1;
+            for (String s : blockSequence) {
+                if (i > 1) {
+                    blockSequenceString.append(",");
+                }
+                blockSequenceString.append(s);
+                i++;
+            }
+            return blockSequenceString.toString();
+        }
+
+        /**
          * check if location is in area
          *
          * @param l location to check

@@ -139,7 +139,12 @@ public class CommandExec implements CommandExecutor {
                                                 switch (args[2].toLowerCase()) {
                                                     case "info":
                                                         if (player.hasPermission("lineation.line.info")) {
-                                                            LineTools.getLineInfo(line, player);
+                                                            if (args.length > 3) {
+                                                                if (args[3].equalsIgnoreCase("options")) {
+                                                                    LineTools.getLineOptions(line, player);
+                                                                    break;
+                                                                } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                            } LineTools.getLineInfo(line, player);
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "getwinners":

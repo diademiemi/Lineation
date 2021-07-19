@@ -37,6 +37,7 @@ public class Message {
     public static String SUCCESS_OPTION_SET;
     public static String LINE_INFO;
     public static String LINE_LIST;
+    public static String LINE_OPTIONS;
     public static String LINE_WINNERS;
     public static String PLAYER_FINISHED;
 
@@ -69,6 +70,7 @@ public class Message {
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         LINE_INFO = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO"));
         LINE_LIST = PREFIX + format(messageConfig.getConfig().getString("LINE_LIST"));
+        LINE_OPTIONS = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS"));
         LINE_WINNERS = PREFIX + format(messageConfig.getConfig().getString("LINE_WINNERS"));
         PLAYER_FINISHED = format(messageConfig.getConfig().getString("PLAYER_FINISHED"));
     }
