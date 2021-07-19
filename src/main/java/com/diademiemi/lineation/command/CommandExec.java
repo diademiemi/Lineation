@@ -78,11 +78,17 @@ public class CommandExec implements CommandExecutor {
                                         break;
                                     case "forget":
                                         if (player.hasPermission("lineation.forget")) {
-                                            if (Config.getData().getConfig().isInt(args[2])) {
-                                                Config.getData().getConfig().set(args[2], null);
-                                            } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
-                                                Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getName(), null);
+                                            try {
+                                                if (Config.getData().getConfig().isInt(args[2])) {
+                                                    Config.getData().getConfig().set(args[2], null);
+                                                    player.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
+                                                } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
+                                                    Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getUniqueId().toString(), null);
+                                                    player.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
                                             } else player.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
+                                            } catch (Exception e) {
+                                                player.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
+                                            }
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     default:

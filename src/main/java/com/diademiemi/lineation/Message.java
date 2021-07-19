@@ -37,6 +37,7 @@ public class Message {
     public static String SUCCESS_BORDER_REMOVED;
     public static String SUCCESS_LINE_SELECTED;
     public static String SUCCESS_OPTION_SET;
+    public static String SUCCESS_PLAYER_FORGOTTEN;
     public static String LINE_INFO;
     public static String LINE_LIST;
     public static String LINE_OPTIONS;
@@ -72,6 +73,7 @@ public class Message {
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
         SUCCESS_LINE_SELECTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_SELECTED"));
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
+        SUCCESS_PLAYER_FORGOTTEN = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_PLAYER_FORGOTTEN"));
         LINE_INFO = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO"));
         LINE_LIST = PREFIX + format(messageConfig.getConfig().getString("LINE_LIST"));
         LINE_OPTIONS = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS"));

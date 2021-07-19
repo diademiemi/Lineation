@@ -47,6 +47,7 @@ SUCCESS_LINE_REMOVED: '&7Removed &f&l$LINE$&r&7 successfully'
 SUCCESS_BORDER_REMOVED: '&7Removed border successfully'
 SUCCESS_LINE_SELECTED: '&f&l$LINE$&r&7 Selected!' 
 SUCCESS_OPTION_SET: '&7Set option successfully!'
+SUCCESS_PLAYER_FORGOTTEN: '&7Forgot player wins for &f&l$PLAYER$&r&7!'
 LINE_INFO: |2-
   &f&lLine Info
   &8- &7Name: $NAME$
