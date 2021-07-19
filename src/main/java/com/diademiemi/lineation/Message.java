@@ -43,6 +43,8 @@ public class Message {
     public static String LINE_OPTIONS_START;
     public static String LINE_OPTIONS_FINISH;
     public static String LINE_WINNERS;
+    public static String STARTING_IN;
+    public static String STARTING_NOW;
     public static String PLAYER_FINISHED;
 
     /**
@@ -80,6 +82,8 @@ public class Message {
         LINE_OPTIONS_START = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS_START"));
         LINE_OPTIONS_FINISH = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS_FINISH"));
         LINE_WINNERS = PREFIX + format(messageConfig.getConfig().getString("LINE_WINNERS"));
+        STARTING_IN = format(messageConfig.getConfig().getString("STARTING_IN"));
+        STARTING_NOW = format(messageConfig.getConfig().getString("STARTING_NOW"));
         PLAYER_FINISHED = format(messageConfig.getConfig().getString("PLAYER_FINISHED"));
     }
 

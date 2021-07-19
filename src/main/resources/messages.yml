@@ -72,4 +72,6 @@ LINE_OPTIONS_FINISH: |2-
   &8- &7Linked line: $LINKED$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'
+STARTING_IN: '&7Starting in &f&l$SECONDS$&r&7!'
+STARTING_NOW: '&7Starting &f&lNOW&r&7!'
 PLAYER_FINISHED: '&f&l$NAME$&r&7 has finished in &f&l$PLACE$&r&7 place!'
