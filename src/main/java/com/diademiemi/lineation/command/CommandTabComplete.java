@@ -192,6 +192,7 @@ public class CommandTabComplete implements TabCompleter {
                             if (player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                             if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
                             if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
+                            if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                             
                         }
 
@@ -199,6 +200,7 @@ public class CommandTabComplete implements TabCompleter {
                         if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
                         if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
+                        if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
 
                     } else if (args[2].equalsIgnoreCase("info")) {
 

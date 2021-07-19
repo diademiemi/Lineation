@@ -83,7 +83,9 @@ public class LineIO {
                 line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
                 line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
                         .toLocation(Lineation.getInstance().getServer()
-                        .getWorld(lineConfig.getConfig().getString(name + ".world"))));
+                        .getWorld(lineConfig.getConfig().getString(name + ".world")),
+                        (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
+                        (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
             }
         }
     }
@@ -143,6 +145,8 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
             lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
             lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
+            lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
+            lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
         }
 
         lineConfig.saveConfig();

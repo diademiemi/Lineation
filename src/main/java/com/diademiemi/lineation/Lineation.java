@@ -57,6 +57,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.option.maxwinners"));
         pm.addPermission(new Permission("lineation.line.option.gamemodes"));
         pm.addPermission(new Permission("lineation.line.option.blocksequence"));
+        pm.addPermission(new Permission("lineation.line.option.teleport"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());
