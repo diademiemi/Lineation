@@ -36,6 +36,11 @@ public class Line {
     private static HashMap<String, Line> startedLines = new HashMap<>();
 
     /**
+     * hashmap of all started finish lines
+     */
+    private static HashMap<String, Line> startedFinishLines = new HashMap<>();
+
+    /**
      * line name
      */
     private String name;
@@ -155,6 +160,10 @@ public class Line {
             return startedLines;
         }
 
+        public static HashMap<String, Line> getStartedFinishLines() {
+            return startedFinishLines;
+        }
+
 
         /**
          * get line name
@@ -225,6 +234,12 @@ public class Line {
         public void setStarted() {
             started = true;
             startedLines.put(name, this);
+            if (this.type.equalsIgnoreCase("finish")) {
+                startedFinishLines.put(name, this);
+            }
+            if (startedFinishLines.size() == 1) {
+                new LineListener(Lineation.getInstance());
+            }
         }
 
         /**
@@ -233,6 +248,12 @@ public class Line {
         public void setStopped() {
             started = false;
             startedLines.remove(this.name);
+            if (this.type.equalsIgnoreCase("finish")) {
+                startedFinishLines.remove(this.name);
+            }
+            if (startedFinishLines.size() == 0) {
+                LineListener.unregisterPluginEvents(Lineation.getInstance());
+            }
         }
 
         /**

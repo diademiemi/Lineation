@@ -17,7 +17,13 @@ public class Lineation extends JavaPlugin {
      * Plugin instance
      */
     private static Lineation plugin;
-    
+
+    /**
+     * Plugin manager
+     */
+    private static PluginManager pm;
+
+
     /**
      * Run on startup, load files, create permissions and start
      */
@@ -25,16 +31,14 @@ public class Lineation extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         
-        Config.getDefaultsConfig().saveDefaultConfig();
+        Config.getPluginConfig().saveDefaultConfig();
         Config.getMessageConfig().saveDefaultConfig();
         Config.getLineConfig().saveDefaultConfig();
-        Config.getDataConfig().saveDefaultConfig();
+        Config.getData().saveDefaultConfig();
 
         Message.reloadMessages();
 
-        PluginManager pm = getServer().getPluginManager();
-
-        pm.registerEvents(new LineListener(), plugin);
+        pm = getServer().getPluginManager();
 
         pm.addPermission(new Permission("lineation.help"));
         pm.addPermission(new Permission("lineation.reload"));
