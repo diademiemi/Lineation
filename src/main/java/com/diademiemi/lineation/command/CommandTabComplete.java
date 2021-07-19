@@ -90,7 +90,7 @@ public class CommandTabComplete implements TabCompleter {
                         if (player.hasPermission("lineation.line.stop")) tabList.add("stop");
                         if (player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
                         if (player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                        if (player.hasPermission("lineation.line.setline")) tabList.add("setline");
+                        if (player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
                         if (player.hasPermission("lineation.line.getwinners")) tabList.add("getwinners");
                         if (player.hasPermission("lineation.line.list")) tabList.add("option");
                     } 
@@ -143,11 +143,11 @@ public class CommandTabComplete implements TabCompleter {
                     if (args[2].equalsIgnoreCase("option")) {
                         if (args[3].equalsIgnoreCase("")) {
                             if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                            if (player.hasPermission("lineation.line.option.maxwins")) tabList.add("maxwins");
+                            if (player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                             if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
                         }
                         if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                        if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwins")) tabList.add("maxwins");
+                        if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
 
                     } else if (args[2].equalsIgnoreCase("info")) {

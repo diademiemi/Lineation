@@ -202,9 +202,9 @@ public class CommandExec implements CommandExecutor {
                                                     case "option":
                                                         if (args.length > 3) {
                                                             switch (args[3].toLowerCase()) {
-                                                                case "maxwins":
+                                                                case "maxwinners":
                                                                     if (args.length > 4) {
-                                                                        if (player.hasPermission("lineation.line.option.maxwins")) {
+                                                                        if (player.hasPermission("lineation.line.option.maxwinners")) {
                                                                             try {
                                                                                 int i = Integer.parseInt(args[4]);
                                                                                 line.setMaxWinners(i);

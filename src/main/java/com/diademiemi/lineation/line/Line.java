@@ -123,7 +123,7 @@ public class Line {
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
-            maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwins");
+            maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
             this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
         }
 
