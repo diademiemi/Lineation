@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+import com.diademiemi.lineation.Lineation;
 import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Config;
 
@@ -161,6 +162,11 @@ public class LineTools {
      */
     public static void startStartLine(Line line) {
         line.setStarted();
+        World world = line.getWorld();
+        ArrayList<double[][]> borders = line.getBorders();
+        ArrayList<String> blockSequence = line.getBlockSequence();
+
+        startLineSequence(borders, world, blockSequence, 0);
     }
 
     /**
@@ -202,6 +208,12 @@ public class LineTools {
      */
     public static void stopStartLine(Line line) {
         line.setStopped();
+        World world = line.getWorld();
+        ArrayList<double[][]> borders = line.getBorders();
+        String blockTo = line.getBlockSequence().get(0);
+        for (double[][] b : borders) {
+            replaceBlocks(b, world, blockTo, "air");
+        }
     }
 
     /** 
@@ -249,6 +261,33 @@ public class LineTools {
             e.printStackTrace();
         }
 
+    }
+
+    public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<String> blockSequence, Integer i) {
+        Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
+            public void run() {
+                if (blockSequence.size() != i) {
+
+                    for (double[][] b : borders) {
+                        replaceBlocks(b, world, blockSequence.get(i), "air");
+                    }
+
+                } else {
+
+                    for (double[][] b : borders) {
+                        replaceBlocks(b, world, blockSequence.get(i), blockSequence.get(i + 1));
+                    }
+
+                }
+
+                if (blockSequence.size() != i) {
+                    startLineSequence(borders, world, blockSequence, i + 1);
+                }
+
+            }
+
+        },20L);
+   
     }
 
 }
