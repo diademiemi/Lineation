@@ -173,10 +173,12 @@ public class CommandTabComplete implements TabCompleter {
 
                         if (player.hasPermission("lineation.line.list")) tabList.add("start");
                         if (player.hasPermission("lineation.line.list")) tabList.add("finish");
+                        if (player.hasPermission("lineation.line.list")) tabList.add("started");
                     }
 
                     if ("start".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("start");
                     if ("finish".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("finish");
+                    if ("started".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("started");
 
                 }
 
