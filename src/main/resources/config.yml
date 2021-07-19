@@ -1,7 +1,7 @@
 # Default options used for lines
 # Reload the plugins config files with /lineation config reload
 # Prevent someone from winning multiple times set maxwins
-# This can be set in game with /lination config set maxwins INT
+# This can be set in game with /lination config maxwins INT
 # Set to 0 to disable.
 # Players wins can be wiped with /lineation config forget USERNAME
 linedefaults:

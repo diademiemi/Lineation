@@ -1,24 +1,31 @@
 PREFIX: '&f&l[&8&lL&f&lA&8&l] '
 HELP_INDEX: |2-
-   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-   &7/lineation help &r: View this message
-   &7/lineation help lines &r: View commands relating to lines
-   &7/lineation help options &r: View commands for line options
-   &7/lineation reload &r: Reload config files
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7/lineation help &r: View this message
+  &7/lineation help lines &r: View commands relating to lines
+  &7/lineation help options &r: View commands for line options
+  &7/lineation config reload &r: Reload config files
+  &7/lineation config maxwins <int> &r: Set maximum amount of times a player can win. Useful for contests. Set to 0 to disable.
+  &7/lineation config forget <username/uuid> &r: Forget a players wins for maxwins.
 HELP_LINE: |2-
-   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-   &7/lineation line create <start/finish> <name> &r: Create a line
-   &7/lineation line remove <name> &r: Remove a line
-   &7/lineation line list <type> &r: List all lines, type is optional
-   &7/lineation line <name> info &r: Gets information about specified line
-   &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
-   &7/lineation line <name> stop &r: Closes line. In case of finish line, announces results to chat
-   &7/lineation line <name> setarea &r: Defines area for detection using worldedit selection
-   &7/lineation line <name> setline &r: Defines area to fill when stopped using worldedit selection
-   &7/lineation line <name> getwinners &r: Returns last winners of this line
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7/lineation line create <start/finish> <name> &r: Create a line
+  &7/lineation line remove <name> &r: Remove a line
+  &7/lineation line list <type> &r: List all lines, type is optional
+  &7/lineation line <name> info &r: Gets information about specified line
+  &7/lineation line <name> start &r: Opens line. In case of finish line, start counting wins
+  &7/lineation line <name> stop &r: Closes line. In case of finish line, announces results to chat
+  &7/lineation line <name> setarea &r: Defines area for detection using worldedit selection
+  &7/lineation line <name> setline &r: Defines area to fill when stopped using worldedit selection
+  &7/lineation line <name> getwinners &r: Returns last winners of this line
 HELP_OPTION: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7/lineation line <name> option messagereach <all/world/int>&r: Sets reach for message
+  &7/lineation line <name> option blocksequence <block1,block2...>&r: Comma seperated list of blocks. First block is used when stopped. Each block has a duration of one second when opening start line. 
+  &7/lineation line <name> option teleport <here/disable>&r: When someone finishes teleport them to your current position when executing this command.
+  &7/lineation line <name> option maxwinners <int>&r: Sets the amount of people that can win before the line is automatically closed. Set to 0 to disable.
+  &7/lineation line <name> option messagereach <all/world>&r: Sets reach for message
+  &7/lineation line <name> option gamemodes <survival,adventure>&r: Comma seperated list of game modes players must be in to be counted.
+  &7/lineation line <name> option link <line name>&r: Link line of other type to automatically start/stop these at the same time. 
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
@@ -26,6 +33,7 @@ ERROR_SEE_HELP: '&7Missing arguments! Check $COMMAND$'
 ERROR_UNKNOWN_LINE: '&7Unknown line: &f&l$LINE$'
 ERROR_NULL_AREA: '&7Make a cuboid selection with WorldEdit first!'
 ERROR_INVALID_NAME: '&7This name is not allowed!'
+ERROR_NOT_START: '&7The line &f&l$LINE$&r&7 is not a start line!'
 ERROR_NOT_FINISH: '&7The line &f&l$LINE$&r&7 is not a finish line!'
 ERROR_LINE_EXISTS: '&7 A line with this name already exists!'
 SUCCESS_RELOAD: '&7Reload successful!'
@@ -48,6 +56,7 @@ LINE_INFO: |2-
   &8- &7Borders: $BORDERS$
 LINE_OPTIONS: |2-
   &f&lLine Options
+  &8- &7Name: $NAME$
   &8- &7Block sequence: $BLOCKSEQUENCE$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Close on wins: $ALLOWEDWINNERS$
