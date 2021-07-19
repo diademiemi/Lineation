@@ -21,6 +21,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 import com.diademiemi.lineation.Message;
+import com.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ import java.util.List;
  */
 public class LineTools {
 
+    private static final Config data = Config.getData();
+
     /**
      * handle finish player entry
      * @param line Line
@@ -39,10 +42,19 @@ public class LineTools {
      */
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode())) {
-            line.addWinner(player);
-            finishMessage(line, player, line.getWinners().size());
-            if (line.getWinners().size() == line.getMaxWinners()) {
-                LineTools.stopLine(line);
+            String uuid = player.getUniqueId().toString();
+            if (!data.getConfig().isInt(uuid) ||
+                data.getConfig().getInt(uuid) != Config.getPluginConfig().getConfig().getInt("maxwins")) {
+
+                line.addWinner(player);
+                finishMessage(line, player, line.getWinners().size());
+
+                data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
+
+                if (line.getWinners().size() == line.getMaxWinners()) {
+                    LineTools.stopLine(line);
+                }
+
             }
         }
     }

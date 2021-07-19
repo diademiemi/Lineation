@@ -19,10 +19,12 @@ public class Message {
     public static String ERROR_NO_PERMS;
     public static String ERROR_UNKNOWN_ARGS;
     public static String ERROR_MISSING_ARGS;
+    public static String ERROR_UNKNOWN_PLAYER;
     public static String ERROR_SEE_HELP;
     public static String ERROR_UNKNOWN_LINE;
     public static String ERROR_NULL_AREA;
     public static String ERROR_INVALID_NAME;
+    public static String ERROR_NOT_START;
     public static String ERROR_NOT_FINISH;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
@@ -52,10 +54,12 @@ public class Message {
         ERROR_NO_PERMS = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_PERMS"));
         ERROR_UNKNOWN_ARGS = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_ARGS"));
         ERROR_MISSING_ARGS = PREFIX + format(messageConfig.getConfig().getString("ERROR_MISSING_ARGS"));
+        ERROR_UNKNOWN_PLAYER = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_PLAYER"));
         ERROR_SEE_HELP = PREFIX + format(messageConfig.getConfig().getString("ERROR_SEE_HELP"));
         ERROR_UNKNOWN_LINE = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_LINE"));
         ERROR_NULL_AREA = PREFIX + format(messageConfig.getConfig().getString("ERROR_NULL_AREA"));
         ERROR_INVALID_NAME = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_NAME"));
+        ERROR_NOT_START = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_START"));
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));

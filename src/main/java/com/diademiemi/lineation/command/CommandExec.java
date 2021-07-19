@@ -1,5 +1,6 @@
 package com.diademiemi.lineation.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -69,9 +70,19 @@ public class CommandExec implements CommandExecutor {
                                             try {
                                                 int i = Integer.parseInt(args[2]);
                                                 Config.getPluginConfig().getConfig().set("maxwins", i);
+                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
                                             } catch (Exception e) {
                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                             }
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    case "forget":
+                                        if (player.hasPermission("lineation.forget")) {
+                                            if (Config.getData().getConfig().isInt(args[2])) {
+                                                Config.getData().getConfig().set(args[2], null);
+                                            } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
+                                                Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getName(), null);
+                                            } else player.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     default:

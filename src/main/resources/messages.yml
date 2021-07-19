@@ -29,6 +29,7 @@ HELP_OPTION: |2-
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
+ERROR_UNKNOWN_PLAYER: '&7Unknown player: &f&l$PLAYER$'
 ERROR_SEE_HELP: '&7Missing arguments! Check $COMMAND$'
 ERROR_UNKNOWN_LINE: '&7Unknown line: &f&l$LINE$'
 ERROR_NULL_AREA: '&7Make a cuboid selection with WorldEdit first!'
