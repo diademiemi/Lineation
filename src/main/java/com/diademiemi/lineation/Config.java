@@ -19,7 +19,7 @@ public class Config {
     /**
      * config file for defaults
      */
-    private static Config defaults = new Config("defaults.yml");
+    private static Config defaults = new Config("config.yml");
 
     /**
      * line config
@@ -62,7 +62,7 @@ public class Config {
     /**
      * Return config
      */
-    public static Config getDefaultsConfig() {
+    public static Config getPluginConfig() {
         return defaults;
     }
     /**
@@ -84,7 +84,7 @@ public class Config {
     /**
      * Return config for data
      */
-    public static Config getDataConfig() {
+    public static Config getData() {
         return data;
     }
     

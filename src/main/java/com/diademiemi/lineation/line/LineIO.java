@@ -72,8 +72,11 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".lastwinners") != null) {
                 line.setWinners((ArrayList<String>)lineConfig.getConfig().getStringList(name + ".lastwinners"));
             }
-            if (lineConfig.getConfig().get(name + ".maxwinners") != null) {
+            if (lineConfig.getConfig().get(name + ".option.maxwinners") != null) {
                 line.setMaxWinners(lineConfig.getConfig().getInt(name + ".option.maxwinners"));
+            }
+            if (lineConfig.getConfig().get(name + ".option.gamemodes") != null) {
+                line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
             }
         }
     }
@@ -126,11 +129,10 @@ public class LineIO {
         }
 
         if (line.getType().equalsIgnoreCase("finish")) {
-            ArrayList<String> winners = line.getWinners();
-            int maxWinners = line.getMaxWinners();
 
-            lineConfig.getConfig().set(name + ".lastwinners", winners);
-            lineConfig.getConfig().set(name + ".option.maxwinners", maxWinners);
+            lineConfig.getConfig().set(name + ".lastwinners", line.getWinners());
+            lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
+            lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
         }
 
         lineConfig.saveConfig();

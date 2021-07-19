@@ -49,6 +49,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.stop"));
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
         pm.addPermission(new Permission("lineation.line.option.maxwins"));
+        pm.addPermission(new Permission("lineation.line.option.gamemodes"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());

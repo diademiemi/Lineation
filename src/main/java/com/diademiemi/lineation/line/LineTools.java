@@ -14,6 +14,7 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
@@ -37,7 +38,7 @@ public class LineTools {
      * @param player Player
      */
     public static void playerFinish(Line line, Player player) {
-        if (!line.isWinner(player)) {
+        if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode())) {
             line.addWinner(player);
             finishMessage(line, player, line.getWinners().size());
             if (line.getWinners().size() == line.getMaxWinners()) {

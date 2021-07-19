@@ -8,6 +8,7 @@ import com.sk89q.worldedit.math.BlockVector3;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import com.diademiemi.lineation.Message;
@@ -85,6 +86,11 @@ public class Line {
     private Integer maxWinners;
 
     /**
+     * allowed game modes (only for finish type)
+     */
+    private ArrayList<GameMode> allowedGameModes;
+
+    /**
      * create line with defaults and provided name
      *
      * @param name line name
@@ -111,6 +117,7 @@ public class Line {
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
             maxWinners = 3;
+            allowedGameModes = new ArrayList<GameMode>();
         }
 
         lines.put(name, this);
@@ -301,6 +308,48 @@ public class Line {
          */
         public void setMaxWinners(int i) {
             maxWinners = i;
+        }
+
+        /**
+         * get allowed game modes
+         * 
+         * @return arraylist
+         */
+        public ArrayList<GameMode> getGameModes() {
+            return allowedGameModes;
+        }
+
+        /**
+         * add allowed game mode
+         *
+         * @param string gameModes
+         */
+        public void setGameModes(String gameModes) {
+            String[] gameModesArray = gameModes.split(",");
+            ArrayList<GameMode> allowedGameModes = new ArrayList<GameMode>();
+            for (String g : gameModesArray) {
+                allowedGameModes.add(GameMode.valueOf(g));
+            }
+            this.allowedGameModes = allowedGameModes;
+        }
+
+        /**
+         * get game modes as string
+         *
+         * @return String
+         */
+        public String getGameModesString() {
+            StringBuilder GameModes = new StringBuilder("");
+            
+            int i = 1;
+            for (GameMode g : allowedGameModes) {
+                if (i > 1) {
+                    GameModes.append(",");
+                }
+                GameModes.append(g.toString());
+                i++;
+            }
+            return GameModes.toString();
         }
 
         /**
