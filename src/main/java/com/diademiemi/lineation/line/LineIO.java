@@ -36,12 +36,13 @@ public class LineIO {
      */
     private static void loadLine(String name) {
         String type = lineConfig.getConfig().getString(name + ".type");
-        String messageReach = lineConfig.getConfig().getString(name + "option.messagereach");
         Line line = new Line(name, type);
         if (lineConfig.getConfig().get(name + ".type" ) != null)
             line.setType(lineConfig.getConfig().getString(name + ".type"));
-        if (lineConfig.getConfig().get(name + "option.messagereach" ) != null)
+        if (lineConfig.getConfig().get(name + ".option.messagereach" ) != null)
             line.setMessageReach(lineConfig.getConfig().getString(name + ".option.messagereach"));
+        if (lineConfig.getConfig().get(name + ".option.blocksequence" ) != null)
+            line.setBlockSequence(lineConfig.getConfig().getString(name + ".option.blocksequence"));
         if (lineConfig.getConfig().get(name + ".area") != null) {
             double[][] area = new double[2][3];
             area[0][0] = lineConfig.getConfig().getDouble(name + ".area.min.x");
@@ -104,6 +105,7 @@ public class LineIO {
 
         lineConfig.getConfig().set(name + ".type", line.getType());
         lineConfig.getConfig().set(name + ".option.messagereach", line.getMessageReach());
+        lineConfig.getConfig().set(name + ".option.blocksequence", line.getBlockSequenceString());
 
         if (line.getArea() != null) {
             double[][] area = line.getArea();

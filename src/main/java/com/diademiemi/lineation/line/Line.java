@@ -13,8 +13,10 @@ import org.bukkit.entity.Player;
 
 import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Lineation;
+import com.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,7 +107,7 @@ public class Line {
         this.type = type;
         started = false;
         world = Lineation.getInstance().getServer().getWorlds().get(0); 
-        messageReach = "world";
+        messageReach = Config.getPluginConfig().getConfig().getString("linedefaults.option.messagereach");
 
         area = new double[2][3];
         area[0][0] = 0;
@@ -116,13 +118,13 @@ public class Line {
         area[1][2] = 0;
 
         borders = new ArrayList<double[][]>();
-        blockSequence = new ArrayList<String>();
-        blockSequence.add("glass");
+        
+        this.setBlockSequence(Config.getPluginConfig().getConfig().getString("linedefaults.option.blocksequence"));
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
-            maxWinners = 3;
-            allowedGameModes = new ArrayList<GameMode>();
+            maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwins");
+            this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
         }
 
         lines.put(name, this);
@@ -537,6 +539,14 @@ public class Line {
                 i++;
             }
             return blockSequenceString.toString();
+        }
+        
+        /**
+         * set block sequence as string
+         * @param string blocksequence
+         */
+        public void setBlockSequence(String blockSequence) {
+            this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
         }
 
         /**
