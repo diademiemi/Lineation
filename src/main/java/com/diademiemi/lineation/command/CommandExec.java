@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import com.diademiemi.lineation.Lineation;
 import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Config;
 import com.diademiemi.lineation.line.Line;
@@ -81,6 +82,10 @@ public class CommandExec implements CommandExecutor {
                                             try {
                                                 if (Config.getData().getConfig().isInt(args[2])) {
                                                     Config.getData().getConfig().set(args[2], null);
+                                                    player.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
+                                                } else if (args[2].equals("all")) {
+                                                    Lineation.getInstance().saveResource("data.yml", true);
+                                                    Config.getData().reloadConfig();
                                                     player.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
                                                 } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
                                                     Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getUniqueId().toString(), null);
