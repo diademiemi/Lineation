@@ -98,6 +98,16 @@ public class Line {
     private ArrayList<GameMode> allowedGameModes;
 
     /**
+     * teleport enabled
+     */
+    private boolean teleportEnabled;
+
+    /**
+     * teleport location
+     */
+    private Location teleportLocation;
+
+    /**
      * create line with defaults and provided name
      *
      * @param name line name
@@ -125,6 +135,7 @@ public class Line {
             winners = new ArrayList<String>();
             maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
             this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
+            teleportLocation = new Location(world, 0, 0, 0, 0, 0);
         }
 
         lines.put(name, this);
@@ -375,6 +386,40 @@ public class Line {
             return GameModes.toString();
         }
 
+        /**
+         * get teleport location
+         */
+        public Location getTeleportLocation() {
+            return teleportLocation;
+        }
+
+        /**
+         * set teleport location
+         */
+        public void setTeleportLocation(Player player) {
+            teleportLocation = player.getLocation();
+        }
+
+        /**
+         * set teleport location
+         */
+        public void setTeleportLocation(Location loc) {
+            teleportLocation = loc;
+        }
+
+        /**
+         * get teleport enabled
+         */
+        public boolean isTeleportEnabled() {
+            return teleportEnabled;
+        }
+        /**
+         * set teleport enabled
+         */
+        public void setTeleportEnabled(boolean b) {
+            teleportEnabled = b;
+        }
+        
         /**
          * set world for line
          *

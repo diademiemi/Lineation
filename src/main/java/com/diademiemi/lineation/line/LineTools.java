@@ -50,6 +50,10 @@ public class LineTools {
                 line.addWinner(player);
                 finishMessage(line, player, line.getWinners().size());
 
+                if (line.isTeleportEnabled()) {
+                    player.teleport(line.getTeleportLocation());
+                }
+
                 data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
 
                 if (line.getWinners().size() == line.getMaxWinners()) {

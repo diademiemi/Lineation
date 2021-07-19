@@ -79,6 +79,12 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".option.gamemodes") != null) {
                 line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
             }
+            if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
+                line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
+                line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
+                        .toLocation(Lineation.getInstance().getServer()
+                        .getWorld(lineConfig.getConfig().getString(name + ".world"))));
+            }
         }
     }
     
@@ -135,6 +141,8 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".lastwinners", line.getWinners());
             lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
             lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
+            lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
+            lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
         }
 
         lineConfig.saveConfig();

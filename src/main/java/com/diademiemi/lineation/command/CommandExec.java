@@ -301,6 +301,26 @@ public class CommandExec implements CommandExecutor {
                                                                         break;
                                                                     } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                     break;
+                                                                case "teleport":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.teleport")) {
+                                                                            switch (args[4].toLowerCase()) {
+                                                                                case "here":
+                                                                                    line.setTeleportLocation(player);
+                                                                                    line.setTeleportEnabled(true);
+                                                                                    player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                    break;
+                                                                                case "disable":
+                                                                                    line.setTeleportEnabled(false);
+                                                                                    player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                    break;
+                                                                                default:
+                                                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                            }
+                                                                            break;
+                                                                        } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                        break;
+                                                                    }
                                                                 default:
                                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                             }
