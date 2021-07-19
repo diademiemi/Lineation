@@ -23,7 +23,7 @@ HELP_OPTION: |2-
   &7/lineation line <name> option blocksequence <block1,block2...>&r: Comma seperated list of blocks. First block is used when stopped. Each block has a duration of one second when opening start line. 
   &7/lineation line <name> option teleport <here/disable>&r: When someone finishes teleport them to your current position when executing this command.
   &7/lineation line <name> option maxwinners <int>&r: Sets the amount of people that can win before the line is automatically closed. Set to 0 to disable.
-  &7/lineation line <name> option messagereach <all/world>&r: Sets reach for message
+  &7/lineation line <name> option messagereach <all/world/disabled>&r: Sets reach for finish announcement messages. set to disabled to turn these messages off.
   &7/lineation line <name> option gamemodes <survival,adventure>&r: Comma seperated list of game modes players must be in to be counted.
   &7/lineation line <name> option link <line name>&r: Link line of other type to automatically start/stop these at the same time. 
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'

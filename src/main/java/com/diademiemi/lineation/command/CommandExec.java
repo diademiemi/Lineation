@@ -263,6 +263,7 @@ public class CommandExec implements CommandExecutor {
                                                                     if (args.length > 4) {
                                                                         switch (args[4].toLowerCase()) {
                                                                             case "world":
+                                                                            case "disabled":
                                                                             case "all":
                                                                                 if (player.hasPermission("lineation.line.option.messagereach")) {
                                                                                     line.setMessageReach(args[4]);
