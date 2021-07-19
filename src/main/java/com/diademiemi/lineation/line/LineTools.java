@@ -208,9 +208,15 @@ public class LineTools {
         switch (line.getType()) {
             case "start":
                 startStartLine(line);
+                if (line.getLinkedLine() != null) {
+                    startFinishLine(Line.getLines().get(line.getLinkedLine()));
+                }
                 break;
             case "finish":
                 startFinishLine(line);
+                if (line.getLinkedLine() != null) {
+                    startStartLine(Line.getLines().get(line.getLinkedLine()));
+                }
                 break;
             }
     }
@@ -254,9 +260,15 @@ public class LineTools {
         switch (line.getType()) {
             case "start":
                 stopStartLine(line);
+                if (line.getLinkedLine() != null) {
+                    stopFinishLine(Line.getLines().get(line.getLinkedLine()));
+                }
                 break;
             case "finish":
                 stopFinishLine(line);
+                if (line.getLinkedLine() != null) {
+                    stopStartLine(Line.getLines().get(line.getLinkedLine()));
+                }
                 break;
         }
     }

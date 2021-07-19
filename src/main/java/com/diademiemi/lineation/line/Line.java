@@ -83,6 +83,11 @@ public class Line {
     private String messageReach;
 
     /**
+     * linked line
+     */
+    private String linkedLine;
+
+    /**
      * winners (only for finish type)
      */
     private ArrayList<String> winners;
@@ -116,6 +121,8 @@ public class Line {
         this.name = name;
         this.type = type;
         started = false;
+        linkedLine = "";
+
         world = Lineation.getInstance().getServer().getWorlds().get(0); 
         messageReach = Config.getPluginConfig().getConfig().getString("linedefaults.option.messagereach");
 
@@ -267,6 +274,24 @@ public class Line {
             if (startedFinishLines.size() == 0) {
                 LineListener.unregisterPluginEvents(Lineation.getInstance());
             }
+        }
+
+        /**
+         * get linked line
+         *
+         * @return string linename
+         */
+        public String getLinkedLine() {
+            return linkedLine;
+        }
+
+        /**
+         * set linkedline
+         *
+         * @param string lineName
+         */
+        public void setLinkedLine(String lineName) {
+            linkedLine = lineName;
         }
 
         /**

@@ -193,6 +193,7 @@ public class CommandTabComplete implements TabCompleter {
                             if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
                             if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                             if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
+                            if (player.hasPermission("lineation.line.option.link")) tabList.add("link");
                             
                         }
 
@@ -201,6 +202,7 @@ public class CommandTabComplete implements TabCompleter {
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
                         if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                         if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
+                        if ("link".startsWith(args[3]) && player.hasPermission("lineation.line.option.link")) tabList.add("link");
 
                     } else if (args[2].equalsIgnoreCase("info")) {
 

@@ -43,6 +43,8 @@ public class LineIO {
             line.setMessageReach(lineConfig.getConfig().getString(name + ".option.messagereach"));
         if (lineConfig.getConfig().get(name + ".option.blocksequence" ) != null)
             line.setBlockSequence(lineConfig.getConfig().getString(name + ".option.blocksequence"));
+        if (lineConfig.getConfig().get(name + ".option.linked" ) != null)
+            line.setLinkedLine(lineConfig.getConfig().getString(name + ".option.linked"));
         if (lineConfig.getConfig().get(name + ".area") != null) {
             double[][] area = new double[2][3];
             area[0][0] = lineConfig.getConfig().getDouble(name + ".area.min.x");
@@ -114,6 +116,7 @@ public class LineIO {
         lineConfig.getConfig().set(name + ".type", line.getType());
         lineConfig.getConfig().set(name + ".option.messagereach", line.getMessageReach());
         lineConfig.getConfig().set(name + ".option.blocksequence", line.getBlockSequenceString());
+        lineConfig.getConfig().set(name + ".option.linked", line.getLinkedLine());
 
         if (line.getArea() != null) {
             double[][] area = line.getArea();

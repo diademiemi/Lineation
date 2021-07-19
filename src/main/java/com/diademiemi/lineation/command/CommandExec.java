@@ -169,6 +169,9 @@ public class CommandExec implements CommandExecutor {
                                     case "remove":
                                         if (player.hasPermission("lineation.line.remove")) {
                                             if (args.length > 2 && Line.getLines().get(args[2]) != null) {
+                                                if (Line.getLines().get(args[2]).getLinkedLine() != null) {
+                                                    Line.getLines().remove(Line.getLines().get(args[2]).getLinkedLine());
+                                                }
                                                 Line.getLines().remove(args[2]);
                                                 player.sendMessage(Message.SUCCESS_LINE_REMOVED
                                                         .replace("$LINE$", args[2]));
@@ -319,9 +322,34 @@ public class CommandExec implements CommandExecutor {
                                                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                             }
                                                                             break;
-                                                                        } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                        } player.sendMessage(Message.ERROR_NO_PERMS);
                                                                         break;
-                                                                    }
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
+                                                                case "link":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.link")) {
+                                                                            if (Line.getLines().get(args[4]) != null) {
+                                                                                Line linkLine = Line.getLines().get(args[4]);
+                                                                                if (line.getType().equalsIgnoreCase("start")) {
+                                                                                    if (linkLine.getType().equalsIgnoreCase("finish")) {
+                                                                                        line.setLinkedLine(args[4]);
+                                                                                        linkLine.setLinkedLine(args[1]);
+                                                                                        player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                        break;
+                                                                                    } player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[4]));
+                                                                                } else if (line.getType().equalsIgnoreCase("finish")) {
+                                                                                    if (linkLine.getType().equalsIgnoreCase("start")) {
+                                                                                        line.setLinkedLine(args[4]);
+                                                                                        linkLine.setLinkedLine(args[1]);
+                                                                                        player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                        break;
+                                                                                    } player.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
+                                                                                }
+                                                                            } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[4]));
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                                    } else player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
                                                                 default:
                                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                             }
