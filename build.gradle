@@ -1,3 +1,6 @@
+    /*
+    build.gradle for Lineation Minecraft plugin.
+    */
 plugins {
     id 'java'
 }
@@ -18,11 +21,13 @@ repositories {
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    /* WorldEdit API Maven Repo */
     maven { url 'https://maven.sk89q.com/repo/' }
 }
 
 dependencies {
      compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+     /* Include WorldEdit API */
      compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.3.0-SNAPSHOT'
 }
 
