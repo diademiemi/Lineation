@@ -126,6 +126,7 @@ public class LineTools {
      */
     public static void getWinnersString(Line line, Player player) {
         StringBuilder winnersString = new StringBuilder("");
+        @SuppressWarnings("unchecked")
         ArrayList<String> winners = line.getWinners();
         int i = 1;
         for (String p : winners) {
