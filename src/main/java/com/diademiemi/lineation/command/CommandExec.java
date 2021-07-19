@@ -54,6 +54,8 @@ public class CommandExec implements CommandExecutor {
                                     case "reload":
                                         if (player.hasPermission("lineation.reload")) {
                                             LineIO.saveAll();
+                                            Config.getPluginConfig().saveConfig();
+                                            Config.getData().saveConfig();
                                             Config.getLineConfig().reloadConfig();
                                             Config.getPluginConfig().reloadConfig();
                                             Config.getData().reloadConfig();

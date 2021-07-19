@@ -75,6 +75,8 @@ public class Lineation extends JavaPlugin {
     @Override
     public void onDisable() {
         LineIO.saveAll();
+        Config.getPluginConfig().saveConfig();
+        Config.getData().saveConfig();
         plugin = null;
     }
 
