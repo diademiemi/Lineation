@@ -128,17 +128,17 @@ public class LineTools {
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$LINKED$", "TO IMPLEMENT"));
+                        .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", "TO IMPLEMENT")
+                        .replace("$TELEPORTLOCATION$", line.getTeleportLocation().toString())
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
                         .replace("$GAMEMODES$", line.getGameModesString())
-                        .replace("$LINKED$", "TO IMPLEMENT"));
+                        .replace("$LINKED$", line.getLinkedLine()));
                 break;
         }           
 
