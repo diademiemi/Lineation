@@ -175,7 +175,7 @@ public class LineTools {
         ArrayList<double[][]> borders = line.getBorders();
         ArrayList<String> blockSequence = line.getBlockSequence();
 
-        startLineSequence(borders, world, blockSequence, 0);
+        startLineSequence(borders, world, blockSequence, 1);
     }
 
     /**
@@ -275,16 +275,15 @@ public class LineTools {
     public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<String> blockSequence, Integer i) {
         Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
             public void run() {
-                if (blockSequence.size() != i) {
-
+                if (blockSequence.size() == i) {
                     for (double[][] b : borders) {
-                        replaceBlocks(b, world, blockSequence.get(i), "air");
+                        replaceBlocks(b, world, "air", blockSequence.get(i - 1));
                     }
 
                 } else {
 
                     for (double[][] b : borders) {
-                        replaceBlocks(b, world, blockSequence.get(i), blockSequence.get(i + 1));
+                        replaceBlocks(b, world, blockSequence.get(i), blockSequence.get(i - 1));
                     }
 
                 }
