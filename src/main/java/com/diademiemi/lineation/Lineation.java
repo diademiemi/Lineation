@@ -43,7 +43,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.help"));
         pm.addPermission(new Permission("lineation.reload"));
         pm.addPermission(new Permission("lineation.maxwins"));
-        pm.addPermission(new Permission("lineation.clearwins"));
+        pm.addPermission(new Permission("lineation.forget"));
         pm.addPermission(new Permission("lineation.line.help"));
         pm.addPermission(new Permission("lineation.line.list"));
         pm.addPermission(new Permission("lineation.line.create"));
@@ -56,6 +56,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
         pm.addPermission(new Permission("lineation.line.option.maxwinners"));
         pm.addPermission(new Permission("lineation.line.option.gamemodes"));
+        pm.addPermission(new Permission("lineation.line.option.blocksequence"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());

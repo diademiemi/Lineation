@@ -145,10 +145,12 @@ public class CommandTabComplete implements TabCompleter {
                             if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
                             if (player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                             if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
+                            if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                         }
                         if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
                         if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
+                        if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
 
                     } else if (args[2].equalsIgnoreCase("info")) {
                         if (args[3].equalsIgnoreCase("")) {

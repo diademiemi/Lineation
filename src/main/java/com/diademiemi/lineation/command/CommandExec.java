@@ -48,16 +48,35 @@ public class CommandExec implements CommandExecutor {
                                 player.sendMessage(Message.HELP_INDEX);
                             } else player.sendMessage(Message.ERROR_NO_PERMS);
                             break;
-                        case "reload":
-                            if (player.hasPermission("lineation.reload")) {
-                                LineIO.saveAll();
-                                Config.getLineConfig().reloadConfig();
-                                Config.getPluginConfig().reloadConfig();
-                                Config.getData().reloadConfig();
-                                Config.getMessageConfig().reloadConfig();
-                                LineIO.loadAll();
-                                player.sendMessage(Message.SUCCESS_RELOAD);
-                            } else player.sendMessage(Message.ERROR_NO_PERMS);
+                        case "config":
+                            if (args.length > 1) {
+                                switch (args[1].toLowerCase()) {
+                                    case "reload":
+                                        if (player.hasPermission("lineation.reload")) {
+                                            LineIO.saveAll();
+                                            Config.getLineConfig().reloadConfig();
+                                            Config.getPluginConfig().reloadConfig();
+                                            Config.getData().reloadConfig();
+                                            Config.getMessageConfig().reloadConfig();
+                                            LineIO.loadAll();
+                                            player.sendMessage(Message.SUCCESS_RELOAD);
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    case "maxwins":
+                                        if (player.hasPermission("lineation.maxwins")) {
+                                            try {
+                                                int i = Integer.parseInt(args[2]);
+                                                Config.getPluginConfig().getConfig().set("maxwins", i);
+                                            } catch (Exception e) {
+                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                            }
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                        break;
+                                    default:
+                                        player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                }
+                                break;
+                            } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help"));
                             break;
                         case "line": 
                             if (args.length > 1) {
@@ -237,6 +256,19 @@ public class CommandExec implements CommandExecutor {
                                                                         if (player.hasPermission("lineation.line.option.gamemodes")) {
                                                                             try {
                                                                                 line.setGameModes(args[4].toUpperCase());
+                                                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                            } catch (Exception e) {
+                                                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                            }
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                                        break;
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
+                                                                case "blocksequence":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.blocksequence")) {
+                                                                            try {
+                                                                                line.setBlockSequence(args[4].toLowerCase());
                                                                                 player.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                             } catch (Exception e) {
                                                                                 player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
