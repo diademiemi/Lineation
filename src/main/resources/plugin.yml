@@ -8,4 +8,4 @@ commands:
   lineation:
     description: Command for Lineation. Type /lineation help for more.
     usage: /<command>
-    aliases: [la]
+    aliases: [ln]

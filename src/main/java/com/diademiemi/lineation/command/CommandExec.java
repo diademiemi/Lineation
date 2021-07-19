@@ -27,7 +27,7 @@ public class CommandExec implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (label.equalsIgnoreCase("lineation") || label.equalsIgnoreCase("la")) {
+            if (label.equalsIgnoreCase("lineation") || label.equalsIgnoreCase("ln")) {
                 if (args.length > 0) {
                     switch (args[0].toLowerCase()) {
                         case "help":

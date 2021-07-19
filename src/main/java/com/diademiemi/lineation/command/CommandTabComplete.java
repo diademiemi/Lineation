@@ -34,7 +34,7 @@ public class CommandTabComplete implements TabCompleter {
 
         Set<String> lines = Line.getLines().keySet();
 
-        if (sender instanceof Player && (label.equalsIgnoreCase("lineation") || label.equalsIgnoreCase("la"))) {
+        if (sender instanceof Player && (label.equalsIgnoreCase("lineation") || label.equalsIgnoreCase("ln"))) {
 
             Player player = (Player) sender;
 
