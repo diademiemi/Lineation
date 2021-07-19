@@ -56,7 +56,12 @@ LINE_INFO: |2-
   &8- &7World: $WORLD$
   &8- &7Area: $AREA$
   &8- &7Borders: $BORDERS$
-LINE_OPTIONS: |2-
+LINE_OPTIONS_START: |2-
+  &f&lLine Options
+  &8- &7Name: $NAME$
+  &8- &7Block sequence: $BLOCKSEQUENCE$
+  &8- &7Linked line: $LINKED$
+LINE_OPTIONS_FINISH: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
   &8- &7Block sequence: $BLOCKSEQUENCE$

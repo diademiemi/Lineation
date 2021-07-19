@@ -106,8 +106,8 @@ public class LineTools {
                 .replace("$AREA$",
                     "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
                     area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
-                .replace(".0", "")
-                .replace("$BORDERS$", bordersString));
+                .replace("$BORDERS$", bordersString)
+                .replace(".0", ""));
                     
 
     }
@@ -119,15 +119,24 @@ public class LineTools {
      * @param player Player
      */
     public static void getLineOptions(Line line, Player player) {
-        player.sendMessage(Message.LINE_OPTIONS
-                .replace("$NAME$", line.getName())
-                .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                .replace("$TELEPORTLOCATION$", "TO IMPLEMENT")
-                .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
-                .replace("$MESSAGEREACH$", line.getMessageReach())
-                .replace("$GAMEMODES$", line.getGameModesString())
-                .replace("$LINKED$", "TO IMPLEMENT"));
-                    
+        switch (line.getType()) {
+            case "start":
+                player.sendMessage(Message.LINE_OPTIONS_START
+                        .replace("$NAME$", line.getName())
+                        .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
+                        .replace("$LINKED$", "TO IMPLEMENT"));
+                break;
+            case "finish":
+                player.sendMessage(Message.LINE_OPTIONS_FINISH
+                        .replace("$NAME$", line.getName())
+                        .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
+                        .replace("$TELEPORTLOCATION$", "TO IMPLEMENT")
+                        .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
+                        .replace("$MESSAGEREACH$", line.getMessageReach())
+                        .replace("$GAMEMODES$", line.getGameModesString())
+                        .replace("$LINKED$", "TO IMPLEMENT"));
+                break;
+        }           
 
     }
 
