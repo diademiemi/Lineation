@@ -197,7 +197,7 @@ public class CommandExec implements CommandExecutor {
                                                         if (player.hasPermission("lineation.line.getwinners")) {
                                                             if (line.getType().equalsIgnoreCase("finish")) {
                                                                 LineTools.getWinnersString(line, player);
-                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[2]));
+                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "setarea":
