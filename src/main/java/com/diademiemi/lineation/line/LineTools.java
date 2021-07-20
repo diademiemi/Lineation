@@ -180,11 +180,7 @@ public class LineTools {
         ArrayList<String> blockSequence = line.getBlockSequence();
         ArrayList<Player> players = line.getPlayers();
 
-        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
-
-            startLineSequence(es, borders, world, players, blockSequence, 1);
-
-        }
+        startLineSequence(borders, world, players, blockSequence, 1);
 
     }
 
@@ -314,32 +310,37 @@ public class LineTools {
 
     }
 
-    public static void startLineSequence(EditSession es, ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
+    public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
         Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
             public void run() {
-                if (blockSequence.size() == i) {
-                    for (double[][] b : borders) {
-                        replaceBlocks(es, b, world, "air", blockSequence.get(i - 1));
+                try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+
+                    if (blockSequence.size() == i) {
+
+                        for (double[][] b : borders) {
+                            replaceBlocks(es, b, world, "air", blockSequence.get(i - 1));
+                        }
+
+                        for (Player p : players) {
+                            p.sendMessage(Message.STARTING_NOW);
+                        }
+
+                    } else {
+
+                        for (double[][] b : borders) {
+                            replaceBlocks(es, b, world, blockSequence.get(i), blockSequence.get(i - 1));
+                        }
+
+                        for (Player p : players) {
+                            p.sendMessage(Message.STARTING_IN.replace("$SECONDS$", String.valueOf(blockSequence.size() - i)));
+                        }
+
                     }
 
-                    for (Player p : players) {
-                        p.sendMessage(Message.STARTING_NOW);
+                    if (blockSequence.size() != i) {
+                        startLineSequence(borders, world, players, blockSequence, i + 1);
                     }
 
-                } else {
-
-                    for (double[][] b : borders) {
-                        replaceBlocks(es, b, world, blockSequence.get(i), blockSequence.get(i - 1));
-                    }
-
-                    for (Player p : players) {
-                        p.sendMessage(Message.STARTING_IN.replace("$SECONDS$", String.valueOf(blockSequence.size() - i)));
-                    }
-
-                }
-
-                if (blockSequence.size() != i) {
-                    startLineSequence(es, borders, world, players, blockSequence, i + 1);
                 }
 
             }
