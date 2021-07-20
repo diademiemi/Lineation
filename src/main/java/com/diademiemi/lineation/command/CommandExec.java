@@ -169,7 +169,7 @@ public class CommandExec implements CommandExecutor {
                                     case "remove":
                                         if (player.hasPermission("lineation.line.remove")) {
                                             if (args.length > 2 && Line.getLines().get(args[2]) != null) {
-                                                if (Line.getLines().get(args[2]).getLinkedLine() != null) {
+                                                if (Line.getLines().get(args[2]).getLinkedLine() != "") {
                                                     Line.getLines().remove(Line.getLines().get(args[2]).getLinkedLine());
                                                 }
                                                 Line.getLines().remove(args[2]);

@@ -180,7 +180,12 @@ public class LineTools {
         ArrayList<String> blockSequence = line.getBlockSequence();
         ArrayList<Player> players = line.getPlayers();
 
-        startLineSequence(borders, world, players, blockSequence, 1);
+        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+
+            startLineSequence(es, borders, world, players, blockSequence, 1);
+
+        }
+
     }
 
     /**
@@ -193,10 +198,17 @@ public class LineTools {
         line.setStarted();
         World world = line.getWorld();
         ArrayList<double[][]> borders = line.getBorders();
+        
         String blockFrom = line.getBlockSequence().get(0);
-        for (double[][] b : borders) {
-            replaceBlocks(b, world, "air", blockFrom);
+        
+        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+
+            for (double[][] b : borders) {
+                replaceBlocks(es, b, world, "air", blockFrom);
+            }
+
         }
+
     }
 
     /**
@@ -208,13 +220,13 @@ public class LineTools {
         switch (line.getType()) {
             case "start":
                 startStartLine(line);
-                if (line.getLinkedLine() != null) {
+                if (line.getLinkedLine() != "") {
                     startFinishLine(Line.getLines().get(line.getLinkedLine()));
                 }
                 break;
             case "finish":
                 startFinishLine(line);
-                if (line.getLinkedLine() != null) {
+                if (line.getLinkedLine() != "") {
                     startStartLine(Line.getLines().get(line.getLinkedLine()));
                 }
                 break;
@@ -231,9 +243,15 @@ public class LineTools {
         World world = line.getWorld();
         ArrayList<double[][]> borders = line.getBorders();
         String blockTo = line.getBlockSequence().get(0);
-        for (double[][] b : borders) {
-            replaceBlocks(b, world, blockTo, "air");
+
+        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+
+            for (double[][] b : borders) {
+                replaceBlocks(es, b, world, blockTo, "air");
+            }
+
         }
+
     }
 
     /** 
@@ -246,9 +264,15 @@ public class LineTools {
         World world = line.getWorld();
         ArrayList<double[][]> borders = line.getBorders();
         String blockTo = line.getBlockSequence().get(0);
-        for (double[][] b : borders) {
-            replaceBlocks(b, world, blockTo, "air");
+
+        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+
+            for (double[][] b : borders) {
+                replaceBlocks(es, b, world, blockTo, "air");
+            }
+
         }
+
     }
 
     /**
@@ -260,27 +284,28 @@ public class LineTools {
         switch (line.getType()) {
             case "start":
                 stopStartLine(line);
-                if (line.getLinkedLine() != null) {
+                if (line.getLinkedLine() != "") {
                     stopFinishLine(Line.getLines().get(line.getLinkedLine()));
                 }
                 break;
             case "finish":
                 stopFinishLine(line);
-                if (line.getLinkedLine() != null) {
+                if (line.getLinkedLine() != "") {
                     stopStartLine(Line.getLines().get(line.getLinkedLine()));
                 }
                 break;
         }
     }
 
-    public static void replaceBlocks(double[][] b, World world, String blockTo, String blockFrom) {
-        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
-            BlockVector3 min = BlockVector3.at(b[0][0], b[0][1], b[0][2]);
-            BlockVector3 max = BlockVector3.at(b[1][0], b[1][1], b[1][2]);
+    public static void replaceBlocks(EditSession es, double[][] b, World world, String blockTo, String blockFrom) {
+        BlockVector3 min = BlockVector3.at(b[0][0], b[0][1], b[0][2]);
+        BlockVector3 max = BlockVector3.at(b[1][0], b[1][1], b[1][2]);
 
-            BlockTypeMask mask = new BlockTypeMask(BukkitAdapter.adapt(world), BlockTypes.get(blockFrom));
+        BlockTypeMask mask = new BlockTypeMask(BukkitAdapter.adapt(world), BlockTypes.get(blockFrom));
 
-            CuboidRegion region = new CuboidRegion(BukkitAdapter.adapt(world), min, max); 
+        CuboidRegion region = new CuboidRegion(BukkitAdapter.adapt(world), min, max); 
+
+        try {
             es.replaceBlocks(region, mask, BlockTypes.get(blockTo).getDefaultState().toBaseBlock());
 
         } catch (MaxChangedBlocksException e) {
@@ -289,12 +314,12 @@ public class LineTools {
 
     }
 
-    public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
+    public static void startLineSequence(EditSession es, ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
         Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
             public void run() {
                 if (blockSequence.size() == i) {
                     for (double[][] b : borders) {
-                        replaceBlocks(b, world, "air", blockSequence.get(i - 1));
+                        replaceBlocks(es, b, world, "air", blockSequence.get(i - 1));
                     }
 
                     for (Player p : players) {
@@ -304,7 +329,7 @@ public class LineTools {
                 } else {
 
                     for (double[][] b : borders) {
-                        replaceBlocks(b, world, blockSequence.get(i), blockSequence.get(i - 1));
+                        replaceBlocks(es, b, world, blockSequence.get(i), blockSequence.get(i - 1));
                     }
 
                     for (Player p : players) {
@@ -314,7 +339,7 @@ public class LineTools {
                 }
 
                 if (blockSequence.size() != i) {
-                    startLineSequence(borders, world, players, blockSequence, i + 1);
+                    startLineSequence(es, borders, world, players, blockSequence, i + 1);
                 }
 
             }
