@@ -81,6 +81,39 @@ public class LineTools {
                 break;
         }
     }
+   
+    /**
+     * announce winners on close
+     *
+     * @param line line
+     */
+    public static void finishCloseMessage(Line line) {
+        StringBuilder announcement = new StringBuilder("");
+        @SuppressWarnings("unchecked")
+        ArrayList<String> winners = line.getWinners();
+        int i = 1;
+
+        announcement.append(Message.FINISH_CLOSE);
+        for (String p : winners) {
+            announcement.append("\n");
+            announcement.append(Message.FINISH_CLOSE_PLAYER
+                    .replace("$NAME$", p)
+                    .replace("$PLACE$", Message.ordinal(i)));
+        }
+
+        switch (line.getMessageReach()) {
+            case "world":
+                List<Player> players = line.getWorld().getPlayers();
+                for (Player p : players) {
+                    p.sendMessage(announcement.toString());
+                }
+                break;
+            case "all":
+                Bukkit.broadcastMessage(announcement.toString());
+                break;
+        }
+    }
+                    
 
     /**
      * get line info
@@ -267,6 +300,10 @@ public class LineTools {
                 replaceBlocks(es, b, world, blockTo, "air");
             }
 
+        }
+
+        if (line.getWinners().size() != 0) {
+            finishCloseMessage(line);
         }
 
     }
