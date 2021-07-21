@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
     /**
-     * lineation line handler
+     * Lineation line handler
      *
      * @author diademiemi
      */
@@ -228,7 +228,7 @@ public class Line {
         /**
          * Sets the type of this line
          *
-         * @param   The type of this line
+         * @param type   The type of this line
          */
         public void setType(String type) {
             this.type = type;
@@ -246,7 +246,7 @@ public class Line {
         /**
          * Sets the reach of messages of this line
          *
-         * @param   Reach of messages for this line
+         * @param messageReach   Reach of messages for this line
          */
         public void setMessageReach(String messageReach) {
             this.messageReach = messageReach;
@@ -303,7 +303,7 @@ public class Line {
         /**
          * Sets the name of the linked line
          *
-         * @param   Name of the linked line
+         * @param lineName  Name of the linked line
          */
         public void setLinkedLine(String lineName) {
             linkedLine = lineName;
@@ -321,7 +321,7 @@ public class Line {
         /**
          * Sets the world of this line
          *
-         * @param   World this line is in
+         * @param world   World this line is in
          */
         public void setWorld(World world) {
             this.world = world;
@@ -339,7 +339,7 @@ public class Line {
         /**
          * Add name of player to the winners list
          *
-         * @param   Player to add to the list
+         * @param player   Player to add to the list
          */
         public void addWinner(Player player) {
             winners.add(player.getName());
@@ -348,7 +348,7 @@ public class Line {
         /**
          * Sets the list of winners of this line
          *
-         * @param   List of winner names
+         * @param winners   List of winner names
          */
         public void setWinners(ArrayList<String> winners) {
             this.winners = winners;
@@ -364,7 +364,7 @@ public class Line {
         /**
          * Check if this player is a winner in this line already
          *
-         * @param   Player to check
+         * @param player   Player to check
          */
         public boolean isWinner(Player player) {
             if (winners != null && !winners.isEmpty()) {
@@ -386,7 +386,7 @@ public class Line {
         /**
          * Sets the maximum amount of winners of this line
          * 
-         * @param   Number of winners before the line closes
+         * @param i   Number of winners before the line closes
          */
         public void setMaxWinners(int i) {
             maxWinners = i;
@@ -404,7 +404,7 @@ public class Line {
         /**
          * Sets the list of allowed game modes
          *
-         * @param   Comma seperated string of gamemode names
+         * @param gameModes   Comma seperated string of gamemode names
          */
         public void setGameModes(String gameModes) {
             String[] gameModesArray = gameModes.split(",");
@@ -446,7 +446,7 @@ public class Line {
         /**
          * Sets the teleport location to players current location
          *
-         * @param   Player to get the location from
+         * @param player   Player to get the location from
          */
         public void setTeleportLocation(Player player) {
             teleportLocation = player.getLocation();
@@ -455,7 +455,7 @@ public class Line {
         /**
          * Sets the teleport location to this location
          *
-         * @param   Location to set the teleport location to
+         * @param loc   Location to set the teleport location to
          */
         public void setTeleportLocation(Location loc) {
             teleportLocation = loc;
@@ -472,7 +472,7 @@ public class Line {
         /**
          * Sets whether teleport is enabled
          *
-         * @param   Boolean of if teleport is enabled
+         * @param b   Boolean of if teleport is enabled
          */
         public void setTeleportEnabled(boolean b) {
             teleportEnabled = b;
@@ -490,8 +490,7 @@ public class Line {
         /**
          * Use WorldEdit to set the area of this line
          *
-         * @param   Player to get WorldEdit selection from
-         * @param   Area to set 
+         * @param player   Player to get WorldEdit selection from
          */
         public void setArea(Player player) {
             WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
@@ -523,7 +522,7 @@ public class Line {
         /**
          * Sets the area of this line
          *
-         * @param   Double of the area of this line
+         * @param area   Double of the area of this line
          */
         public void setArea(double[][] area) {
             this.area = area;
@@ -541,7 +540,7 @@ public class Line {
         /**
          * Use WorldEdit to add a border to this line
          *
-         * @param   Player to get WorldEdit selection from
+         * @param player   Player to get WorldEdit selection from
          */
         public void addBorder(Player player) {
             WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
@@ -574,7 +573,7 @@ public class Line {
         /**
          * Add a border to this line
          * 
-         * @param   Double of the border to add to this line
+         * @param border   Double of the border to add to this line
          */
         public void addBorder(double[][] border) {
             borders.add(border);
@@ -583,7 +582,7 @@ public class Line {
         /**
          * Remove a border by number
          *
-         * @param   Number of the border to remove
+         * @param i   Number of the border to remove
          */
         public void removeBorder(int i) {
             borders.remove(i - 1);
@@ -627,7 +626,7 @@ public class Line {
         /**
          * Sets this lines block sequence
          *
-         * @param   Comma seperated list of block names
+         * @param blockSequence   Comma seperated list of block names
          */
         public void setBlockSequence(String blockSequence) {
             this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
@@ -636,7 +635,7 @@ public class Line {
          /**
          * Check if this player is in this area
          *
-         * @param   Player to check location of
+         * @param player   Player to check location of
          * @return  Boolean of if this player is in the area
          */
         public boolean contains(Player player) {
@@ -646,7 +645,7 @@ public class Line {
         /**
          * Check if this location is in this area
          *
-         * @param   Location to check
+         * @param l   Location to check
          * @return  Boolean of if this location is in the area
          */
         public boolean contains(Location l) {
@@ -689,7 +688,7 @@ public class Line {
         /**
          * Gets the line this player is in
          *
-         * @param   Player to check location of
+         * @param player   Player to check location of
          * @return  Line this player is in
          */
         public static Line get(Player player) {
@@ -705,7 +704,7 @@ public class Line {
         /**
          * Gets the line this location is in
          *
-         * @param   Location to check 
+         * @param l   Location to check 
          * @return  Line this location is in
          */
         public static Line get(Location l) {

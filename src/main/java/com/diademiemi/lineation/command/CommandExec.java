@@ -23,6 +23,12 @@ public class CommandExec implements CommandExecutor {
 
     /**
      * Method to handle commands
+     *
+     * @param sender    Entity sending the command
+     * @param command   Command
+     * @param label Command label used
+     * @param args  List of arguments
+     * @return  Boolean of if command was successful
      */
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 

@@ -37,9 +37,10 @@ public class LineTools {
     private static final Config data = Config.getData();
 
     /**
-     * handle finish player entry
-     * @param line Line
-     * @param player Player
+     * Handle player finishing
+     *
+     * @param line  Line player finished in
+     * @param player Player that finished
      */
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode())) {
@@ -64,6 +65,13 @@ public class LineTools {
         }
     }
   
+    /**
+     * Send finish message
+     *
+     * @param line  Line player finished in
+     * @param player    PLayer that finished
+     * @param place Place number player got
+     */
     public static void finishMessage(Line line, Player player, Integer place) {
         switch (line.getMessageReach()) {
             case "world":
@@ -83,9 +91,9 @@ public class LineTools {
     }
    
     /**
-     * announce winners on close
+     * Announce winners when finish line closes
      *
-     * @param line line
+     * @param line  Line that has closed
      */
     public static void finishCloseMessage(Line line) {
         StringBuilder announcement = new StringBuilder("");
@@ -117,10 +125,10 @@ public class LineTools {
                     
 
     /**
-     * get line info
+     * Get line info as formatted message
      *
-     * @param line Line
-     * @param player Player
+     * @param line  Line to get info of
+     * @param player    Player to send message to
      */
     public static void getLineInfo(Line line, Player player) {
         double[][] area = line.getArea();
@@ -151,10 +159,10 @@ public class LineTools {
     }
 
     /**
-     * get line options info
+     * Get line options info as formatted message
      *
-     * @param line Line
-     * @param player Player
+     * @param line  Line to get info of
+     * @param player    Player to send message to
      */
     public static void getLineOptions(Line line, Player player) {
         switch (line.getType()) {
@@ -179,10 +187,10 @@ public class LineTools {
     }
 
     /**
-     * get winners
+     * Get winners as formatted message
      * 
-     * @param line Line
-     * @param player Player
+     * @param line  Line to get winners of
+     * @param player    Player to send message to
      */
     public static void getWinnersString(Line line, Player player) {
         StringBuilder winnersString = new StringBuilder("");
@@ -201,11 +209,10 @@ public class LineTools {
                 .replace("$NAMES$", winnersString)); 
     }
 
-    /*
+    /**
+     * Start start line
      *
-     * starts start line
-     *
-     * @param line line
+     * @param line  Start line to start
      */
     public static void startStartLine(Line line) {
         line.setStarted();
@@ -219,9 +226,9 @@ public class LineTools {
     }
 
     /**
-     * starts stop line
+     * Starts finish line
      *
-     * @param line line
+     * @param line  Finish line to start
      */
     public static void startFinishLine(Line line) {
         line.clearWinners();
@@ -242,9 +249,9 @@ public class LineTools {
     }
 
     /**
-     * line start method
+     * Start a line
      *
-     * @param line line
+     * @param line  Line to start
      */
     public static void startLine(Line line) {
         switch (line.getType()) {
@@ -264,9 +271,9 @@ public class LineTools {
     }
 
     /**
-     * stops start line
+     * Stops start line
      *
-     * @param line line
+     * @param line  Start line to stop
      */
     public static void stopStartLine(Line line) {
         line.setStopped();
@@ -285,9 +292,9 @@ public class LineTools {
     }
 
     /** 
-     * stops finish line
+     * Stops a finish line
      *
-     * @param line line
+     * @param line  Finish line to stop
      */
     public static void stopFinishLine(Line line) {
         line.setStopped();
@@ -310,9 +317,9 @@ public class LineTools {
     }
 
     /**
-     * line stop method
+     * Stops a line
      *
-     * @param line line
+     * @param line  Line to stop
      */
     public static void stopLine(Line line) {
         switch (line.getType()) {
@@ -331,6 +338,15 @@ public class LineTools {
         }
     }
 
+    /**
+     * Method to replace blocks in a given area with a given EditSession with names of blocks to set
+     *
+     * @param es    WorldEdit EditSession to use
+     * @param b Border edge coords to use
+     * @param world World to set this in
+     * @param blockTo   What block to set
+     * @param blockFrom What block to replace
+     */
     public static void replaceBlocks(EditSession es, double[][] b, World world, String blockTo, String blockFrom) {
         BlockVector3 min = BlockVector3.at(b[0][0], b[0][1], b[0][2]);
         BlockVector3 max = BlockVector3.at(b[1][0], b[1][1], b[1][2]);
@@ -347,7 +363,17 @@ public class LineTools {
         }
 
     }
-
+    
+    /**
+     * Method to start the start line sequence with one second delay per block to set, this calls replaceBlocks per line
+     * This method reschedules itself if counter i has not reached the end of the sequence.
+     *
+     * @param borders   List of borders to set
+     * @param world World to set this in
+     * @param players   Players to send announcement sequence to
+     * @param blockSequence ArrayList of strings with block sequence
+     * @param i Integer to count amount of times this has looped
+     */
     public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
         Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
             public void run() {
@@ -386,12 +412,5 @@ public class LineTools {
         },20L);
    
     }
-
-    
-
-
-
-
-
 
 }

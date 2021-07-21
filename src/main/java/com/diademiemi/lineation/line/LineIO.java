@@ -16,12 +16,12 @@ import java.util.List;
 public class LineIO {
 
     /**
-     * line config instance
+     * Line config instance
      */
     private static final Config lineConfig = Config.getLineConfig();
 
     /**
-     * load lines in file
+     * Load all lines in the config file
      */
     public static void loadAll() {
         for (String name : lineConfig.getConfig().getKeys(false)) {
@@ -30,9 +30,9 @@ public class LineIO {
     }
 
     /**
-     * load a line by name
+     * Load a line by name
      *
-     * @param name name of line to load
+     * @param name  Name of the line to load
      */
     private static void loadLine(String name) {
         String type = lineConfig.getConfig().getString(name + ".type");
@@ -93,7 +93,7 @@ public class LineIO {
     }
     
     /** 
-     * save all lines to file
+     * Save all lines to config file
      */
     public static void saveAll() {
         for (String key : lineConfig.getConfig().getKeys(false)) {
@@ -106,9 +106,9 @@ public class LineIO {
     }
 
     /**
-     * save line to file
+     * Save a line to config file by name
      *
-     * @param line line to save
+     * @param line  Line to save
      */
     private static void saveLine(Line line) {
         String name = line.getName();

@@ -24,22 +24,26 @@ import java.util.Map;
 public class LineListener implements Listener {
 
     /**
-     * register plugin events
+     * Register plugin listener
+     *
+     * @param plugin    Instance of this plugin
      */
     public LineListener(Lineation plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     /**
-     * unregister plugin events
+     * Unregister plugin listeners
+     *
+     * @param plugin    Instance of this plugin
      */
     public static void unregisterPluginEvents(Lineation plugin) {
         HandlerList.unregisterAll(plugin);
     }
     /**
-     * player move listener
+     * Player move listener
      *
-     * @param e player move event
+     * @param e Player move event
      */
     @EventHandler
     public void onMove(PlayerMoveEvent e) {

@@ -21,10 +21,10 @@ public class CommandTabComplete implements TabCompleter {
     /**
      * method to implement tab completion
      *
-     * @param sender command sender
-     * @param command command
-     * @param label command label 
-     * @param args command args
+     * @param sender    Entity sending the command
+     * @param command   Command
+     * @param label Command label used
+     * @param args  List of arguments
      * @return tab list
      */
     @Override

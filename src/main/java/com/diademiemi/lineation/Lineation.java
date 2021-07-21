@@ -58,6 +58,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.option.gamemodes"));
         pm.addPermission(new Permission("lineation.line.option.blocksequence"));
         pm.addPermission(new Permission("lineation.line.option.teleport"));
+        pm.addPermission(new Permission("lineation.line.option.link"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());
@@ -71,7 +72,7 @@ public class Lineation extends JavaPlugin {
     }
 
     /**
-     * disable plugin
+     * Disable plugin
      */
     @Override
     public void onDisable() {
@@ -84,7 +85,7 @@ public class Lineation extends JavaPlugin {
     /**
      * Get plugin instance
      *
-     * @return plugin instance
+     * @return Plugin instance
      */
     public static Lineation getInstance() {
         return plugin;

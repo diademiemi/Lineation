@@ -17,37 +17,37 @@ import java.util.logging.Level;
 public class Config {
 
     /**
-     * config file for defaults
+     * Config file for plugin global settings
      */
     private static Config plugin = new Config("config.yml");
 
     /**
-     * line config
+     * Config file for lines
      */
     private static Config line = new Config("lines.yml");
 
     /**
-     * message config
+     * Config file containing plugin messages
      */
     private static Config message = new Config("messages.yml");
 
     /**
-     * data store/config
+     * File used to store player wins in
      */
     private static Config data = new Config("data.yml");
 
     /**
-     * file used for config
+     * File used for config
      */
     private File configFile;
 
     /**
-     * file used as YAML
+     * File used as YAML
      */
     private YamlConfiguration YMLConfig;
 
     /**
-     * filename
+     * Filename
      */
     private final String filename;
 
@@ -60,13 +60,18 @@ public class Config {
     }
 
     /**
-     * Return config
+     * Return plugin global config
+     *
+     * @return  Plugin global config
      */
     public static Config getPluginConfig() {
         return plugin;
     }
+
     /**
      * Return config for lines
+     *
+     * @return  Line config
      */
     public static Config getLineConfig() {
         return line;
@@ -75,14 +80,16 @@ public class Config {
     /**
      * Return config for messages
      *
-     * @return message config instance
+     * @return  Message config
      */
     public static Config getMessageConfig() {
         return message;
     }
 
     /**
-     * Return config for data
+     * Return data
+     *
+     * @return Data
      */
     public static Config getData() {
         return data;
@@ -109,9 +116,10 @@ public class Config {
     }
 
     /**
+     * Gets YMLConfig
      * Reloads config if YMLConfig is null
      *
-     * @return YMLConfig YamlConfiguration
+     * @return YML Configuration
      */
     
     public YamlConfiguration getConfig() {
@@ -122,7 +130,7 @@ public class Config {
     }
 
     /**
-     * Saves config
+     * Saves configuration file
      */
     public void saveConfig() {
         if (YMLConfig == null || configFile == null) {
@@ -136,7 +144,7 @@ public class Config {
     }
 
     /**
-     * Saves default configs
+     * Saves default configuration files from resources directory
      */
     public void saveDefaultConfig() {
         if (configFile == null) { 

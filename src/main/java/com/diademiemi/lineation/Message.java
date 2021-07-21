@@ -94,13 +94,19 @@ public class Message {
     /**
      * Apply colour codes and line breaks
      *
-     * @param msg mesage to format
-     * @return formatted message
+     * @param msg   Message to format
+     * @return  Formatted message with colours
      */
     public static String format(String msg) {
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
 
+    /**
+     * get ordinal indicator from number
+     *
+     * @param i Number to convert
+     * @return  String of ordinal indicator
+     */
     public static String ordinal(int i) {
         String[] suffixes = new String[] { "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th" };
         switch (i % 100) {
