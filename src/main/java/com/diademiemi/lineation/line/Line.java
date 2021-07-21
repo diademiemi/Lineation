@@ -365,6 +365,7 @@ public class Line {
          * Check if this player is a winner in this line already
          *
          * @param player   Player to check
+         * @return  Boolean of if winner
          */
         public boolean isWinner(Player player) {
             if (winners != null && !winners.isEmpty()) {

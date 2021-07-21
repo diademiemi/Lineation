@@ -11,6 +11,11 @@ import com.diademiemi.lineation.command.CommandTabComplete;
 import com.diademiemi.lineation.line.LineListener;
 import com.diademiemi.lineation.line.LineIO;
 
+/**
+ * Lineation plugin
+ *
+ * @author diademiemi
+ */
 public class Lineation extends JavaPlugin { 
 
     /**

@@ -53,6 +53,8 @@ public class Config {
 
     /**
      * Create new config
+     *
+     * @param filename  Filename to use
      */
     public Config(String filename) {
         this.filename = filename;
