@@ -12,14 +12,14 @@ import java.util.Set;
 import com.diademiemi.lineation.line.Line;
 
 /**
- * class for tab complete functionality on lineation commands
+ * Class for tab complete functionality on lineation commands
  *
  * @author diademiemi
  */
 public class CommandTabComplete implements TabCompleter {
 
     /**
-     * method to implement tab completion
+     * Method to implement tab completion
      *
      * @param sender    Entity sending the command
      * @param command   Command

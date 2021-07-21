@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * listeners for lines
+ * Listeners for lines
  * 
  * @author diademiemi
  */

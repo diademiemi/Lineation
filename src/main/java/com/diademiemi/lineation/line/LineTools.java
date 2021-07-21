@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * line tools
+ * Tools for lines
  *
  * @author diademiemi
  */
