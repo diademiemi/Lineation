@@ -59,8 +59,8 @@ public class LineIO {
         }
         
         int i = 1;
-        double[][] b = new double[2][3];
         while (lineConfig.getConfig().get(name + ".border." + i + ".min.x" ) != null) {
+            double[][] b = new double[2][3];
             b[0][0] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.x");
             b[0][1] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.y");
             b[0][2] = lineConfig.getConfig().getDouble(name +  ".border." + i + ".min.z");
