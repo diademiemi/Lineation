@@ -228,6 +228,7 @@ public class CommandExec implements CommandExecutor {
                                                                         try { 
                                                                             int i = Integer.parseInt(args[3]);
                                                                             line.removeBorder(i);
+                                                                            player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
                                                                         } catch (Exception e) {
                                                                             player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
