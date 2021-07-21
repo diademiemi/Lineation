@@ -11,7 +11,7 @@ This plugin was written as a replacement to a current approach using command blo
 
 ## Note
 This is my first time creating a Minecraft plugin, so feedback is greatly appreciated!   
-Huge thanks to @jeremynoesen for helping a great amount with the code, creating the plugin logo and allowing me to inspect and take inspiration from his earlier Minecraft plugins. 
+Huge thanks to [@jeremynoesen](https://github.com/jeremynoesen) for helping a great amount with the code, creating the plugin logo and allowing me to inspect and take inspiration from his earlier Minecraft plugins. 
 
 ## Basic Example
 <br> | <br>
