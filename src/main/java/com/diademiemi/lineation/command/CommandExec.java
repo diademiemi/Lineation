@@ -181,7 +181,9 @@ public class CommandExec implements CommandExecutor {
                                                 Line.getLines().remove(args[2]);
                                                 player.sendMessage(Message.SUCCESS_LINE_REMOVED
                                                         .replace("$LINE$", args[2]));
-                                            } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
+                                            } else if (player.hasPermission("lineation.line.list")) {
+                                                player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
+                                            } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                     default:
@@ -367,8 +369,9 @@ public class CommandExec implements CommandExecutor {
                                                         player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help lines"));
                                                 }
                                             } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                                
-                                        } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[1]));            
+                                        } else if (player.hasPermission("lineation.line.list")) {
+                                            player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
+                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
                                         break;
                                 }
                             } else if (player.hasPermission("lineation.help")) {
