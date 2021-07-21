@@ -216,9 +216,27 @@ public class CommandTabComplete implements TabCompleter {
 
                         if ("options".startsWith(args[3]) && player.hasPermission("lineation.line.info.options")) tabList.add("options");
 
+                    } else if (args[2].equalsIgnoreCase("removeborder")) {
+
+                        if (args[3].equalsIgnoreCase("")) {
+
+                            if (player.hasPermission("lineation.line.removeborder")) {
+                                int i = 1;
+                                int b = Line.getLines().get(args[1]).getBorders().size();
+
+                                while (i <= b) {
+                                    tabList.add(String.valueOf(i));
+                                    i++;
+                                }
+
+                            }
+
+                        }
+
                     }
 
                 }
+
             }
 
             return tabList;
