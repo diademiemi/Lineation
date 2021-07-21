@@ -367,7 +367,7 @@ public class CommandExec implements CommandExecutor {
                                                 }
                                             } else player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                 
-                                        } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));            
+                                        } else player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[1]));            
                                         break;
                                 }
                             } else if (player.hasPermission("lineation.help")) {
