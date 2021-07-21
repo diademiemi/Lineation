@@ -1,4 +1,4 @@
-<img src="img/logo.png" align="right" alt="Logo" title="Logo" width="200" height="200" />
+<img src="img/logo.png" align="right" alt="Logo" title="Logo" width="300" height="300" />
 
 # Lineation
 
