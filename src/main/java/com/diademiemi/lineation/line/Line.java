@@ -28,94 +28,95 @@ import java.util.Map;
 
 public class Line {
     /** 
-     * hashmap of all lines
+     * HashMap of all lines
      */
     private static HashMap<String, Line> lines = new HashMap<>();
 
     /**
-     * hashmap of started lines
+     * HashMap of all started lines, for easy access
      */
     private static HashMap<String, Line> startedLines = new HashMap<>();
 
     /**
-     * hashmap of all started finish lines
+     * HashMap of all started finish lines for easy access
      */
     private static HashMap<String, Line> startedFinishLines = new HashMap<>();
 
     /**
-     * line name
+     * Name of the line
      */
     private String name;
 
     /**
-     * started yes or no
+     * Boolean to check if the line is started
      */
     private boolean started;
 
     /**
-     * line area
+     * Area used for detection by the line
      */
     private double[][] area;
 
     /**
-     * line lines
+     * Borders for the line used to set blocks
      */
     private ArrayList<double[][]> borders;
 
     /**
-     * list of blocks for opening sequence or to close
+     * List of block names used to open lines
      */
     private ArrayList<String> blockSequence;
 
     /**
-     * world
+     * World the line is in
      */
     private World world;
 
     /** 
-     * line type (start/finish)
+     * Type of this line
      */
     private String type;
 
     /**
-     * message reach
+     * Reach of announcement messages by finish line
      */
     private String messageReach;
 
     /**
-     * linked line
+     * Name of linked line
      */
     private String linkedLine;
 
     /**
-     * winners (only for finish type)
+     * List of winner names
      */
     private ArrayList<String> winners;
 
     /**
-     * max winners (only for finish type)
+     * Number of winners before theline closes
      */
     private Integer maxWinners;
 
     /**
-     * allowed game modes (only for finish type)
+     * List of game modes to check players in
      */
     private ArrayList<GameMode> allowedGameModes;
 
     /**
-     * teleport enabled
+     * Boolean to check if teleportation is enabled
      */
     private boolean teleportEnabled;
 
     /**
-     * teleport location
+     * Location to teleport players to
      */
     private Location teleportLocation;
 
     /**
      * create line with defaults and provided name
      *
-     * @param name line name
+     * @param name  The name of this line
+     * @param type  What type this line is
      */
     public Line(String name, String type) {
         this.name = name;
@@ -147,15 +148,21 @@ public class Line {
 
         lines.put(name, this);
     }
+
         /**
-         * get all loaded lines
+         * Gets a HashMap of all loaded lines
          *
-         * @return hashmap of loaded lines
+         * @return  HashMap of all lines
          */
         public static HashMap<String, Line> getLines() {
             return lines;
         }
 
+        /**
+         * Gets a HashMap of all start lines
+         *
+         * @return  HashMap of all start lines
+         */
         public static HashMap<String, Line> getStartLines() {
             HashMap<String, Line> startLines = new HashMap<String, Line>();
             for(Map.Entry<String, Line> entry: lines.entrySet()) {
@@ -165,7 +172,12 @@ public class Line {
             }
             return startLines;
         }
-
+        
+        /**
+         * Gets a HashMap of all finish lines
+         *
+         * @return  HashMap of all finish lines
+         */
         public static HashMap<String, Line> getFinishLines() {
             HashMap<String, Line> finishLines = new HashMap<String, Line>();
             for(Map.Entry<String, Line> entry: lines.entrySet()) {
@@ -176,80 +188,82 @@ public class Line {
             return finishLines;
         }
 
+        /**
+         * Gets HashMap of all started lines
+         *
+         * @return  HashMap of all started lines
+         */
         public static HashMap<String, Line> getStartedLines() {
             return startedLines;
         }
 
+        /**
+         * Gets HashMap of all started finish lines
+         *
+         * @return  HashMap of all started finish lines
+         */
         public static HashMap<String, Line> getStartedFinishLines() {
             return startedFinishLines;
         }
 
 
         /**
-         * get line name
+         * Get the name of this line
          *
-         * @return name of line
+         * @return  The name of this line
          */
         public String getName() {
             return name;
         }
 
-        /** 
-         * names/renames this line
-         *
-         * @param name new name
-         */
-        public void setName(String name) {
-            lines.remove(this.name);
-            this.name = name;
-            lines.put(name, this);
-        }
-
         /**
-        * get line type
+         * Get the type of this line
          *
-         * @return line type
+         * @return  The type of this line
          */
         public String getType() {
             return type;
         }
 
         /**
-         * set line type
+         * Sets the type of this line
          *
-         * @param string type
+         * @param   The type of this line
          */
         public void setType(String type) {
             this.type = type;
         }
 
         /**
-         * get message reach
+         * Gets the reach of messages of this line
+         *
+         * @return  Reach of messages for this line
          */
         public String getMessageReach() {
             return messageReach;
         }
         
         /**
-         * set message reach
+         * Sets the reach of messages of this line
          *
-         * @param string messageReach
+         * @param   Reach of messages for this line
          */
         public void setMessageReach(String messageReach) {
             this.messageReach = messageReach;
         }
 
         /**
-         * check if line is started
+         * Check if this line is started
          *
-         * @return true if started
+         * @return  True if line is started
          */
         public boolean isStarted() {
             return started;
         }
 
         /**
-         * start a line
+         * Start a line, this adds the line to the startedLines HashMap and startedFinishLines if this line is a finish line.
+         * If this is the only line started now, it also starts the listener for player movement.
          */
         public void setStarted() {
             started = true;
@@ -263,7 +277,8 @@ public class Line {
         }
 
         /**
-         * stop a line
+         * Stops this line and removes it from startedLines HashMap and startedFinishLines HashMap.
+         * If there are no started finish lines left, stop the listener for player movement.
          */
         public void setStopped() {
             started = false;
@@ -277,71 +292,79 @@ public class Line {
         }
 
         /**
-         * get linked line
+         * Gets the name of the linked line
          *
-         * @return string linename
+         * @return  Name of the linked line
          */
         public String getLinkedLine() {
             return linkedLine;
         }
 
         /**
-         * set linkedline
+         * Sets the name of the linked line
          *
-         * @param string lineName
+         * @param   Name of the linked line
          */
         public void setLinkedLine(String lineName) {
             linkedLine = lineName;
         }
 
         /**
-         * get lines world
-         *
-         * @return world the line is in
+         * Gets the world of this line
+         * 
+         * @return  World this line is in
          */
         public World getWorld() {
             return world;
         }
 
         /**
-         * get winners of finish line
+         * Sets the world of this line
          *
-         * @return winners list
+         * @param   World this line is in
+         */
+        public void setWorld(World world) {
+            this.world = world;
+        }
+        
+        /**
+         * Gets the list of winner names
+         *
+         * @return  List of names of this lines last winners
          */
         public ArrayList getWinners() {
             return winners;
         }
 
         /**
-         * add winner to winners list
+         * Add name of player to the winners list
          *
-         * @param Player player
+         * @param   Player to add to the list
          */
         public void addWinner(Player player) {
             winners.add(player.getName());
         }
 
         /**
-         * sets winners list
+         * Sets the list of winners of this line
          *
-         * @param List strings
+         * @param   List of winner names
          */
         public void setWinners(ArrayList<String> winners) {
             this.winners = winners;
         }
 
         /**
-         * clear winners list
-         *
+         * Clear the list of winners for this line
          */
         public void clearWinners() {
             winners.clear();
         }
         
         /**
-         * check if player is winner
+         * Check if this player is a winner in this line already
          *
-         * @param player player
+         * @param   Player to check
          */
         public boolean isWinner(Player player) {
             if (winners != null && !winners.isEmpty()) {
@@ -352,36 +375,36 @@ public class Line {
         }
 
         /**
-         * get maximum winners
+         * Gets the maximum amount of winners of this line
          *
-         * @return int
+         * @return  Number of winners before the line closes
          */
         public int getMaxWinners() {
             return maxWinners;
         }
 
         /**
-         * set maximum winners
+         * Sets the maximum amount of winners of this line
          * 
-         * @param int i
+         * @param   Number of winners before the line closes
          */
         public void setMaxWinners(int i) {
             maxWinners = i;
         }
 
         /**
-         * get allowed game modes
+         * Gets list of allowed game modes
          * 
-         * @return arraylist
+         * @return  ArrayList of allowed gamemodes of this line
          */
         public ArrayList<GameMode> getGameModes() {
             return allowedGameModes;
         }
 
         /**
-         * add allowed game mode
+         * Sets the list of allowed game modes
          *
-         * @param string gameModes
+         * @param   Comma seperated string of gamemode names
          */
         public void setGameModes(String gameModes) {
             String[] gameModesArray = gameModes.split(",");
@@ -393,9 +416,9 @@ public class Line {
         }
 
         /**
-         * get game modes as string
+         * Gets the allowed game modes as string
          *
-         * @return String
+         * @return  Comma seperated string of gamemode names
          */
         public String getGameModesString() {
             StringBuilder GameModes = new StringBuilder("");
@@ -412,63 +435,65 @@ public class Line {
         }
 
         /**
-         * get teleport location
+         * Gets the teleport location
+         *
+         * @return  Location to teleport players to on finish
          */
         public Location getTeleportLocation() {
             return teleportLocation;
         }
 
         /**
-         * set teleport location
+         * Sets the teleport location to players current location
+         *
+         * @param   Player to get the location from
          */
         public void setTeleportLocation(Player player) {
             teleportLocation = player.getLocation();
         }
 
         /**
-         * set teleport location
+         * Sets the teleport location to this location
+         *
+         * @param   Location to set the teleport location to
          */
         public void setTeleportLocation(Location loc) {
             teleportLocation = loc;
         }
 
         /**
-         * get teleport enabled
+         * Gets boolean of if teleport is enabled
+         *
+         * @return  True if teleport is enabled
          */
         public boolean isTeleportEnabled() {
             return teleportEnabled;
         }
         /**
-         * set teleport enabled
+         * Sets whether teleport is enabled
+         *
+         * @param   Boolean of if teleport is enabled
          */
         public void setTeleportEnabled(boolean b) {
             teleportEnabled = b;
         }
         
         /**
-         * set world for line
+         * Gets the area of this line
          *
-         * @param world world
-         */
-        public void setWorld(World world) {
-            this.world = world;
-        }
-        
-        /**
-         * get line area
-         *
-         * @return 2D array area
+         * @return Double of the area of this line
          */
         public double[][] getArea() {
             return area;
         }
 
         /**
-         * use worldedit to set area of line
+         * Use WorldEdit to set the area of this line
          *
-         * @param player worldedit player
+         * @param   Player to get WorldEdit selection from
+         * @param   Area to set 
          */
-        private void setArea(Player player, double[][] area) {
+        public void setArea(Player player) {
             WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
 
             com.sk89q.worldedit.regions.Region selection;
@@ -496,29 +521,29 @@ public class Line {
         }
 
         /**
-         * set line area
+         * Sets the area of this line
          *
-         * @param area 2D array area
+         * @param   Double of the area of this line
          */
         public void setArea(double[][] area) {
             this.area = area;
         }
-
+            
         /**
-         * set line area with worldedit
+         * Get list of all borders of this line
          *
-         * @param player worldedit player
+         * @return  ArrayList of all borders of this line
          */
-        public void setArea(Player player) {
-            setArea(player, area);
+        public ArrayList<double[][]> getBorders() {
+            return borders;
         }
 
         /**
-         * use worldedit to add a border
+         * Use WorldEdit to add a border to this line
          *
-         * @param player worldedit player
+         * @param   Player to get WorldEdit selection from
          */
-        private void addBorder(Player player, ArrayList<double[][]> borders) {
+        public void addBorder(Player player) {
             WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
 
             com.sk89q.worldedit.regions.Region selection;
@@ -547,55 +572,43 @@ public class Line {
         }
 
         /**
-         * add line border
+         * Add a border to this line
          * 
-         * @param area 2D array area
+         * @param   Double of the border to add to this line
          */
         public void addBorder(double[][] border) {
             borders.add(border);
         }
-
-        /**
-         * add line border
-         *
-         * @param player worldedit player
-         */
-        public void addBorder(Player player) {
-            addBorder(player, borders);
-        }
         
         /**
-         * remove a border by number
+         * Remove a border by number
          *
-         * @param int i
+         * @param   Number of the border to remove
          */
         public void removeBorder(int i) {
             borders.remove(i - 1);
         }
 
         /**
-         * remove all borders
+         * Remove all borders of this line
          */
         public void clearBorders() {
             borders.clear();
         }
-            
-        /**
-         * get all borders
-         */
-        public ArrayList<double[][]> getBorders() {
-            return borders;
-        }
 
         /**
-         * get blocksequence
+         * Get this lines block sequence
+         *
+         * @return  ArrayList of block names
          */
         public ArrayList<String> getBlockSequence() {
             return blockSequence;
         }
 
         /**
-         * get blocksequence as string
+         * Get this lines block sequence as a string
+         *
+         * @return  Comma seperated list of block names
          */
         public String getBlockSequenceString() {
             StringBuilder blockSequenceString = new StringBuilder("");
@@ -612,18 +625,29 @@ public class Line {
         }
         
         /**
-         * set block sequence as string
-         * @param string blocksequence
+         * Sets this lines block sequence
+         *
+         * @param   Comma seperated list of block names
          */
         public void setBlockSequence(String blockSequence) {
             this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
         }
 
-        /**
-         * check if location is in area
+         /**
+         * Check if this player is in this area
          *
-         * @param l location to check
-         * @return true if location is in area
+         * @param   Player to check location of
+         * @return  Boolean of if this player is in the area
+         */
+        public boolean contains(Player player) {
+            return getPlayers().contains(player);
+        }
+
+        /**
+         * Check if this location is in this area
+         *
+         * @param   Location to check
+         * @return  Boolean of if this location is in the area
          */
         public boolean contains(Location l) {
             try {
@@ -645,9 +669,9 @@ public class Line {
         }
 
         /**
-         * get list of players in area
+         * Get a list of players in this area
          *
-         * @return list of players in area
+         * @return  List of players in this area
          */
         public ArrayList<Player> getPlayers() {
             ArrayList<Player> players = new ArrayList<>();
@@ -661,45 +685,12 @@ public class Line {
                 }
             return players;
         }
-
-        /**
-         * check if player is in area
-         * shouldnt be needed
-         *
-         * @param player player to see if area contains
-         * @return true if player is in area
-         */
-        public boolean contains(Player player) {
-            return getPlayers().contains(player);
-        }
         
         /**
-         * select area with worldedit
+         * Gets the line this player is in
          *
-         * @param player player to do the selecting
-         */
-        public void select(Player player) {
-        
-            try {
-                BlockVector3 min = BlockVector3.at(area[0][0], area[0][1], area[0][2]);
-                BlockVector3 max = BlockVector3.at(area[1][0], area[1][1], area[1][2]);
-
-                com.sk89q.worldedit.entity.Player weplayer = BukkitAdapter.adapt(player);
-                LocalSession ls = WorldEdit.getInstance().getSessionManager().get(weplayer);
-                ls.getRegionSelector(BukkitAdapter.adapt(world)).selectPrimary(max, null);
-                ls.getRegionSelector(BukkitAdapter.adapt(world)).selectSecondary(min,null);
-
-                player.sendMessage(Message.SUCCESS_LINE_SELECTED.replace("$LINE$", name));
-            } catch (Exception e) {
-                player.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", name));
-            }
-        }
-        
-        /**
-         * get line the player is in
-         *
-         * @param player player to check for area
-         * @return line player is on
+         * @param   Player to check location of
+         * @return  Line this player is in
          */
         public static Line get(Player player) {
 
@@ -712,10 +703,10 @@ public class Line {
         }
 
         /**
-         * get line from location
+         * Gets the line this location is in
          *
-         * @param l location to check
-         * @return line location is in
+         * @param   Location to check 
+         * @return  Line this location is in
          */
         public static Line get(Location l) {
 
