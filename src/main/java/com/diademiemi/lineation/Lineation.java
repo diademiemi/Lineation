@@ -49,7 +49,6 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.reload"));
         pm.addPermission(new Permission("lineation.maxwins"));
         pm.addPermission(new Permission("lineation.forget"));
-        pm.addPermission(new Permission("lineation.line.help"));
         pm.addPermission(new Permission("lineation.line.list"));
         pm.addPermission(new Permission("lineation.line.create"));
         pm.addPermission(new Permission("lineation.line.remove"));
