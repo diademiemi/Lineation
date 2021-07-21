@@ -99,6 +99,7 @@ public class LineTools {
             announcement.append(Message.FINISH_CLOSE_PLAYER
                     .replace("$NAME$", p)
                     .replace("$PLACE$", Message.ordinal(i)));
+            i++;
         }
 
         switch (line.getMessageReach()) {
