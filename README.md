@@ -24,7 +24,9 @@ I then define a second border for the start line<br> This way the players can no
 ![Demo3](img/demo3.png) | ![Demo4](img/demo4.png)
 Step 5 | Step 6
 I now set a border for the finish line | And finally, I set an area for the finish line too<br>In finish lines this is the area used to detect players
-![Demo5](img/demo5.png) | ![Demo6](img/demo6.png)
+![Demo5](img/demo5.png) | ![Demo6](img/demo6.png)  
+
+
 It's all set up now! See the GIF underneath for a demonstration of what I just set up in action.
 <div align="center" ><img src = "img/demo7.gif" alt="Demonstration" title="Demonstration"/></div>
 
