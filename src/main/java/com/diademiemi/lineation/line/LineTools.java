@@ -173,10 +173,17 @@ public class LineTools {
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
+                StringBuilder teleportString = new StringBuilder("");
+                if (line.isTeleportEnabled()) {
+                    teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
+                            (int)line.getTeleportLocation().getY() + "," + 
+                            (int)line.getTeleportLocation().getZ() + ")");
+                } else teleportString.append("disabled");
+
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", line.getTeleportLocation().toString())
+                        .replace("$TELEPORTLOCATION$", teleportString)
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
                         .replace("$GAMEMODES$", line.getGameModesString())
