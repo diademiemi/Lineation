@@ -33,6 +33,8 @@ public class CommandTabComplete implements TabCompleter {
         ArrayList<String> tabList = new ArrayList<>();
 
         Set<String> lines = Line.getLines().keySet();
+        Set<String> startLines = Line.getStartLines().keySet();
+        Set<String> finishLines = Line.getFinishLines().keySet();
 
         if (sender instanceof Player && (label.equalsIgnoreCase("lineation") || label.equalsIgnoreCase("ln"))) {
 
@@ -152,20 +154,25 @@ public class CommandTabComplete implements TabCompleter {
                     if (args[2].equalsIgnoreCase("")) {
 
                         if (player.hasPermission("lineation.line.remove") && player.hasPermission("lineation.line.list")) {
+
                             for (String line : lines) {
-                                if (line.startsWith(args[2])) {
-                                    tabList.add(line);
-                                }
+                                tabList.add(line);
                             }
+
                         }
+
                     }
 
                     if (player.hasPermission("lineation.line.remove") && player.hasPermission("lineation.line.list")) {
+
                         for (String line : lines) {
+
                             if (line.startsWith(args[2])) {
                                 tabList.add(line);
                             }
+
                         }
+
                     }
 
                 } else if (args[1].equalsIgnoreCase("list")) {
@@ -237,6 +244,61 @@ public class CommandTabComplete implements TabCompleter {
 
                 }
 
+            } else if (args.length == 5) {
+
+                if (lines.contains(args[1])) {
+                    
+                    if (args[2].equalsIgnoreCase("option")) {
+
+                        if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
+
+                            if (args[4].equalsIgnoreCase("")) {
+
+                                tabList.add("here");
+                                tabList.add("disabled");
+
+                            }
+
+                            if ("here".startsWith(args[4])) tabList.add("here");
+                            if ("disabled".startsWith(args[4])) tabList.add("disabled");
+
+                        } else if (args[3].equalsIgnoreCase("link") && player.hasPermission("lineation.line.option.link") && player.hasPermission("lineation.line.list")) {
+
+                            if (args[4].equalsIgnoreCase("")) {
+
+                                if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+                                    
+                                    for (String line : finishLines) {
+                                        tabList.add(line);
+                                    }
+
+                                } else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
+
+                                    for (String line : startLines) {
+                                        tabList.add(line);
+                                    }
+
+                                }
+
+                            }
+
+                            if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+                                
+                                for (String line : finishLines) {
+                                    if (line.startsWith(args[4])) tabList.add(line);
+                                }
+
+                            } else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
+
+                                for (String line : startLines) {
+                                    if (line.startsWith(args[4])) tabList.add(line);
+                                }
+
+                            }
+
+                        }
+                    }
+                }
             }
 
             return tabList;
