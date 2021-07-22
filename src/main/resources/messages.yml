@@ -51,7 +51,7 @@ SUCCESS_BORDER_REMOVED: '&7Removed border successfully'
 SUCCESS_CHECKPOINT_REMOVED: '&7Removed checkpoint successfully'
 SUCCESS_OPTION_SET: '&7Set option successfully!'
 SUCCESS_PLAYER_FORGOTTEN: '&7Forgot player wins for &f&l$PLAYER$&r&7!'
-LINE_INFO: |2-
+LINE_INFO_START: |2-
   &f&lLine Info
   &8- &7Name: $NAME$
   &8- &7Started: $STARTED$
@@ -59,6 +59,15 @@ LINE_INFO: |2-
   &8- &7World: $WORLD$
   &8- &7Area: $AREA$
   &8- &7Borders: $BORDERS$
+LINE_INFO_FINISH: |2-
+  &f&lLine Info
+  &8- &7Name: $NAME$
+  &8- &7Started: $STARTED$
+  &8- &7Type: $TYPE$
+  &8- &7World: $WORLD$
+  &8- &7Area: $AREA$
+  &8- &7Borders: $BORDERS$
+  &8- &7Checkpoints: $CHECKPOINTS$
 LINE_OPTIONS_START: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
@@ -70,6 +79,7 @@ LINE_OPTIONS_FINISH: |2-
   &8- &7Block sequence: $BLOCKSEQUENCE$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Close on wins: $ALLOWEDWINNERS$
+  &8- &7Laps: $LAPS$
   &8- &7Message reach: $MESSAGEREACH$
   &8- &7Allowed gamemodes: $GAMEMODES$
   &8- &7Linked line: $LINKED$

@@ -167,6 +167,7 @@ public class LineTools {
         double[][] area = line.getArea();
         StringBuilder bordersString = new StringBuilder("");
         ArrayList<double[][]> borders = line.getBorders();
+        ArrayList<double[][]> checkpoints = line.getCheckpoints();
         int i = 1;
         for (double[][] b : borders) {
             if (i> 1) {
@@ -177,18 +178,44 @@ public class LineTools {
                     b[1][0] + "," + b[1][1] + "," + b[1][2] + ")");
             i++;
         }
-        player.sendMessage(Message.LINE_INFO
-                .replace("$NAME$", line.getName())
-                .replace("$STARTED$", Boolean.toString(line.isStarted()))
-                .replace("$TYPE$", line.getType())
-                .replace("$WORLD$", line.getWorld().getName())
-                .replace("$AREA$",
-                    "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
-                    area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
-                .replace("$BORDERS$", bordersString)
-                .replace(".0", ""));
-                    
-
+        switch (line.getType()) {
+            case "start":
+                player.sendMessage(Message.LINE_INFO_START
+                        .replace("$NAME$", line.getName())
+                        .replace("$STARTED$", Boolean.toString(line.isStarted()))
+                        .replace("$TYPE$", line.getType())
+                        .replace("$WORLD$", line.getWorld().getName())
+                        .replace("$AREA$",
+                            "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
+                            area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
+                        .replace("$BORDERS$", bordersString)
+                        .replace(".0", ""));
+                break;
+            case "finish":
+                StringBuilder checkpointsString = new StringBuilder("");
+                i = 1;
+                for (double[][] c : checkpoints) {
+                    if (i> 1) {
+                        checkpointsString.append("\n");
+                    }
+                    checkpointsString.append(i);
+                    checkpointsString.append(": " + "(" + c[0][0] + "," + c[0][1] + "," + c[0][2] + ") -> (" +
+                            c[1][0] + "," + c[1][1] + "," + c[1][2] + ")");
+                    i++;
+                }
+                player.sendMessage(Message.LINE_INFO_FINISH
+                        .replace("$NAME$", line.getName())
+                        .replace("$STARTED$", Boolean.toString(line.isStarted()))
+                        .replace("$TYPE$", line.getType())
+                        .replace("$WORLD$", line.getWorld().getName())
+                        .replace("$AREA$",
+                            "(" + area[0][0] + "," + area[0][1] + "," + area[0][2] + ") -> (" +
+                            area[1][0] + "," + area[1][1] + "," + area[1][2] + ")")
+                        .replace("$BORDERS$", bordersString)
+                        .replace("$CHECKPOINTS$", checkpointsString)
+                        .replace(".0", ""));
+                break;
+        }
     }
 
     /**
@@ -218,6 +245,7 @@ public class LineTools {
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
                         .replace("$TELEPORTLOCATION$", teleportString)
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
+                        .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
                         .replace("$GAMEMODES$", line.getGameModesString())
                         .replace("$LINKED$", line.getLinkedLine()));

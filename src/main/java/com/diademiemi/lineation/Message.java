@@ -40,10 +40,11 @@ public class Message {
     public static String SUCCESS_CHECKPOINT_REMOVED;
     public static String SUCCESS_OPTION_SET;
     public static String SUCCESS_PLAYER_FORGOTTEN;
-    public static String LINE_INFO;
-    public static String LINE_LIST;
+    public static String LINE_INFO_START;
+    public static String LINE_INFO_FINISH;
     public static String LINE_OPTIONS_START;
     public static String LINE_OPTIONS_FINISH;
+    public static String LINE_LIST;
     public static String LINE_WINNERS;
     public static String STARTING_IN;
     public static String STARTING_NOW;
@@ -84,10 +85,11 @@ public class Message {
         SUCCESS_CHECKPOINT_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_CHECKPOINT_REMOVED"));
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         SUCCESS_PLAYER_FORGOTTEN = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_PLAYER_FORGOTTEN"));
-        LINE_INFO = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO"));
-        LINE_LIST = PREFIX + format(messageConfig.getConfig().getString("LINE_LIST"));
+        LINE_INFO_START = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO_START"));
+        LINE_INFO_FINISH = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO_FINISH"));
         LINE_OPTIONS_START = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS_START"));
         LINE_OPTIONS_FINISH = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS_FINISH"));
+        LINE_LIST = PREFIX + format(messageConfig.getConfig().getString("LINE_LIST"));
         LINE_WINNERS = PREFIX + format(messageConfig.getConfig().getString("LINE_WINNERS"));
         STARTING_IN = format(messageConfig.getConfig().getString("STARTING_IN"));
         STARTING_NOW = format(messageConfig.getConfig().getString("STARTING_NOW"));
