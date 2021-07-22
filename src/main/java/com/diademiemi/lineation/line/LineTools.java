@@ -45,9 +45,11 @@ public class LineTools {
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode()) &&
                 line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
-
+            System.out.println(line.getPlayerCheckpoint(player));
             line.addPlayerCheckpoint(player, 0);
-            line.addPlayerLap(player, 1);
+            System.out.println(line.getPlayerLaps(player)); 
+            line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
+
             if (line.getLaps() == line.getPlayerLaps(player)) {
 
                 String uuid = player.getUniqueId().toString();
@@ -68,7 +70,8 @@ public class LineTools {
                     }
 
                 }
-            } else  line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
+            }
+
         }
     }
   
