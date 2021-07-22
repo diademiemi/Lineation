@@ -23,3 +23,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Upload JAR as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Lineation-0.1.0.jar
+        path: build/libs/Lineation-0.1.0.jar
+        if-no-files-found: error
