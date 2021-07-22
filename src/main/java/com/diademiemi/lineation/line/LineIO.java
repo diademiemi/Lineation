@@ -81,6 +81,9 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".option.gamemodes") != null) {
                 line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
             }
+            if (lineConfig.getConfig().get(name + ".option.laps") != null) {
+                line.setLaps(lineConfig.getConfig().getInt(name + ".option.laps"));
+            }
             if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
                 line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
                 line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
@@ -89,6 +92,22 @@ public class LineIO {
                         (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
                         (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
             }
+
+
+            i = 1;
+            while (lineConfig.getConfig().get(name + ".checkpoint." + i + ".min.x" ) != null) {
+                double[][] c = new double[2][3];
+                c[0][0] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".min.x");
+                c[0][1] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".min.y");
+                c[0][2] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".min.z");
+                c[1][0] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".max.x");
+                c[1][1] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".max.y");
+                c[1][2] = lineConfig.getConfig().getDouble(name +  ".checkpoint." + i + ".max.z");
+                line.addCheckpoint(c);
+                i++;
+            }
+
+
         }
     }
     
@@ -141,11 +160,25 @@ public class LineIO {
             }
         }
 
+        if (line.getCheckpoints() != null) {
+            int i = 1;
+            for (double[][] c : line.getCheckpoints()) {
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".min.x", c[0][0]);
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".min.y", c[0][1]);
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".min.z", c[0][2]);
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".max.x", c[1][0]);
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".max.y", c[1][1]);
+                lineConfig.getConfig().set(name + ".checkpoint." + i + ".max.z", c[1][2]);
+                i++;
+            }
+        }
+
         if (line.getType().equalsIgnoreCase("finish")) {
 
             lineConfig.getConfig().set(name + ".lastwinners", line.getWinners());
             lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
             lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
+            lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
             lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
             lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
             lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
