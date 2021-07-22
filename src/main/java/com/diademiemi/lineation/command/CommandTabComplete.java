@@ -246,7 +246,7 @@ public class CommandTabComplete implements TabCompleter {
 
                         }
 
-                    } else if (args[2].equalsIgnoreCase("removecheckpoint")) {
+                    } else if (args[2].equalsIgnoreCase("removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
 
                         if (args[3].equalsIgnoreCase("")) {
 

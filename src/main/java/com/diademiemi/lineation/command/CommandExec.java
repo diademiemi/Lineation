@@ -242,32 +242,36 @@ public class CommandExec implements CommandExecutor {
                                                         break;
                                                     case "addcheckpoint":
                                                         if (player.hasPermission("lineation.line.addcheckpoint")) {
-                                                            line.addCheckpoint(player);
+                                                            if (line.getType().equalsIgnoreCase("finish")) {
+                                                                line.addCheckpoint(player);
+                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "removecheckpoint":
                                                         if (player.hasPermission("lineation.line.addcheckpoint")) {
-                                                            if (args.length > 3) {
-                                                                switch (args[3].toLowerCase()) {
-                                                                    case "all":
-                                                                        line.clearCheckpoints();
-                                                                        player.sendMessage(Message.SUCCESS_CHECKPOINT_REMOVED);
-                                                                        if (line.getCheckpoints().size() == 0) line.setLaps(1);
-                                                                        break;
-                                                                    default:
-                                                                        try {
-                                                                            int i = Integer.parseInt(args[3]);
-                                                                            line.removeCheckpoint(i);
-                                                                            player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
+                                                            if (line.getType().equalsIgnoreCase("finish")) {
+                                                                if (args.length > 3) {
+                                                                    switch (args[3].toLowerCase()) {
+                                                                        case "all":
+                                                                            line.clearCheckpoints();
+                                                                            player.sendMessage(Message.SUCCESS_CHECKPOINT_REMOVED);
                                                                             if (line.getCheckpoints().size() == 0) line.setLaps(1);
-                                                                        } catch (Exception e) {
-                                                                            player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                                                        }
-                                                                        break;
-                                                                }
-                                                                break;
-                                                            } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
-                                                        } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
+                                                                            break;
+                                                                        default:
+                                                                            try {
+                                                                                int i = Integer.parseInt(args[3]);
+                                                                                line.removeCheckpoint(i);
+                                                                                player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
+                                                                                if (line.getCheckpoints().size() == 0) line.setLaps(1);
+                                                                            } catch (Exception e) {
+                                                                                player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                            }
+                                                                            break;
+                                                                    }
+                                                                    break;
+                                                                } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
+                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
                                                     case "start":
                                                         if (player.hasPermission("lineation.line.start")) {
