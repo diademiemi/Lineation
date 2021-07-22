@@ -284,12 +284,11 @@ public class LineTools {
      */
     public static void startStartLine(Line line) {
         line.setStarted();
-        World world = line.getWorld();
         ArrayList<double[][]> borders = line.getBorders();
         ArrayList<String> blockSequence = line.getBlockSequence();
         ArrayList<Player> players = line.getPlayers();
 
-        startLineSequence(borders, world, players, blockSequence, 1);
+        startLineSequence(borders, line, players, blockSequence, 1);
 
     }
 
@@ -444,25 +443,31 @@ public class LineTools {
      * @param blockSequence ArrayList of strings with block sequence
      * @param i Integer to count amount of times this has looped
      */
-    public static void startLineSequence(ArrayList<double[][]> borders, World world, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
+    public static void startLineSequence(ArrayList<double[][]> borders, Line line, ArrayList<Player> players, ArrayList<String> blockSequence, Integer i) {
         Bukkit.getServer().getScheduler().runTaskLater(Lineation.getInstance(), new Runnable(){
             public void run() {
-                try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+                try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(line.getWorld()))) {
 
                     if (blockSequence.size() == i) {
 
                         for (double[][] b : borders) {
-                            replaceBlocks(es, b, world, "air", blockSequence.get(i - 1));
+                            replaceBlocks(es, b, line.getWorld(), "air", blockSequence.get(i - 1));
                         }
 
                         for (Player p : players) {
                             p.sendMessage(Message.STARTING_NOW);
                         }
 
+                        if (line.isTeleportEnabled()) {
+                            for (Player p : players) {
+                                p.teleport(line.getTeleportLocation());
+                            }
+                        }
+
                     } else {
 
                         for (double[][] b : borders) {
-                            replaceBlocks(es, b, world, blockSequence.get(i), blockSequence.get(i - 1));
+                            replaceBlocks(es, b, line.getWorld(), blockSequence.get(i), blockSequence.get(i - 1));
                         }
 
                         for (Player p : players) {
@@ -472,7 +477,7 @@ public class LineTools {
                     }
 
                     if (blockSequence.size() != i) {
-                        startLineSequence(borders, world, players, blockSequence, i + 1);
+                        startLineSequence(borders, line, players, blockSequence, i + 1);
                     }
 
                 }
