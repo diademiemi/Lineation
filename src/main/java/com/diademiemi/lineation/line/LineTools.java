@@ -61,6 +61,12 @@ public class LineTools {
                         player.teleport(line.getTeleportLocation());
                     }
 
+                    ArrayList<String> commands = line.getCommands();
+
+                    for (String c : commands) {
+                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), c);
+                    }
+
                     data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
 
                     if (line.getWinners().size() == line.getMaxWinners()) {

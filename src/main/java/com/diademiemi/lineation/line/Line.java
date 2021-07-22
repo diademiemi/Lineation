@@ -15,6 +15,7 @@ import com.diademiemi.lineation.Message;
 import com.diademiemi.lineation.Lineation;
 import com.diademiemi.lineation.Config;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -173,7 +174,7 @@ public class Line {
             checkpoints = new ArrayList<double[][]>();
             checkpointCount = new HashMap<Player, Integer>();
             lapCount = new HashMap<Player, Integer>();
-            commands = Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands");
+            this.setCommands(Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands"));
         }
 
         lines.put(name, this);
@@ -785,6 +786,17 @@ public class Line {
         public void addCommand(String command) {
             commands.add(command);
         }
+
+        /**
+         * Sets the commands list
+         *
+         * @param commands  List of commands
+         */
+        public void setCommands(List<String> commands) {
+            ArrayList<String> commandsList = new ArrayList<String>(commands);
+            this.commands = commandsList;
+        }
+
 
         /**
          * Remove a command by number

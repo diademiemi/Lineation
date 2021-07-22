@@ -310,13 +310,15 @@ public class CommandExec implements CommandExecutor {
                                                                     if (args.length > 4) {
                                                                         if (player.hasPermission("lineation.line.option.addcommand")) {
                                                                             if (line.getType().equalsIgnoreCase("finish")) {
-                                                                                StringBuilder command = new StringBuilder("");
+                                                                                StringBuilder com = new StringBuilder("");
                                                                                 for (int i = 4; i < args.length; i++) {
-                                                                                    StringBuilder.append(args[i]);
-                                                                                    if (i != args.length) {
-                                                                                        StringBuilder.append(" ");
+                                                                                    com.append(args[i]);
+                                                                                    if (i - 1 != args.length) {
+                                                                                        com.append(" ");
                                                                                     }
                                                                                 }
+                                                                                line.addCommand(com.toString());
+                                                                                player.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                             } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                                         break;
