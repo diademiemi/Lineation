@@ -588,6 +588,7 @@ public class Line {
                 border[1][2] = selection.getMaximumPoint().getZ();
 
                 borders.add(border);
+                LineTools.stopLine(this);
                 player.sendMessage(Message.SUCCESS_SET_BORDER.replace("$LINE$", name));
 
             } else {
