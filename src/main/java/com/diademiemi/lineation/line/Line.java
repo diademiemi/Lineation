@@ -694,6 +694,7 @@ public class Line {
          * @return  Map of player and checkpoins reached
          */
         public int getPlayerCheckpoint(Player player) {
+            if (!checkpointCount.keySet().contains(player)) return 0;
             return checkpointCount.get(player);
         }
 
@@ -739,6 +740,7 @@ public class Line {
          * @return  Map of player and laps done
          */
         public int getPlayerLaps(Player player) {
+            if (!lapCount.keySet().contains(player)) return 0;
             return lapCount.get(player);
         }
 
