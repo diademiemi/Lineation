@@ -240,6 +240,35 @@ public class CommandExec implements CommandExecutor {
                                                             } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                         break;
+                                                    case "addcheckpoint":
+                                                        if (player.hasPermission("lineation.line.addcheckpoint")) {
+                                                            line.addCheckpoint(player);
+                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                        break;
+                                                    case "removecheckpoint":
+                                                        if (player.hasPermission("lineation.line.addcheckpoint")) {
+                                                            if (args.length > 3) {
+                                                                switch (args[3].toLowerCase()) {
+                                                                    case "all":
+                                                                        line.clearCheckpoints();
+                                                                        player.sendMessage(Message.SUCCESS_CHECKPOINT_REMOVED);
+                                                                        if (line.getCheckpoints().size() == 0) line.setLaps(0);
+                                                                        break;
+                                                                    default:
+                                                                        try {
+                                                                            int i = Integer.parseInt(args[3]);
+                                                                            line.removeCheckpoint(i);
+                                                                            player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
+                                                                            if (line.getCheckpoints().size() == 0) line.setLaps(0);
+                                                                        } catch (Exception e) {
+                                                                            player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                        }
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
+                                                        } else player.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<all/nunber>"));
+                                                        break;
                                                     case "start":
                                                         if (player.hasPermission("lineation.line.start")) {
                                                             LineTools.startLine(line);
@@ -333,6 +362,22 @@ public class CommandExec implements CommandExecutor {
                                                                             break;
                                                                         } player.sendMessage(Message.ERROR_NO_PERMS);
                                                                         break;
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
+                                                                case "laps":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.laps")) {
+                                                                            if (line.getCheckpoints().size() != 0) {
+                                                                                try {
+                                                                                    int i = Integer.parseInt(args[4]);
+                                                                                    line.setLaps(i);
+                                                                                    player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                } catch (Exception e) {
+                                                                                    player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                                }
+                                                                                break;
+                                                                            } else player.sendMessage(Message.ERROR_NO_CHECKPOINT);
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                                     } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                     break;
                                                                 case "link":

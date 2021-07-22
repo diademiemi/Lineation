@@ -37,6 +37,7 @@ public class Message {
     public static String SUCCESS_SET_CHECKPOINT;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_BORDER_REMOVED;
+    public static String SUCCESS_CHECKPOINT_REMOVED;
     public static String SUCCESS_LINE_SELECTED;
     public static String SUCCESS_OPTION_SET;
     public static String SUCCESS_PLAYER_FORGOTTEN;
@@ -80,6 +81,7 @@ public class Message {
         SUCCESS_SET_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_CHECKPOINT"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
+        SUCCESS_CHECKPOINT_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_CHECKPOINT_REMOVED"));
         SUCCESS_LINE_SELECTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_SELECTED"));
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         SUCCESS_PLAYER_FORGOTTEN = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_PLAYER_FORGOTTEN"));

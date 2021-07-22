@@ -55,6 +55,8 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.setarea"));
         pm.addPermission(new Permission("lineation.line.addborder"));
         pm.addPermission(new Permission("lineation.line.removeborder"));
+        pm.addPermission(new Permission("lineation.line.addcheckpoint"));
+        pm.addPermission(new Permission("lineation.line.removecheckpoint"));
         pm.addPermission(new Permission("lineation.line.start"));
         pm.addPermission(new Permission("lineation.line.stop"));
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
@@ -62,6 +64,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.option.gamemodes"));
         pm.addPermission(new Permission("lineation.line.option.blocksequence"));
         pm.addPermission(new Permission("lineation.line.option.teleport"));
+        pm.addPermission(new Permission("lineation.line.option.laps"));
         pm.addPermission(new Permission("lineation.line.option.link"));
 
         getCommand("lineation").setExecutor(new CommandExec());
