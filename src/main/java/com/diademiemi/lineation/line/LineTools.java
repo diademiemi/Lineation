@@ -438,7 +438,7 @@ public class LineTools {
      * This method reschedules itself if counter i has not reached the end of the sequence.
      *
      * @param borders   List of borders to set
-     * @param world World to set this in
+     * @param line  The line
      * @param players   Players to send announcement sequence to
      * @param blockSequence ArrayList of strings with block sequence
      * @param i Integer to count amount of times this has looped
