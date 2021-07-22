@@ -376,7 +376,8 @@ public class CommandExec implements CommandExecutor {
                                                                                     player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                                 }
                                                                                 break;
-                                                                            } else player.sendMessage(Message.ERROR_NO_CHECKPOINT);
+                                                                            } else player.sendMessage(Message.ERROR_NO_CHECKPOINT.replace("$LINE$", args[1]));
+                                                                            break;
                                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                                     } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                     break;
