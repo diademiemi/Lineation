@@ -47,6 +47,7 @@ public class LineTools {
                 line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
 
             line.addPlayerCheckpoint(player, 0);
+            line.addPlayerLap(player, 1);
             if (line.getLaps() == line.getPlayerLaps(player)) {
 
                 String uuid = player.getUniqueId().toString();
@@ -311,6 +312,8 @@ public class LineTools {
      */
     public static void stopFinishLine(Line line) {
         line.setStopped();
+        line.clearPlayerLaps();
+        line.clearPlayerCheckpoints();
         World world = line.getWorld();
         ArrayList<double[][]> borders = line.getBorders();
         String blockTo = line.getBlockSequence().get(0);
