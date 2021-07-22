@@ -45,9 +45,7 @@ public class LineTools {
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode()) &&
                 line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
-            System.out.println(line.getPlayerCheckpoint(player));
             line.addPlayerCheckpoint(player, 0);
-            System.out.println(line.getPlayerLaps(player)); 
             line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
 
             if (line.getLaps() == line.getPlayerLaps(player)) {
@@ -70,13 +68,13 @@ public class LineTools {
                     }
 
                 }
-            }
+            } else LineTools.lapMessage(line, player, line.getPlayerLaps(player));
 
         }
     }
   
     /**
-     * Send finish message
+     * Send finish message when someone finishes
      *
      * @param line  Line player finished in
      * @param player    PLayer that finished
@@ -100,6 +98,31 @@ public class LineTools {
         }
     }
    
+    /**
+     * Send announcement message when someone completes a lap
+     *
+     * @param line  Line player lapped
+     * @param player    Player that finished
+     * @param i Number of the lap
+     */
+    public static void lapMessage(Line line, Player player, Integer i) {
+        switch (line.getMessageReach()) {
+            case "world":
+                List<Player> players = line.getWorld().getPlayers();
+                for (Player p : players) {
+                    p.sendMessage(Message.PLAYER_LAP
+                            .replace("$NAME$", player.getName())
+                            .replace("$LAP$", i + "/" + line.getLaps()));
+                }
+                break;
+            case "all":
+                Bukkit.broadcastMessage(Message.PLAYER_LAP
+                        .replace("$NAME$", player.getName())
+                        .replace("$LAP$", i + "/" + line.getLaps()));
+                break;
+        }
+    }
+
     /**
      * Announce winners when finish line closes
      *

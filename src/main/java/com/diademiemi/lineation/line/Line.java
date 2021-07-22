@@ -894,7 +894,7 @@ public class Line {
         }
 
         /**
-         * Get the checkpoint this line is in
+         * Get the checkpoint this location is in
          *
          * @param l Location to check
          * @return  Integer of the checkpoint this location is in
