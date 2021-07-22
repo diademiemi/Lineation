@@ -278,12 +278,12 @@ public class CommandTabComplete implements TabCompleter {
                             if (args[4].equalsIgnoreCase("")) {
 
                                 tabList.add("here");
-                                tabList.add("disabled");
+                                tabList.add("disable");
 
                             }
 
                             if ("here".startsWith(args[4])) tabList.add("here");
-                            if ("disabled".startsWith(args[4])) tabList.add("disabled");
+                            if ("disable".startsWith(args[4])) tabList.add("disable");
 
                         } else if (args[3].equalsIgnoreCase("link") && player.hasPermission("lineation.line.option.link") && player.hasPermission("lineation.line.list")) {
 
