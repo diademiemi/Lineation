@@ -119,7 +119,7 @@ public class CommandTabComplete implements TabCompleter {
                         if (player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
                         if (player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
                         if (player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
-                        if (player.hasPermission("lineation.line.getwinners")) tabList.add("getwinners");
+                        if (player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
                         if (player.hasPermission("lineation.line.list")) tabList.add("option");
 
                     } 
@@ -130,7 +130,7 @@ public class CommandTabComplete implements TabCompleter {
                     if ("setarea".startsWith(args[2]) && player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
                     if ("addborder".startsWith(args[2]) && player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
                     if ("removeborder".startsWith(args[2]) && player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                    if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.line.getwinners")) tabList.add("getwinners");
+                    if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
                     if ("option".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("option"); 
 
                 } else if (args[1].equalsIgnoreCase("create")) {
@@ -197,18 +197,18 @@ public class CommandTabComplete implements TabCompleter {
 
                         if (args[3].equalsIgnoreCase("")) {
 
-                            if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                            if (player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
-                            if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
+                            if (player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
+                            if (player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
+                            if (player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
                             if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                             if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                             if (player.hasPermission("lineation.line.option.link")) tabList.add("link");
                             
                         }
 
-                        if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                        if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners")) tabList.add("maxwinners");
-                        if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
+                        if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
+                        if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
+                        if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
                         if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                         if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                         if ("link".startsWith(args[3]) && player.hasPermission("lineation.line.option.link")) tabList.add("link");
