@@ -73,6 +73,11 @@ public class Line {
     private HashMap<Player,Integer> checkpointCount;
 
     /**
+     * Integer of amount of laps
+     */
+    private Integer laps;
+
+    /**
      * HashMap of player and laps counter
      */
     private HashMap<Player,Integer> lapCount;
@@ -159,6 +164,7 @@ public class Line {
             maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
             this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
             teleportLocation = new Location(world, 0, 0, 0, 0, 0);
+            laps = 1;
             checkpoints = new ArrayList<double[][]>();
             checkpointCount = new HashMap<Player, Integer>();
             lapCount = new HashMap<Player, Integer>();
@@ -706,6 +712,24 @@ public class Line {
          */
         public void clearPlayerCheckpoints() {
             checkpointCount.clear();
+        }
+
+        /**
+         * Gets amount of laps for this line
+         *
+         * @return  Integer of amount of laps
+         */
+        public int getLaps() {
+            return laps;
+        }
+
+        /**
+         * Sets amount of laps for this line
+         *
+         * @param i Integer to set laps to
+         */
+        public void setLaps(int i) {
+            laps = i;
         }
 
         /**

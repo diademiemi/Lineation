@@ -43,25 +43,31 @@ public class LineTools {
      * @param player Player that finished
      */
     public static void playerFinish(Line line, Player player) {
-        if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode())) {
-            String uuid = player.getUniqueId().toString();
-            if (!data.getConfig().isInt(uuid) ||
-                data.getConfig().getInt(uuid) != Config.getPluginConfig().getConfig().getInt("maxwins")) {
+        if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode()) &&
+                line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
 
-                line.addWinner(player);
-                finishMessage(line, player, line.getWinners().size());
+            line.addPlayerCheckpoint(player, 0);
+            if (line.getLaps() == line.getPlayerLaps(player)) {
 
-                if (line.isTeleportEnabled()) {
-                    player.teleport(line.getTeleportLocation());
+                String uuid = player.getUniqueId().toString();
+                if (!data.getConfig().isInt(uuid) ||
+                    data.getConfig().getInt(uuid) != Config.getPluginConfig().getConfig().getInt("maxwins")) {
+
+                    line.addWinner(player);
+                    finishMessage(line, player, line.getWinners().size());
+
+                    if (line.isTeleportEnabled()) {
+                        player.teleport(line.getTeleportLocation());
+                    }
+
+                    data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
+
+                    if (line.getWinners().size() == line.getMaxWinners()) {
+                        LineTools.stopLine(line);
+                    }
+
                 }
-
-                data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
-
-                if (line.getWinners().size() == line.getMaxWinners()) {
-                    LineTools.stopLine(line);
-                }
-
-            }
+            } else  line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
         }
     }
   
