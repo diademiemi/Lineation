@@ -4,6 +4,7 @@ author: diademiemi
 version: 0.1.0
 main: com.diademiemi.lineation.Lineation
 api-version: 1.16
+depend: [WorldEdit]
 commands:
   lineation:
     description: Command for Lineation. Type /lineation help for more.
