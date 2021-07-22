@@ -118,8 +118,8 @@ public class CommandTabComplete implements TabCompleter {
                         if (player.hasPermission("lineation.line.stop")) tabList.add("stop");
                         if (player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
                         if (player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                        if (player.hasPermission("lineation.line.addcheckpoint")) tabList.add("addcheckpoint");
-                        if (player.hasPermission("lineation.line.removecheckpoint")) tabList.add("removecheckpoint");
+                        if (player.hasPermission("lineation.line.addcheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcheckpoint");
+                        if (player.hasPermission("lineation.line.removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecheckpoint");
                         if (player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
                         if (player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
                         if (player.hasPermission("lineation.line.list")) tabList.add("option");
@@ -132,8 +132,8 @@ public class CommandTabComplete implements TabCompleter {
                     if ("setarea".startsWith(args[2]) && player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
                     if ("addborder".startsWith(args[2]) && player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
                     if ("removeborder".startsWith(args[2]) && player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                    if ("addcheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.addcheckpoint")) tabList.add("addcheckpoint");
-                    if ("removecheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.removecheckpoint")) tabList.add("removecheckpoint");
+                    if ("addcheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.addcheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcheckpoint");
+                    if ("removecheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecheckpoint");
                     if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
                     if ("option".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("option"); 
 
@@ -238,6 +238,23 @@ public class CommandTabComplete implements TabCompleter {
                                 int b = Line.getLines().get(args[1]).getBorders().size();
 
                                 while (i <= b) {
+                                    tabList.add(String.valueOf(i));
+                                    i++;
+                                }
+
+                            }
+
+                        }
+
+                    } else if (args[2].equalsIgnoreCase("removecheckpoint")) {
+
+                        if (args[3].equalsIgnoreCase("")) {
+
+                            if (player.hasPermission("lineation.line.removecheckpoint")) {
+                                int i = 1;
+                                int c = Line.getLines().get(args[1]).getCheckpoints().size();
+
+                                while (i <= c) {
                                     tabList.add(String.valueOf(i));
                                     i++;
                                 }
