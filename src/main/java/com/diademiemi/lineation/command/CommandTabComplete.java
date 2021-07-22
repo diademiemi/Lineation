@@ -203,6 +203,8 @@ public class CommandTabComplete implements TabCompleter {
 
                             if (player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
                             if (player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
+                            if (player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
+                            if (player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
                             if (player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
                             if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                             if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
@@ -213,6 +215,8 @@ public class CommandTabComplete implements TabCompleter {
 
                         if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
                         if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
+                        if ("addcommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.addcommand") && line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
+                        if ("removecommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.removecommand") && line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
                         if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
                         if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");

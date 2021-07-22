@@ -306,6 +306,47 @@ public class CommandExec implements CommandExecutor {
                                                                         } else player.sendMessage(Message.ERROR_NO_PERMS);
                                                                     } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                     break;
+                                                                case "addcommand":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.addcommand")) {
+                                                                            if (line.getType().equalsIgnoreCase("finish")) {
+                                                                                StringBuilder command = new StringBuilder("");
+                                                                                for (int i = 4; i < args.length; i++) {
+                                                                                    StringBuilder.append(args[i]);
+                                                                                    if (i != args.length) {
+                                                                                        StringBuilder.append(" ");
+                                                                                    }
+                                                                                }
+                                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                                        break;
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
+                                                                case "removecommand":
+                                                                    if (args.length > 4) {
+                                                                        if (player.hasPermission("lineation.line.option.removecommand")) {
+                                                                            if (line.getType().equalsIgnoreCase("finish")) {
+                                                                                switch (args[4].toLowerCase()) {
+                                                                                    case "all":
+                                                                                        line.clearCommands();
+                                                                                        player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                        break;
+                                                                                    default: 
+                                                                                        try {
+                                                                                            int i = Integer.parseInt(args[4]);
+                                                                                            line.removeCommand(i);
+                                                                                            player.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                                        } catch (Exception e) {
+                                                                                            player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                                                                        }
+                                                                                        break;
+                                                                                }
+                                                                                break;
+                                                                            } else player.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
+                                                                        } else player.sendMessage(Message.ERROR_NO_PERMS);
+                                                                        break;
+                                                                    } player.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                    break;
                                                                 case "messagereach":
                                                                     if (args.length > 4) {
                                                                         switch (args[4].toLowerCase()) {
