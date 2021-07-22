@@ -56,7 +56,7 @@ It's all set up now! See the GIF underneath for a demonstration of what I just s
  - `/lineation line <name> addcheckpoint` - Adds a checkpoint players have to cross first before being counted to win  
  (Finish line only. Multiple checkpoints can be set, players have to pass through them in order)  
  - `/lieation line <name> removecheckpoint` - Removes a checkpoint by number  
- - `/lineation line <name> getwinners` - Gets the last winners of this line (Finish type only)  
+ - `/lineation line <name> getwinners` - Gets the last winners of this line  
 ##### Line options
  - `/lineation line <name> option blocksequence <block1,block2,block3...>` - Comma seperated list of blocks to use for the opening sequence  
  (The first block is used when stopped. Only one is required. For every block added the countdown takes one second longer.)  
