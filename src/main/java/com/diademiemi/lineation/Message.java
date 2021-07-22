@@ -26,6 +26,7 @@ public class Message {
     public static String ERROR_INVALID_NAME;
     public static String ERROR_NOT_START;
     public static String ERROR_NOT_FINISH;
+    public static String ERROR_NO_CHECKPOINT;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
     public static String SUCCESS_LINE_STARTED;
@@ -33,6 +34,7 @@ public class Message {
     public static String SUCCESS_LINE_CREATED;
     public static String SUCCESS_SET_AREA;
     public static String SUCCESS_SET_BORDER;
+    public static String SUCCESS_SET_CHECKPOINT;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_BORDER_REMOVED;
     public static String SUCCESS_LINE_SELECTED;
@@ -67,6 +69,7 @@ public class Message {
         ERROR_INVALID_NAME = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_NAME"));
         ERROR_NOT_START = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_START"));
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
+        ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
         SUCCESS_LINE_STARTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STARTED"));
@@ -74,6 +77,7 @@ public class Message {
         SUCCESS_LINE_CREATED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_CREATED"));
         SUCCESS_SET_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_AREA"));
         SUCCESS_SET_BORDER = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_BORDER"));
+        SUCCESS_SET_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_CHECKPOINT"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
         SUCCESS_LINE_SELECTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_SELECTED"));

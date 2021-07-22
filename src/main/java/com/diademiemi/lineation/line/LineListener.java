@@ -51,9 +51,14 @@ public class LineListener implements Listener {
             for(Map.Entry<String, Line> entry: Line.getStartedFinishLines().entrySet()) {
                 if (entry.getValue().contains(e.getPlayer())) {
                     LineTools.playerFinish(entry.getValue(), e.getPlayer());
+                } else {
+                    int i = entry.getValue().checkpointsContain(e.getPlayer());
+                    if (i != 0) {
+                        entry.getValue().addPlayerCheckpoint(e.getPlayer(), i);
+                    }
                 }
             }
         }
-    } 
+    }
 }
 

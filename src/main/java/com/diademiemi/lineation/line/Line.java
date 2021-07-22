@@ -63,6 +63,21 @@ public class Line {
     private ArrayList<double[][]> borders;
 
     /**
+     * Borders for the invisible checkpoints
+     */
+    private ArrayList<double[][]> checkpoints;
+
+    /**
+     * HashMap of player and checkpoint counter
+     */
+    private HashMap<Player,Integer> checkpointCount;
+
+    /**
+     * HashMap of player and laps counter
+     */
+    private HashMap<Player,Integer> lapCount;
+
+    /**
      * List of block names used to open lines
      */
     private ArrayList<String> blockSequence;
@@ -144,6 +159,9 @@ public class Line {
             maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
             this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
             teleportLocation = new Location(world, 0, 0, 0, 0, 0);
+            checkpoints = new ArrayList<double[][]>();
+            checkpointCount = new HashMap<Player, Integer>();
+            lapCount = new HashMap<Player, Integer>();
         }
 
         lines.put(name, this);
@@ -597,6 +615,127 @@ public class Line {
         }
 
         /**
+         * Get list of all checkpoints of this line
+         *
+         * @return  ArrayList of all checkpoints of this line
+         */
+        public ArrayList<double[][]> getCheckpoints() {
+            return checkpoints;
+        }
+
+        /**
+         * Use WorldEdit to add a checkpoint to this line
+         *
+         * @param player   Player to get WorldEdit selection from
+         */
+        public void addCheckpoint(Player player) {
+            WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+            com.sk89q.worldedit.regions.Region selection;
+            try {
+                selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
+            } catch (Exception e) {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+                return;
+            }
+            double[][] checkpoint = new double[2][3];
+
+            if (selection != null && world == BukkitAdapter.adapt(selection.getWorld())) {
+                checkpoint[0][0] = selection.getMinimumPoint().getX();
+                checkpoint[0][1] = selection.getMinimumPoint().getY();
+                checkpoint[0][2] = selection.getMinimumPoint().getZ();
+                checkpoint[1][0] = selection.getMaximumPoint().getX();
+                checkpoint[1][1] = selection.getMaximumPoint().getY();
+                checkpoint[1][2] = selection.getMaximumPoint().getZ();
+
+                checkpoints.add(checkpoint);
+                player.sendMessage(Message.SUCCESS_SET_CHECKPOINT.replace("$LINE$", name));
+
+            } else {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+            }
+        }
+
+        /**
+         * Add a checkpoint to this line
+         * 
+         * @param checkpoint   Double of the checkpoint to add to this line
+         */
+        public void addCheckpoint(double[][] checkpoint) {
+            checkpoints.add(checkpoint);
+        }
+        
+        /**
+         * Remove a checkpoint by number
+         *
+         * @param i   Number of the checkpoint to remove
+         */
+        public void removeCheckpoint(int i) {
+            checkpoints.remove(i - 1);
+        }
+
+        /**
+         * Remove all checkpoints of this line
+         */
+        public void clearCheckpoints() {
+            checkpoints.clear();
+        }
+
+        /**
+         * Gets map of player checkpoints
+         *
+         * @param player    Player to get count of
+         * @return  Map of player and checkpoins reached
+         */
+        public int getPlayerCheckpoint(Player player) {
+            return checkpointCount.get(player);
+        }
+
+        /**
+         * Adds to players checkpoint count
+         *
+         * @param player    Player to add count of
+         * @param i Integer to set count to
+         */
+        public void addPlayerCheckpoint(Player player, int i) {
+            checkpointCount.put(player, i);
+        }
+
+        /**
+         * Clears the player checkpoint counter
+         */
+        public void clearPlayerCheckpoints() {
+            checkpointCount.clear();
+        }
+
+        /**
+         * Gets map of player laps
+         *
+         * @param player    Player to get count of
+         * @return  Map of player and laps done
+         */
+        public int getPlayerLaps(Player player) {
+            return lapCount.get(player);
+        }
+
+        /**
+         * Adds to players laps count
+         *
+         * @param player    Player to add count of
+         * @param i Integer to set count to
+         */
+        public void addPlayerLap(Player player, int i) {
+            lapCount.put(player, i);
+        }
+
+        /**
+         * Clears the player laps counter
+         */
+        public void clearPlayerLaps() {
+            lapCount.clear();
+        }
+
+        /**
          * Get this lines block sequence
          *
          * @return  ArrayList of block names
@@ -640,7 +779,7 @@ public class Line {
          * @return  Boolean of if this player is in the area
          */
         public boolean contains(Player player) {
-            return getPlayers().contains(player);
+            return contains(player.getLocation());
         }
 
         /**
@@ -716,6 +855,42 @@ public class Line {
                 }
             }
             return null;
+        }
+
+        /**
+         * Get the checkpoint this player is in
+         *
+         * @param player    Player to check the location of
+         * @return  Integer of the checkpoint the player is in
+         */
+        public int checkpointsContain(Player player) {
+            return checkpointsContain(player.getLocation());
+        }
+
+        /**
+         * Get the checkpoint this line is in
+         *
+         * @param l Location to check
+         * @return  Integer of the checkpoint this location is in
+         */
+        public int checkpointsContain(Location l) {
+            int i = 1;
+            for (double[][] c : checkpoints) {
+                double minx = c[0][0];
+                double miny = c[0][1];
+                double minz = c[0][2];
+                double maxx = c[1][0];
+                double maxy = c[1][1];
+                double maxz = c[1][2];
+                double tox = l.getBlock().getLocation().getX();
+                double toy = l.getBlock().getLocation().getY();
+                double toz = l.getBlock().getLocation().getZ();
+
+                if (l.getWorld().equals(world) && (tox <= maxx) && (tox >= minx) && (toy <= maxy) &&
+                        (toy >= miny) && (toz <= maxz) && (toz >= minz)) return i;
+                i++;
+            } 
+            return 0;
         }
 
 }
