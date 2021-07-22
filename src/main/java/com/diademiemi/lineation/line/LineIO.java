@@ -45,6 +45,16 @@ public class LineIO {
             line.setBlockSequence(lineConfig.getConfig().getString(name + ".option.blocksequence"));
         if (lineConfig.getConfig().get(name + ".option.linked" ) != null)
             line.setLinkedLine(lineConfig.getConfig().getString(name + ".option.linked"));
+
+        if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
+            line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
+            line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
+                    .toLocation(Lineation.getInstance().getServer()
+                    .getWorld(lineConfig.getConfig().getString(name + ".world")),
+                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
+                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
+        }
+
         if (lineConfig.getConfig().get(name + ".area") != null) {
             double[][] area = new double[2][3];
             area[0][0] = lineConfig.getConfig().getDouble(name + ".area.min.x");
@@ -84,15 +94,6 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".option.laps") != null) {
                 line.setLaps(lineConfig.getConfig().getInt(name + ".option.laps"));
             }
-            if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
-                line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
-                line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
-                        .toLocation(Lineation.getInstance().getServer()
-                        .getWorld(lineConfig.getConfig().getString(name + ".world")),
-                        (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
-                        (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
-            }
-
 
             i = 1;
             while (lineConfig.getConfig().get(name + ".checkpoint." + i + ".min.x" ) != null) {
@@ -136,6 +137,10 @@ public class LineIO {
         lineConfig.getConfig().set(name + ".option.messagereach", line.getMessageReach());
         lineConfig.getConfig().set(name + ".option.blocksequence", line.getBlockSequenceString());
         lineConfig.getConfig().set(name + ".option.linked", line.getLinkedLine());
+        lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
+        lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
+        lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
+        lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
 
         if (line.getArea() != null) {
             double[][] area = line.getArea();
@@ -179,10 +184,6 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
             lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
-            lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
-            lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
-            lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
-            lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
         }
 
         lineConfig.saveConfig();
