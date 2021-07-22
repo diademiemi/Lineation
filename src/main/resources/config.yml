@@ -9,5 +9,6 @@ linedefaults:
     blocksequence: glass,red_stained_glass,yellow_stained_glass,lime_stained_glass
     messagereach: world
     maxwinners: 3
+    commands: []
     gamemodes: SURVIVAL,ADVENTURE
 maxwins: 0
