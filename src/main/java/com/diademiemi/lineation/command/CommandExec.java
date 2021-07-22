@@ -252,14 +252,14 @@ public class CommandExec implements CommandExecutor {
                                                                     case "all":
                                                                         line.clearCheckpoints();
                                                                         player.sendMessage(Message.SUCCESS_CHECKPOINT_REMOVED);
-                                                                        if (line.getCheckpoints().size() == 0) line.setLaps(0);
+                                                                        if (line.getCheckpoints().size() == 0) line.setLaps(1);
                                                                         break;
                                                                     default:
                                                                         try {
                                                                             int i = Integer.parseInt(args[3]);
                                                                             line.removeCheckpoint(i);
                                                                             player.sendMessage(Message.SUCCESS_BORDER_REMOVED);
-                                                                            if (line.getCheckpoints().size() == 0) line.setLaps(0);
+                                                                            if (line.getCheckpoints().size() == 0) line.setLaps(1);
                                                                         } catch (Exception e) {
                                                                             player.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
