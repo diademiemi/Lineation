@@ -781,7 +781,7 @@ public class Line {
         /**
          * Add a command to execute at finish
          *
-         * @param c Command to execute
+         * @param command Command to execute
          */
         public void addCommand(String command) {
             commands.add(command);
