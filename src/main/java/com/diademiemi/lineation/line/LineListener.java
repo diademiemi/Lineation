@@ -54,7 +54,7 @@ public class LineListener implements Listener {
                 } else {
                     int i = entry.getValue().checkpointsContain(e.getPlayer());
                     if (i != 0) {
-                        if (i - 1 == entry.getValue().getPlayerCheckpoint(e.getPlayer())) {
+                        if (i - 1 <= entry.getValue().getPlayerCheckpoint(e.getPlayer())) {
                             entry.getValue().addPlayerCheckpoint(e.getPlayer(), i);
                         }
                     }
