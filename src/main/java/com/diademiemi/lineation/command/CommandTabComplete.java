@@ -289,6 +289,23 @@ public class CommandTabComplete implements TabCompleter {
                             if ("here".startsWith(args[4])) tabList.add("here");
                             if ("disable".startsWith(args[4])) tabList.add("disable");
 
+                        } else if (args[3].equalsIgnoreCase("removecommand")) {
+
+                            if (args[4].equalsIgnoreCase("")) {
+
+                                if (player.hasPermission("lineation.line.option.removecommand")) {
+                                    int i = 1;
+                                    int c = Line.getLines().get(args[1]).getCommands().size();
+
+                                    while (i <= c) {
+                                        tabList.add(String.valueOf(i));
+                                        i++;
+                                    }
+                                
+                                }
+
+                            }
+
                         } else if (args[3].equalsIgnoreCase("link") && player.hasPermission("lineation.line.option.link") && player.hasPermission("lineation.line.list")) {
 
                             if (args[4].equalsIgnoreCase("")) {

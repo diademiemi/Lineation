@@ -64,7 +64,9 @@ public class LineTools {
                     ArrayList<String> commands = line.getCommands();
 
                     for (String c : commands) {
-                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), c);
+                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), c
+                                .replace("%player%", player.getName())
+                                .replace("%uuid%", uuid));
                     }
 
                     data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
