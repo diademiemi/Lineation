@@ -16,7 +16,7 @@ Huge thanks to [@jeremynoesen](https://github.com/jeremynoesen) for helping a gr
 
 ## Demo
 ![Demo](wiki/demos/assets/basic-setup7.gif)  
-See [this page](./wiki/demos-basic-setup.html) for demonstration on how to set this up.  
+See [this page](./wiki/demos/basic-setup.html) for demonstration on how to set this up.  
 
 # Pages
 
