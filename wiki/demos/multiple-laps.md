@@ -6,7 +6,7 @@ layout: default
 
 ### Step 1  
 First I create a start and finish line and link these two together so they start and stop at the same time  
-![Demo1](assets/muiltiple-laps1.png)  
+![Demo1](assets/multiple-laps1.png)  
 
 ### Step 2
 I then set the area for this start line  
