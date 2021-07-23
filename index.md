@@ -15,8 +15,8 @@ This is my first time creating a Minecraft plugin, so feedback is greatly apprec
 Huge thanks to [@jeremynoesen](https://github.com/jeremynoesen) for helping a great amount with the code, creating the plugin logo and allowing me to inspect and take inspiration from his earlier Minecraft plugins.  
 
 ## Demo
-![Demo](assets/demo7.gif)  
-See [this page](./demo.html) for demonstration on how to set this up.  
+![Demo](wiki/demos/assets/basic-setup7.gif)  
+See [this page](./wiki/demos-basic-setup.html) for demonstration on how to set this up.  
 
 # Pages
 
