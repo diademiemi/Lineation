@@ -109,4 +109,5 @@ Most of the configuration is done ingame by using the `/lineation command`. You 
 Please do not edit `lines.yml` by hand, this will likely break and I will offer no support for this. This plugin overwrites config files when it reloads/stops, so do not edit files with the server running.
 
 ## Links
-[Javadoc](https://diademiemi.github.io/Lineation/javadoc/)
+[Javadoc](https://diademiemi.github.io/Lineation/javadoc/)  
+[Wiki](https://diademiemi.github.io/Lineation/wiki/index.html)  
