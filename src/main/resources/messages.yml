@@ -27,6 +27,8 @@ HELP_OPTION: |2-
   &7/lineation line <name> option blocksequence <block1,block2...> &r: Comma seperated list of blocks to use for the opening sequence
   &7/lineation line <name> option teleport <here/disable> &r: Makes players teleport to this current location when a start line opens or when they finish
   &7/lineation line <name> option maxwinners <number> &r: Number of players that have to finish before the line closes
+  &7/lineation line <name> option addcommand <command> &r: Sets a command to run when a player finishes. Placeholders: %player%, %uuid%
+  &7/lineation line <name> option removecommand <number> &r: Removes a command by number
   &7/lineation line <name> option laps <number> &r: Amount of times players have to go through the course before winning
   &7/lineation line <name> option messagereach <all/world/disabled> &r: Sets who the announcement messages will target
   &7/lineation line <name> option gamemodes <survival,adventure> &r: Comma seperated list of gamemodes players have to be in to be counted
