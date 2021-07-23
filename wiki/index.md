@@ -28,7 +28,4 @@ This has checkpoints players have to pass through first in order to finish.
 [Multiple Laps](./demos/multiple-laps.html)  
 This is a race course which players will have to go around 3 times to win.  
 
-[Custom Opening Sequence](./demos/custom-opening-sequence.html)  
-This is an example of how to change the default blocks from glass  
-
 [Back to main page](../index.html)  
