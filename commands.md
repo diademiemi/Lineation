@@ -32,6 +32,8 @@ layout: default
  (The first block is used when stopped. Only one is required. For every block added the countdown takes one second longer.)  
  - `/lineation line <name> option teleport <here/disable>` - Makes players teleport to this current location when a start line opens or when they finish   
  - `/lineation line <name> option maxwinners <number>` - Number of players that have to finish before the line closes  
+ - `/lineation line <name> option addcommand <command>` - Sets a command to run when a player finishes. Placeholders: %player%, %uuid%  
+ - `/lineation line <name> option removecommand <number>` - Removes a command by number  
  - `/lineation line <name> option laps <number>` - Amount of times players have to go through the course before winning  
  (This requires at least one checkpoint to be set, place them appropriately around your course)  
  - `/lineation line <name> option messagereach <all/world/disabled>` - Sets who the announcement messages will target  
@@ -56,6 +58,8 @@ layout: default
  - `lineation.line.option.blocksequence` - Allow setting the block sequence for a line
  - `lineation.line.option.teleport` - Allow setting a teleport location for a line
  - `lineation.line.option.maxwinners` - Allow setting the max winners for a line
+ - `lineation.line.option.addcommand` - Allow adding commands to run at finish  
+ - `lineation.line.option.removecommand` - Allow removing command to run  
  - `lineation.line.option.laps` - Allow setting the laps for a line
  - `lineation.line.option.messagereach` - Allow setting the reach for the announcement messages
  - `lineation.line.option.gamemodes` - Allow setting the allowed gamemodes for a line
