@@ -30,6 +30,8 @@ I now set a border for the finish line | And finally, I set an area for the fini
 It's all set up now! See the GIF underneath for a demonstration of what I just set up in action.
 <div align="center" ><img src = "img/demo7.gif" alt="Demonstration" title="Demonstration"/></div>
 
+See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/index.html)  
+
 ## Usage
 
 ### Commands
