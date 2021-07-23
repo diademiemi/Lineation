@@ -106,3 +106,5 @@ The plugin has been tested in Minecraft 1.16.5 using Java 16 with WorldEdit 7.2.
 Most of the configuration is done ingame by using the `/lineation command`. You can however edit `config.yml` to set lines default options, for if you find the provided defaults are not fit.  
 Please do not edit `lines.yml` by hand, this will likely break and I will offer no support for this. This plugin overwrites config files when it reloads/stops, so do not edit files with the server running.
 
+## Links
+[Javadoc](https://diademiemi.github.io/Lineation/javadoc/)
