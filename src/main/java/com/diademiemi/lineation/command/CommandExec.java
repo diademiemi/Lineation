@@ -313,7 +313,7 @@ public class CommandExec implements CommandExecutor {
                                                                                 StringBuilder com = new StringBuilder("");
                                                                                 for (int i = 4; i < args.length; i++) {
                                                                                     com.append(args[i]);
-                                                                                    if (i - 1 != args.length) {
+                                                                                    if (i + 1 != args.length) {
                                                                                         com.append(" ");
                                                                                     }
                                                                                 }

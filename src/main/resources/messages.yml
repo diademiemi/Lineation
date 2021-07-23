@@ -87,6 +87,7 @@ LINE_OPTIONS_FINISH: |2-
   &8- &7Message reach: $MESSAGEREACH$
   &8- &7Allowed gamemodes: $GAMEMODES$
   &8- &7Linked line: $LINKED$
+  &8- &7Commands: $COMMANDS$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'
 STARTING_IN: '&7Starting in &f&l$SECONDS$&r&7!'

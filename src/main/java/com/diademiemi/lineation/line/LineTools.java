@@ -241,12 +241,23 @@ public class LineTools {
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
+                ArrayList<String> commands = line.getCommands();
                 StringBuilder teleportString = new StringBuilder("");
                 if (line.isTeleportEnabled()) {
                     teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
                             (int)line.getTeleportLocation().getY() + "," + 
                             (int)line.getTeleportLocation().getZ() + ")");
                 } else teleportString.append("disabled");
+                StringBuilder commandsString = new StringBuilder("");
+                int i = 1;
+                for (String c : commands) {
+                    if (i> 1) {
+                        commandsString.append("\n");
+                    }
+                    commandsString.append(i);
+                    commandsString.append(": " + c);
+                    i++;
+                }
 
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
@@ -256,7 +267,8 @@ public class LineTools {
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
                         .replace("$GAMEMODES$", line.getGameModesString())
-                        .replace("$LINKED$", line.getLinkedLine()));
+                        .replace("$LINKED$", line.getLinkedLine())
+                        .replace("$COMMANDS$", commandsString));
                 break;
         }           
 
