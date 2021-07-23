@@ -1,7 +1,7 @@
 name: Lineation
-description: Plugin for game start and finish lines
+description:  Minecraft Spigot plugin for managing start and finish lines
 author: diademiemi
-version: 0.1.0
+version: 1.0.0
 main: com.diademiemi.lineation.Lineation
 api-version: 1.16
 depend: [WorldEdit]
