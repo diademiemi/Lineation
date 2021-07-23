@@ -20,12 +20,11 @@ See [this page](./demo.html) for demonstration on how to set this up.
 
 # Pages
 
+[Wiki](./wiki/index.html)  
+[Demo](./wiki/demos/basic-setup.html)  
+
 [Releases](https://github.com/diademiemi/Lineation/releases)  
 [Issues](https://github.com/diademiemi/Lineation/issues)  
 
-
-[Demo](./demo.html)  
-[Commands & Permissions](./commands.html)  
-[Installation](./installation.html)  
 [Javadoc](https://diademiemi.github.io/Lineation/javadoc/)  
 
