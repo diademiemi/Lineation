@@ -4,6 +4,10 @@ layout: default
 
 # Commands & Permissions
 
+## Info
+The command to use this plugin is `/lineation`. There is an alias set by default as `/ln`.  
+Some commands require a WorldEdit selection, these can not be used from command blocks.  
+
 #### Global commands
  - `/lineation help` - Show global commands  
  - `/lineation help lines` - Shows commands relating to lines  
