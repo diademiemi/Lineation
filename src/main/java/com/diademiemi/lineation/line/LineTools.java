@@ -17,6 +17,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -171,7 +172,7 @@ public class LineTools {
      * @param line  Line to get info of
      * @param player    Player to send message to
      */
-    public static void getLineInfo(Line line, Player player) {
+    public static void getLineInfo(Line line, CommandSender player) {
         double[][] area = line.getArea();
         StringBuilder bordersString = new StringBuilder("");
         ArrayList<double[][]> borders = line.getBorders();
@@ -232,7 +233,7 @@ public class LineTools {
      * @param line  Line to get info of
      * @param player    Player to send message to
      */
-    public static void getLineOptions(Line line, Player player) {
+    public static void getLineOptions(Line line, CommandSender player) {
         switch (line.getType()) {
             case "start":
                 player.sendMessage(Message.LINE_OPTIONS_START
@@ -280,7 +281,7 @@ public class LineTools {
      * @param line  Line to get winners of
      * @param player    Player to send message to
      */
-    public static void getWinnersString(Line line, Player player) {
+    public static void getWinnersString(Line line, CommandSender player) {
         StringBuilder winnersString = new StringBuilder("");
         @SuppressWarnings("unchecked")
         ArrayList<String> winners = line.getWinners();
