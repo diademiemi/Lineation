@@ -257,7 +257,7 @@ public class CommandExec implements CommandExecutor {
                                                                         try {
                                                                             int i = Integer.parseInt(args[3]);
                                                                             line.removeCheckpoint(i);
-                                                                            sender.sendMessage(Message.SUCCESS_BORDER_REMOVED);
+                                                                            sender.sendMessage(Message.SUCCESS_CHECKPOINT_REMOVED);
                                                                             if (line.getCheckpoints().size() == 0) line.setLaps(1);
                                                                         } catch (Exception e) {
                                                                             sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
