@@ -1,4 +1,4 @@
-package com.diademiemi.lineation.line;
+package me.diademiemi.lineation.line;
 
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.EditSession;
@@ -21,9 +21,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import com.diademiemi.lineation.Lineation;
-import com.diademiemi.lineation.Message;
-import com.diademiemi.lineation.Config;
+import me.diademiemi.lineation.Lineation;
+import me.diademiemi.lineation.Message;
+import me.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
 import java.util.List;
