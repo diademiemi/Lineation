@@ -1,11 +1,11 @@
 # This workflow creates the javadoc and publishes it to GitHub Pages
 
-name: Generate Javadoc
+name: Generate Javadoc and publish to gh-pages
 
 on: 
-  push:
-    branches:
-     - main
+  release:
+    types: [published,edited,created]
+  workflow_dispatch:
 
 
 jobs:

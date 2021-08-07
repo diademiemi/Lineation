@@ -25,6 +25,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Build Javadoc
+      run: ./gradlew javadoc
     - name: Upload JAR as an artifact
       uses: actions/upload-artifact@v2
       with:
