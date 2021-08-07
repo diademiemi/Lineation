@@ -1,4 +1,4 @@
-package com.diademiemi.lineation.command;
+package me.diademiemi.lineation.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -7,12 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import com.diademiemi.lineation.Lineation;
-import com.diademiemi.lineation.Message;
-import com.diademiemi.lineation.Config;
-import com.diademiemi.lineation.line.Line;
-import com.diademiemi.lineation.line.LineIO;
-import com.diademiemi.lineation.line.LineTools;
+import me.diademiemi.lineation.Lineation;
+import me.diademiemi.lineation.Message;
+import me.diademiemi.lineation.Config;
+import me.diademiemi.lineation.line.Line;
+import me.diademiemi.lineation.line.LineIO;
+import me.diademiemi.lineation.line.LineTools;
 
 /**
  * Command class for listening for lineation command

@@ -1,4 +1,4 @@
-package com.diademiemi.lineation.line;
+package me.diademiemi.lineation.line;
 
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.WorldEdit;
@@ -11,9 +11,9 @@ import org.bukkit.World;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
-import com.diademiemi.lineation.Message;
-import com.diademiemi.lineation.Lineation;
-import com.diademiemi.lineation.Config;
+import me.diademiemi.lineation.Message;
+import me.diademiemi.lineation.Lineation;
+import me.diademiemi.lineation.Config;
 
 import java.util.List;
 import java.util.ArrayList;

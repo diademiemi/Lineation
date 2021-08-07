@@ -1,4 +1,4 @@
-package com.diademiemi.lineation.command;
+package me.diademiemi.lineation.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.diademiemi.lineation.line.Line;
+import me.diademiemi.lineation.line.Line;
 
 /**
  * Class for tab complete functionality on lineation commands

@@ -1,4 +1,4 @@
-package com.diademiemi.lineation;
+package me.diademiemi.lineation;
 
 import org.bukkit.ChatColor;
 

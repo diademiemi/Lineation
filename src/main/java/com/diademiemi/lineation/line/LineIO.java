@@ -1,10 +1,10 @@
-package com.diademiemi.lineation.line;
+package me.diademiemi.lineation.line;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.diademiemi.lineation.Lineation;
-import com.diademiemi.lineation.Config;
+import me.diademiemi.lineation.Lineation;
+import me.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
 import java.util.List;
