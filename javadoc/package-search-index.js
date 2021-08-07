@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.diademiemi.lineation"},{"l":"com.diademiemi.lineation.command"},{"l":"com.diademiemi.lineation.line"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"me.diademiemi.lineation"},{"l":"me.diademiemi.lineation.command"},{"l":"me.diademiemi.lineation.line"}];updateSearchResults();
