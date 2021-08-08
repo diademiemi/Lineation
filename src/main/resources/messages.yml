@@ -78,6 +78,7 @@ LINE_OPTIONS_START: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
   &8- &7Block sequence: $BLOCKSEQUENCE$
+  &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Linked line: $LINKED$
 LINE_OPTIONS_FINISH: |2-
   &f&lLine Options
@@ -87,9 +88,9 @@ LINE_OPTIONS_FINISH: |2-
   &8- &7Close on wins: $ALLOWEDWINNERS$
   &8- &7Laps: $LAPS$
   &8- &7Message reach: $MESSAGEREACH$
+  &8- &7Commands: $COMMANDS$
   &8- &7Allowed gamemodes: $GAMEMODES$
   &8- &7Linked line: $LINKED$
-  &8- &7Commands: $COMMANDS$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'
 STARTING_IN: '&7Starting in &f&l$SECONDS$&r&7!'

@@ -239,6 +239,7 @@ public class LineTools {
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
+                        .replace("$TELEPORTLOCATION$", teleportString)
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
@@ -267,9 +268,10 @@ public class LineTools {
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
+                        .replace("$COMMANDS$", commandsString)
                         .replace("$GAMEMODES$", line.getGameModesString())
-                        .replace("$LINKED$", line.getLinkedLine())
-                        .replace("$COMMANDS$", commandsString));
+                        .replace("$LINKED$", line.getLinkedLine()));
+
                 break;
         }           
 
