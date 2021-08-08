@@ -234,21 +234,22 @@ public class LineTools {
      * @param player    Player to send message to
      */
     public static void getLineOptions(Line line, CommandSender player) {
+        StringBuilder teleportString = new StringBuilder("");
+        if (line.isTeleportEnabled()) {
+            teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
+                    (int)line.getTeleportLocation().getY() + "," + 
+                    (int)line.getTeleportLocation().getZ() + ")");
+        } else teleportString.append("disabled");
         switch (line.getType()) {
             case "start":
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
+                        .replace("$TELEPORTLOCATION$", teleportString)
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
                 ArrayList<String> commands = line.getCommands();
-                StringBuilder teleportString = new StringBuilder("");
-                if (line.isTeleportEnabled()) {
-                    teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
-                            (int)line.getTeleportLocation().getY() + "," + 
-                            (int)line.getTeleportLocation().getZ() + ")");
-                } else teleportString.append("disabled");
                 StringBuilder commandsString = new StringBuilder("");
                 int i = 1;
                 for (String c : commands) {
@@ -267,9 +268,10 @@ public class LineTools {
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
+                        .replace("$COMMANDS$", commandsString)
                         .replace("$GAMEMODES$", line.getGameModesString())
-                        .replace("$LINKED$", line.getLinkedLine())
-                        .replace("$COMMANDS$", commandsString));
+                        .replace("$LINKED$", line.getLinkedLine()));
+
                 break;
         }           
 
