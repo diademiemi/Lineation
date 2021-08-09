@@ -126,6 +126,9 @@ public class LineIO {
         for (Line line : Line.getLines().values()) {
             saveLine(line);
         }
+
+        lineConfig.saveConfig();
+
     }
 
     /**
@@ -190,8 +193,6 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
         }
 
-        lineConfig.saveConfig();
-    
     }
 
 }
