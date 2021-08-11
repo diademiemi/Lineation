@@ -4,7 +4,7 @@ name: Generate Javadoc and publish to gh-pages
 
 on: 
   release:
-    types: [published,edited,created]
+    types: [published]
   workflow_dispatch:
 
 
