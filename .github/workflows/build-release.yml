@@ -1,13 +1,12 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Java CI check with Gradle
+name: Build JAR for release
 
-on:
-  push:
-    branches:
-     - main
-  pull_request:
+on: 
+  release:
+    types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -27,3 +26,9 @@ jobs:
       run: ./gradlew build
     - name: Build Javadoc
       run: ./gradlew javadoc
+    - name: Upload JAR as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Lineation-${{ github.event.release.tag_name }}.jar
+        path: build/libs/Lineation-${{ github.event.release.tag_name }}.jar
+        if-no-files-found: error
