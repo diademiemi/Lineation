@@ -29,6 +29,5 @@ jobs:
     - name: Upload JAR as an artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Lineation-${{ github.event.release.tag_name }}.jar
-        path: build/libs/Lineation-${{ github.event.release.tag_name }}.jar
+        path: build/libs/Lineation-*.jar
         if-no-files-found: error
