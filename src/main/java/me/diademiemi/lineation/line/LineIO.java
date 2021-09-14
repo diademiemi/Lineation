@@ -1,13 +1,9 @@
 package me.diademiemi.lineation.line;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
-import java.util.List;
 /**
  * Class to load and save lines to file
  *

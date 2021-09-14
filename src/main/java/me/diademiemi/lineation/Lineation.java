@@ -3,12 +3,10 @@ package me.diademiemi.lineation;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.permissions.Permission;
-import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.diademiemi.lineation.command.CommandExec;
 import me.diademiemi.lineation.command.CommandTabComplete;
-import me.diademiemi.lineation.line.LineListener;
 import me.diademiemi.lineation.line.LineIO;
 
 /**

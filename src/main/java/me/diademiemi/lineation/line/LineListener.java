@@ -1,19 +1,12 @@
 package me.diademiemi.lineation.line;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.Location;
-import org.bukkit.World;
 
-import me.diademiemi.lineation.Message;
 import me.diademiemi.lineation.Lineation;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
