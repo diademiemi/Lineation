@@ -850,7 +850,7 @@ public class Line {
 
 			if (LineTools.validateBlocks(blockSequence)){
 
-				if (this.type == "finish") {
+				if (this.getType().equalsIgnoreCase("finish")) {
 					this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")[0]));
 				} else {
 					this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
