@@ -13,6 +13,8 @@ import me.diademiemi.lineation.line.Line;
 import me.diademiemi.lineation.line.LineIO;
 import me.diademiemi.lineation.line.LineTools;
 
+import java.util.Arrays;
+
 /**
  * Command class for listening for lineation command
  *
@@ -118,7 +120,7 @@ public class CommandExec implements CommandExecutor {
                                                                 && !args[3].equalsIgnoreCase("create")
                                                                 && !args[3].equalsIgnoreCase("remove")
                                                                 && !args[3].equalsIgnoreCase("list")) {
-                                                                new Line(args[3], args[2]);
+                                                                new Line(args[3], args[2].toLowerCase());
                                                                 sender.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
                                                             } else sender.sendMessage(Message.ERROR_INVALID_NAME);
                                                         } else sender.sendMessage(Message.ERROR_LINE_EXISTS);
@@ -382,8 +384,11 @@ public class CommandExec implements CommandExecutor {
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.blocksequence")) {
                                                                         try {
-                                                                            line.setBlockSequence(args[4].toLowerCase());
-                                                                            sender.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                            if (line.setBlockSequence(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll("\\s", "").toLowerCase())) {
+																				sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																			} else {
+																				sender.sendMessage(Message.ERROR_INVALID_BLOCK);
+																			}
                                                                         } catch (Exception e) {
                                                                             sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }

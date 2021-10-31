@@ -831,7 +831,7 @@ public class Line {
             int i = 1;
             for (String s : blockSequence) {
                 if (i > 1) {
-                    blockSequenceString.append(",");
+                    blockSequenceString.append(", ");
                 }
                 blockSequenceString.append(s);
                 i++;
@@ -843,10 +843,26 @@ public class Line {
          * Sets this lines block sequence
          *
          * @param blockSequence   Comma seperated list of block names
+		 *
+		 * @return	If action was successful
          */
-        public void setBlockSequence(String blockSequence) {
-            this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
-        }
+        public boolean setBlockSequence(String blockSequence) {
+
+			if (LineTools.validateBlocks(blockSequence)){
+
+				if (this.type == "finish") {
+					this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")[0]));
+				} else {
+					this.blockSequence = new ArrayList<String>(Arrays.asList(blockSequence.split("\\s*,\\s*")));
+				}
+
+			} else {
+				return false;
+			}
+
+			return true;
+
+		}
 
          /**
          * Check if this player is in this area
