@@ -11,12 +11,14 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
+import org.bukkit.Material;
 import org.bukkit.World;
 
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Message;
 import me.diademiemi.lineation.Config;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -421,6 +423,27 @@ public class LineTools {
                 break;
         }
     }
+
+	/**
+	 * Method to validate if block sequence is valid
+	 *
+	 * @param sequence	String to validate
+	 *
+	 * @return	Boolean of whether string is valid
+	 */
+	public static boolean validateBlocks(String sequence){
+		ArrayList<String> blockList = new ArrayList<String>(Arrays.asList(sequence.split("\\s*,\\s*")));
+		
+		for (String s : blockList) {
+			try {
+				Material.valueOf(s.toUpperCase());
+			} catch (IllegalArgumentException ex) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
     /**
      * Method to replace blocks in a given area with a given EditSession with names of blocks to set

@@ -118,7 +118,7 @@ public class CommandExec implements CommandExecutor {
                                                                 && !args[3].equalsIgnoreCase("create")
                                                                 && !args[3].equalsIgnoreCase("remove")
                                                                 && !args[3].equalsIgnoreCase("list")) {
-                                                                new Line(args[3], args[2]);
+                                                                new Line(args[3], args[2].toLowerCase());
                                                                 sender.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
                                                             } else sender.sendMessage(Message.ERROR_INVALID_NAME);
                                                         } else sender.sendMessage(Message.ERROR_LINE_EXISTS);
@@ -382,8 +382,11 @@ public class CommandExec implements CommandExecutor {
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.blocksequence")) {
                                                                         try {
-                                                                            line.setBlockSequence(args[4].toLowerCase());
-                                                                            sender.sendMessage(Message.SUCCESS_OPTION_SET);
+                                                                            if (line.setBlockSequence(args[4].toLowerCase())) {
+																				sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																			} else {
+																				sender.sendMessage(Message.ERROR_INVALID_BLOCK);
+																			}
                                                                         } catch (Exception e) {
                                                                             sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }

@@ -24,6 +24,7 @@ public class Message {
     public static String ERROR_UNKNOWN_LINE;
     public static String ERROR_NULL_AREA;
     public static String ERROR_INVALID_NAME;
+	public static String ERROR_INVALID_BLOCK;
     public static String ERROR_NOT_START;
     public static String ERROR_NOT_FINISH;
     public static String ERROR_NO_CHECKPOINT;
@@ -69,6 +70,7 @@ public class Message {
         ERROR_UNKNOWN_LINE = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_LINE"));
         ERROR_NULL_AREA = PREFIX + format(messageConfig.getConfig().getString("ERROR_NULL_AREA"));
         ERROR_INVALID_NAME = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_NAME"));
+        ERROR_INVALID_BLOCK = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_BLOCK"));
         ERROR_NOT_START = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_START"));
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
