@@ -243,7 +243,7 @@ public class CommandExec implements CommandExecutor {
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 case "removecheckpoint":
-                                                    if (sender.hasPermission("lineation.line.addcheckpoint")) {
+                                                    if (sender.hasPermission("lineation.line.removecheckpoint")) {
                                                         if (line.getType().equalsIgnoreCase("finish")) {
                                                             if (args.length > 3) {
                                                                 switch (args[3].toLowerCase()) {
