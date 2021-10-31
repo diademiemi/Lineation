@@ -13,6 +13,8 @@ import me.diademiemi.lineation.line.Line;
 import me.diademiemi.lineation.line.LineIO;
 import me.diademiemi.lineation.line.LineTools;
 
+import java.util.Arrays;
+
 /**
  * Command class for listening for lineation command
  *
@@ -382,7 +384,7 @@ public class CommandExec implements CommandExecutor {
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.blocksequence")) {
                                                                         try {
-                                                                            if (line.setBlockSequence(args[4].toLowerCase())) {
+                                                                            if (line.setBlockSequence(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll("\\s", "").toLowerCase())) {
 																				sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																			} else {
 																				sender.sendMessage(Message.ERROR_INVALID_BLOCK);
