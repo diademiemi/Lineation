@@ -210,6 +210,21 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
         }
+		
+		if (line.getType().equalsIgnoreCase("start")) {
+			if (line.getIllegalAreas() != null) {
+				int i = 1;
+				for (double[][] ia : line.getIllegalAreas()) {
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.x", ia[0][0]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.y", ia[0][1]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.z", ia[0][2]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.x", ia[1][0]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.y", ia[1][1]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.z", ia[1][2]);
+					i++;
+				}
+			}
+		}
 
     }
 
