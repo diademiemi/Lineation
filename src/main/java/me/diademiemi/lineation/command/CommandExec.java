@@ -425,23 +425,25 @@ public class CommandExec implements CommandExecutor {
 																				break;
 																			case "illegalarea":
 																				if (args.length > 5) {
-																					switch (args[5].toLowerCase()) {
-																						case "true":
-																							if (line.getIllegalAreas().size() != 0) {
-																								line.setTeleportEnabledIllegalArea(true);
+																					if (line.getType().equalsIgnoreCase("start")) {
+																						switch (args[5].toLowerCase()) {
+																							case "true":
+																								if (line.getIllegalAreas().size() != 0) {
+																									line.setTeleportEnabledIllegalArea(true);
+																									sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																									break;
+																								} else {
+																									sender.sendMessage(Message.ERROR_NO_ILLEGAL_AREA.replace("$LINE$", args[1]));
+																									break;
+																								}
+																							case "false":
+																								line.setTeleportEnabledIllegalArea(false);
 																								sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																								break;
-																							} else {
-																								sender.sendMessage(Message.ERROR_NO_ILLEGAL_AREA.replace("$LINE$", args[1]));
-																								break;
-																							}
-																						case "false":
-																							line.setTeleportEnabledIllegalArea(false);
-																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
-																							break;
-																						default:
-																								sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-																					}
+																							default:
+																									sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																						}
+																					} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
 																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
 																				break;
                                                                             default:
