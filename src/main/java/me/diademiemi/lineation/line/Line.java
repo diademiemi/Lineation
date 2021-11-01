@@ -136,6 +136,11 @@ public class Line {
     private boolean teleportEnabled;
 
     /**
+     * Boolean to check if teleportation is enabled for illegal areas
+     */
+    private boolean teleportEnabledIllegalArea;
+
+    /**
      * Location to teleport players to
      */
     private Location teleportLocation;
@@ -513,6 +518,23 @@ public class Line {
          */
         public void setTeleportEnabled(boolean b) {
             teleportEnabled = b;
+        }
+
+        /**
+         * Gets boolean of if teleport is enabled on illegal areas
+         *
+         * @return  True if teleport is enabled for illegal areas
+         */
+        public boolean isTeleportEnabledIllegalArea() {
+            return teleportEnabledIllegalArea;
+        }
+        /**
+         * Sets whether teleport is enabled
+         *
+         * @param b   Boolean of if teleport is enabled
+         */
+        public void setTeleportEnabledIllegalArea(boolean b) {
+            teleportEnabledIllegalArea = b;
         }
         
         /**

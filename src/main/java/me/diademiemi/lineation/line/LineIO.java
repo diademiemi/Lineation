@@ -42,16 +42,16 @@ public class LineIO {
         if (lineConfig.getConfig().get(name + ".option.linked" ) != null)
             line.setLinkedLine(lineConfig.getConfig().getString(name + ".option.linked"));
 
-        if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
+        if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null)
             line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
-            if (lineConfig.getConfig().get(name + ".option.teleport.location") != null) {
-				line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
-                    .toLocation(Lineation.getInstance().getServer()
-                    .getWorld(lineConfig.getConfig().getString(name + ".world")),
-                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
-                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
-			}
-
+        if (lineConfig.getConfig().get(name + ".option.teleport.illegalarea") != null)
+            line.setTeleportEnabledIllegalArea(lineConfig.getConfig().getBoolean(name + ".option.teleport.illegalarea"));
+		if (lineConfig.getConfig().get(name + ".option.teleport.location") != null) {
+			line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
+				.toLocation(Lineation.getInstance().getServer()
+				.getWorld(lineConfig.getConfig().getString(name + ".world")),
+				(float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
+				(float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
         }
 
         if (lineConfig.getConfig().get(name + ".area") != null) {
@@ -143,6 +143,7 @@ public class LineIO {
         lineConfig.getConfig().set(name + ".option.blocksequence", line.getBlockSequenceString());
         lineConfig.getConfig().set(name + ".option.linked", line.getLinkedLine());
         lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
+        lineConfig.getConfig().set(name + ".option.teleport.illegalarea", line.isTeleportEnabledIllegalArea());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
