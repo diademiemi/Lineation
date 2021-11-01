@@ -370,8 +370,11 @@ public class CommandExec implements CommandExecutor {
                                                                     if (sender.hasPermission("lineation.line.option.gamemodes")) {
                                                                         if (line.getType().equalsIgnoreCase("finish")) {
                                                                             try {
-                                                                                line.setGameModes(args[4].toUpperCase());
-                                                                                sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																				if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll("\\s", "").toUpperCase())) {
+																					sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																				} else {
+																					sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
+																				}
                                                                             } catch (Exception e) {
                                                                                 sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                             }

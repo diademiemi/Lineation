@@ -11,6 +11,7 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 
@@ -431,12 +432,33 @@ public class LineTools {
 	 *
 	 * @return	Boolean of whether string is valid
 	 */
-	public static boolean validateBlocks(String sequence){
+	public static boolean validateBlocks(String sequence) {
 		ArrayList<String> blockList = new ArrayList<String>(Arrays.asList(sequence.split("\\s*,\\s*")));
 		
 		for (String s : blockList) {
 			try {
 				Material.valueOf(s.toUpperCase());
+			} catch (IllegalArgumentException ex) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Method to validate if gamemodes exist
+	 *
+	 * @param modes	String to validate
+	 *
+	 * @return	Boolean of whether string is valid
+	 */
+	public static boolean validateGamemodes(String modes) {
+		ArrayList<String> modesList = new ArrayList<String>(Arrays.asList(modes.split("\\s*,\\s*")));
+
+		for (String s : modesList) {
+			try {
+				GameMode.valueOf(s.toUpperCase());
 			} catch (IllegalArgumentException ex) {
 				return false;
 			}
