@@ -476,7 +476,7 @@ public class CommandExec implements CommandExecutor {
                                             }
                                         } else sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                     } else if (sender.hasPermission("lineation.line.list")) {
-                                        sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[2]));
+                                        sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[1]));
                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                     break;
                             }
