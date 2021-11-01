@@ -426,9 +426,14 @@ public class CommandExec implements CommandExecutor {
 																				if (args.length > 5) {
 																					switch (args[5].toLowerCase()) {
 																						case "true":
-																							line.setTeleportEnabledIllegalArea(true);
-																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
-																							break;
+																							if (line.getIllegalAreas().size() != 0) {
+																								line.setTeleportEnabledIllegalArea(true);
+																								sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																								break;
+																							} else {
+																								sender.sendMessage(Message.ERROR_NO_ILLEGAL_AREA.replace("$LINE$", args[1]));
+																								break;
+																							}
 																						case "false":
 																							line.setTeleportEnabledIllegalArea(false);
 																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
