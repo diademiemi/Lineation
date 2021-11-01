@@ -422,6 +422,7 @@ public class CommandExec implements CommandExecutor {
 																							sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
 																					}
 																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																				break;
 																			case "illegalarea":
 																				if (args.length > 5) {
 																					switch (args[5].toLowerCase()) {
@@ -442,6 +443,7 @@ public class CommandExec implements CommandExecutor {
 																								sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
 																					}
 																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																				break;
                                                                             default:
 																				sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
