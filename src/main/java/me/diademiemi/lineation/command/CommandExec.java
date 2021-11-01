@@ -400,19 +400,45 @@ public class CommandExec implements CommandExecutor {
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.teleport")) {
                                                                         switch (args[4].toLowerCase()) {
-                                                                            case "here":
+                                                                            case "setlocation":
                                                                                 if (sender instanceof Player) {
                                                                                     line.setTeleportLocation((Player) sender);
-                                                                                    line.setTeleportEnabled(true);
                                                                                     sender.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                 } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                                 break;
-                                                                            case "disable":
-                                                                                line.setTeleportEnabled(false);
-                                                                                sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                break;
+																			case "onstart":
+																			case "onfinish":
+																				if (args.length > 5) {
+																					switch (args[5].toLowerCase()) {
+																						case "true":
+																							line.setTeleportEnabled(true);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						case "false":
+																							line.setTeleportEnabled(false);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						default:
+																							sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																					}
+																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																			case "illegalarea":
+																				if (args.length > 5) {
+																					switch (args[5].toLowerCase()) {
+																						case "true":
+																							line.setTeleportEnabledIllegalArea(true);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						case "false":
+																							line.setTeleportEnabledIllegalArea(false);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						default:
+																								sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																					}
+																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                             default:
-                                                                            sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																				sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
                                                                         break;
                                                                     } sender.sendMessage(Message.ERROR_NO_PERMS);
