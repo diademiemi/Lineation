@@ -36,6 +36,7 @@ public class Message {
     public static String SUCCESS_SET_AREA;
     public static String SUCCESS_SET_BORDER;
     public static String SUCCESS_SET_CHECKPOINT;
+    public static String SUCCESS_SET_ILLEGAL_AREA;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_BORDER_REMOVED;
     public static String SUCCESS_CHECKPOINT_REMOVED;
@@ -82,6 +83,7 @@ public class Message {
         SUCCESS_SET_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_AREA"));
         SUCCESS_SET_BORDER = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_BORDER"));
         SUCCESS_SET_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_CHECKPOINT"));
+        SUCCESS_SET_ILLEGAL_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_CHECKPOINT"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
         SUCCESS_CHECKPOINT_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_CHECKPOINT_REMOVED"));

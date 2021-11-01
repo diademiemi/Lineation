@@ -65,6 +65,11 @@ public class Line {
      */
     private ArrayList<double[][]> checkpoints;
 
+	/**
+	 * Illegal areas for start lines
+	 */
+	private ArrayList<double[][]> illegalAreas;
+
     /**
      * HashMap of player and checkpoint counter
      */
@@ -173,6 +178,9 @@ public class Line {
             lapCount = new HashMap<Player, Integer>();
             this.setCommands(Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands"));
         }
+		if (type.equalsIgnoreCase("start")) {
+			illegalAreas = new ArrayList<double[][]>();
+		}
 
         lines.put(name, this);
     }
@@ -690,6 +698,74 @@ public class Line {
          */
         public void clearCheckpoints() {
             checkpoints.clear();
+        }
+
+        /**
+         * Get list of all illegalAreas of this line
+         *
+         * @return  ArrayList of all illegal areas of this line
+         */
+        public ArrayList<double[][]> getIllegalAreas() {
+            return illegalAreas;
+        }
+
+        /**
+         * Use WorldEdit to add an illegal area to this line
+         *
+         * @param player   Player to get WorldEdit selection from
+         */
+        public void addIllegalArea(Player player) {
+            WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+            com.sk89q.worldedit.regions.Region selection;
+            try {
+                selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
+            } catch (Exception e) {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+                return;
+            }
+            double[][] ia = new double[2][3];
+
+            if (selection != null && world == BukkitAdapter.adapt(selection.getWorld())) {
+                ia[0][0] = selection.getMinimumPoint().getX();
+                ia[0][1] = selection.getMinimumPoint().getY();
+				ia[0][2] = selection.getMinimumPoint().getZ();
+                ia[1][0] = selection.getMaximumPoint().getX();
+                ia[1][1] = selection.getMaximumPoint().getY();
+                ia[1][2] = selection.getMaximumPoint().getZ();
+
+                illegalAreas.add(ia);
+                LineTools.stopLine(this);
+                player.sendMessage(Message.SUCCESS_SET_ILLEGAL_AREA.replace("$LINE$", name));
+
+            } else {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+            }
+        }
+
+        /**
+         * Add an illegal area to this line
+         * 
+         * @param ia	Double of the illegal area to add to this line
+         */
+        public void addIllegalArea(double[][] ia) {
+			illegalAreas.add(ia);
+        }
+        
+        /**
+         * Remove an illegal area by number
+         *
+         * @param i   Number of the illegal area to remove
+         */
+        public void removeIllegalArea(int i) {
+			illegalAreas.remove(i - 1);
+        }
+
+        /**
+         * Remove all illegal areas of this line
+         */
+        public void clearIllegalAreas() {
+            illegalAreas.clear();
         }
 
         /**
