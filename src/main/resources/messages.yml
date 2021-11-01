@@ -58,6 +58,7 @@ SUCCESS_SET_ILLEGAL_AREA: '&7Illegal area set successfully for &f&l$LINE$&r&7!'
 SUCCESS_LINE_REMOVED: '&7Removed &f&l$LINE$&r&7 successfully'
 SUCCESS_BORDER_REMOVED: '&7Removed border successfully'
 SUCCESS_CHECKPOINT_REMOVED: '&7Removed checkpoint successfully'
+SUCCESS_ILLEGAL_AREA_REMOVED: '&7Removed illegal area successfully'
 SUCCESS_OPTION_SET: '&7Set option successfully!'
 SUCCESS_PLAYER_FORGOTTEN: '&7Forgot player wins for &f&l$PLAYER$&r&7!'
 LINE_INFO_START: |2-
