@@ -1118,4 +1118,40 @@ public class Line {
             return 0;
         }
 
+        /**
+         * Get if this player is in an illegal area
+         *
+         * @param player    Player to check the location of
+         * @return	Boolean of whether player is in an illegal area
+         */
+        public boolean illegalAreaContains(Player player) {
+            return illegalAreaContains(player.getLocation());
+        }
+
+        /**
+         * Get if this location is in an illegal area
+         *
+         * @param l Location to check
+         * @return  Boolean of whether this location is in an illegal area
+         */
+        public boolean illegalAreaContains(Location l) {
+            int i = 1;
+            for (double[][] c : illegalAreas) {
+                double minx = c[0][0];
+                double miny = c[0][1];
+                double minz = c[0][2];
+                double maxx = c[1][0];
+                double maxy = c[1][1];
+                double maxz = c[1][2];
+                double tox = l.getBlock().getLocation().getX();
+                double toy = l.getBlock().getLocation().getY();
+                double toz = l.getBlock().getLocation().getZ();
+
+                if (l.getWorld().equals(world) && (tox <= maxx) && (tox >= minx) && (toy <= maxy) &&
+                        (toy >= miny) && (toz <= maxz) && (toz >= minz)) return true;
+                }
+
+            return false;
+        }
+
 }
