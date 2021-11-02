@@ -54,8 +54,10 @@ public class LineListener implements Listener {
                 }
             }
 			for(Map.Entry<String, Line> entry: Line.getStartedStartLinesIA().entrySet()) {
-				if (entry.getValue().illegalAreaContains(e.getPlayer())) {
-					e.getPlayer().teleport(entry.getValue().getTeleportLocation());
+				if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
+					if (entry.getValue().illegalAreaContains(e.getPlayer())) {
+						e.getPlayer().teleport(entry.getValue().getTeleportLocation());
+					}
 				}
 			}
         }
