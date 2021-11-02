@@ -53,6 +53,11 @@ public class LineListener implements Listener {
                     }
                 }
             }
+			for(Map.Entry<String, Line> entry: Line.getStartedStartLinesIA().entrySet()) {
+				if (entry.getValue().illegalAreaContains(e.getPlayer())) {
+					e.getPlayer().teleport(entry.getValue().getTeleportLocation());
+				}
+			}
         }
     }
 }
