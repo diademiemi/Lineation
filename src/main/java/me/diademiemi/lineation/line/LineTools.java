@@ -229,18 +229,19 @@ public class LineTools {
      * @param player    Player to send message to
      */
     public static void getLineOptions(Line line, CommandSender player) {
-        StringBuilder teleportString = new StringBuilder("");
-        if (line.isTeleportEnabled()) {
-            teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
-                    (int)line.getTeleportLocation().getY() + "," + 
-                    (int)line.getTeleportLocation().getZ() + ")");
-        } else teleportString.append("disabled");
+        StringBuilder teleportLocation = new StringBuilder("");
+		teleportLocation.append("(" + (int)line.getTeleportLocation().getX() + "," +
+				(int)line.getTeleportLocation().getY() + "," + 
+				(int)line.getTeleportLocation().getZ() + ")");
         switch (line.getType()) {
             case "start":
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", teleportString)
+						.replace("$TPONSTART$", Boolean.toString(line.isTeleportEnabled()))
+						.replace("$TPILLEGALAREA$", Boolean.toString(line.isTeleportEnabledIllegalArea()))
+                        .replace("$TELEPORTLOCATION$", teleportLocation)
+						.replace("$GAMEMODES$", line.getGameModesString())
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
@@ -259,7 +260,8 @@ public class LineTools {
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", teleportString)
+						.replace("$TPONFINISH$", Boolean.toString(line.isTeleportEnabled()))
+                        .replace("$TELEPORTLOCATION$", teleportLocation)
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
