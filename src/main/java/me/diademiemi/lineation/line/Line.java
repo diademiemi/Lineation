@@ -327,8 +327,10 @@ public class Line {
                 startedFinishLines.put(name, this);
             }
 			if (this.type.equalsIgnoreCase("start")) {
-				if (this.getIllegalAreas().size() != 0) {
-					startedStartLinesIA.put(name, this);
+				if (teleportEnabledIllegalArea) {
+					if (this.getIllegalAreas().size() != 0) {
+						startedStartLinesIA.put(name, this);
+					}
 				}
 			}
             if (startedFinishLines.size() == 1) {
@@ -351,6 +353,8 @@ public class Line {
             if (startedFinishLines.size() == 0) {
                 LineListener.unregisterPluginEvents(Lineation.getInstance());
             } else if (startedStartLinesIA.size() == 0) {
+				LineListener.unregisterPluginEvents(Lineation.getInstance());
+			} else if (!teleportEnabledIllegalArea) {
 				LineListener.unregisterPluginEvents(Lineation.getInstance());
 			}
         }
@@ -570,6 +574,13 @@ public class Line {
          */
         public void setTeleportEnabledIllegalArea(boolean b) {
             teleportEnabledIllegalArea = b;
+			if (b) {
+				if (this.isStarted()) {
+					startedStartLinesIA.put(name, this);
+				}
+			} else {
+				startedStartLinesIA.remove(name);
+			}
         }
         
         /**
@@ -792,7 +803,6 @@ public class Line {
                 ia[1][2] = selection.getMaximumPoint().getZ();
 
                 illegalAreas.add(ia);
-                LineTools.stopLine(this);
                 player.sendMessage(Message.SUCCESS_SET_ILLEGAL_AREA.replace("$LINE$", name));
 
             } else {
