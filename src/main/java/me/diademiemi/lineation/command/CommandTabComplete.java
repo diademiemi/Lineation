@@ -222,6 +222,7 @@ public class CommandTabComplete implements TabCompleter {
                         if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                         if ("laps".startsWith(args[3]) && player.hasPermission("lineation.line.option.laps") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("laps");
                         if ("link".startsWith(args[3]) && player.hasPermission("lineation.line.option.link")) tabList.add("link");
+                        if ("illegalarea".startsWith(args[3]) && player.hasPermission("lineation.line.option.illegalarea") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
 
                     } else if (args[2].equalsIgnoreCase("info")) {
 
@@ -297,8 +298,6 @@ public class CommandTabComplete implements TabCompleter {
 							if ("illegalarea".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
 							if ("onfinish".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("onfinish");
 
-						}
-
                         } else if (args[3].equalsIgnoreCase("removecommand")) {
 
                             if (args[4].equalsIgnoreCase("")) {
@@ -350,9 +349,25 @@ public class CommandTabComplete implements TabCompleter {
 
                             }
 
-                        }
-                    }
-			} else if (args.length ==6) {
+                        } else if (args[3].equalsIgnoreCase("illegalarea") && player.hasPermission("lineation.line.option.illegalarea") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+
+							if (args[4].equalsIgnoreCase("")) {
+								if (player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("add");
+								if (player.hasPermission("lineation.line.option.illegalarea.remove")) tabList.add("remove");
+								if (player.hasPermission("lineation.line.option.illegalarea.gamemodes")) tabList.add("gamemodes");
+							}
+
+							if ("add".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("add");
+							if ("remove".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.remove")) tabList.add("remove");
+							if ("gamemodes".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("gamemodes");
+
+						}
+
+					}
+
+				}
+
+			} else if (args.length == 6) {
 
                 if (lines.contains(args[1])) {
                     
@@ -371,14 +386,30 @@ public class CommandTabComplete implements TabCompleter {
 									break;
 
                             }
+
+						} else if (args[3].equalsIgnoreCase("illegalarea") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+
+							if (args[4].equalsIgnoreCase("remove") && player.hasPermission("lineation.line.option.illegalarea.remove")) {
+
+								int i = 1;
+								int c = Line.getLines().get(args[1]).getIllegalAreas().size();
+
+								while (i <= c) {
+									tabList.add(String.valueOf(i));
+									i++;
+								}
+							
+							}
 						}
+
 					}
 				}
-            }
+
+			}
 
             return tabList;
 
-        }
+		}
 
         return null;
 

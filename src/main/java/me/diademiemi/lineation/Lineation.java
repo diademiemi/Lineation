@@ -66,6 +66,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.option.teleport"));
         pm.addPermission(new Permission("lineation.line.option.laps"));
         pm.addPermission(new Permission("lineation.line.option.link"));
+		pm.addPermission(new Permission("lineation.line.option.illegalarea"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.add"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.remove"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.gamemodes"));
