@@ -280,14 +280,24 @@ public class CommandTabComplete implements TabCompleter {
                         if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
 
                             if (args[4].equalsIgnoreCase("")) {
+								
+								tabList.add("setlocation");
 
-                                tabList.add("here");
-                                tabList.add("disable");
+								if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+									tabList.add("onstart");
+									tabList.add("illegalarea");
+								} else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
+									tabList.add("onfinish");
+								}
 
-                            }
+							}
 
-                            if ("here".startsWith(args[4])) tabList.add("here");
-                            if ("disable".startsWith(args[4])) tabList.add("disable");
+							if ("setlocation".startsWith(args[4])) tabList.add("setlocation");
+							if ("onstart".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("onstart");
+							if ("illegalarea".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
+							if ("onfinish".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("onfinish");
+
+						}
 
                         } else if (args[3].equalsIgnoreCase("removecommand")) {
 
@@ -342,7 +352,28 @@ public class CommandTabComplete implements TabCompleter {
 
                         }
                     }
-                }
+			} else if (args.length ==6) {
+
+                if (lines.contains(args[1])) {
+                    
+                    if (args[2].equalsIgnoreCase("option")) {
+
+                        if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
+
+							switch (args[4].toLowerCase()) {
+								case "illegalarea":
+								case "onstart":
+								case "onfinish":
+									tabList.add("true");
+									tabList.add("false");
+									break;
+								default:
+									break;
+
+                            }
+						}
+					}
+				}
             }
 
             return tabList;
