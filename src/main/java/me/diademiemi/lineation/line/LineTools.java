@@ -233,8 +233,21 @@ public class LineTools {
 		teleportLocation.append("(" + (int)line.getTeleportLocation().getX() + "," +
 				(int)line.getTeleportLocation().getY() + "," + 
 				(int)line.getTeleportLocation().getZ() + ")");
+        ArrayList<double[][]> illegalAreas = line.getIllegalAreas();
+		int i = 1;
         switch (line.getType()) {
             case "start":
+                StringBuilder illegalAreasString = new StringBuilder("");
+                i = 1;
+                for (double[][] ia : illegalAreas) {
+                    if (i> 1) {
+                        illegalAreasString.append("\n");
+                    }
+                    illegalAreasString.append(i);
+                    illegalAreasString.append(": " + "(" + ia[0][0] + "," + ia[0][1] + "," + ia[0][2] + ") -> (" +
+                            ia[1][0] + "," + ia[1][1] + "," + ia[1][2] + ")");
+                    i++;
+                }
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
@@ -242,12 +255,13 @@ public class LineTools {
 						.replace("$TPILLEGALAREA$", Boolean.toString(line.isTeleportEnabledIllegalArea()))
                         .replace("$TELEPORTLOCATION$", teleportLocation)
 						.replace("$GAMEMODES$", line.getGameModesString())
+						.replace("$ILLEGALAREAS$", illegalAreasString)
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
                 ArrayList<String> commands = line.getCommands();
                 StringBuilder commandsString = new StringBuilder("");
-                int i = 1;
+                i = 1;
                 for (String c : commands) {
                     if (i> 1) {
                         commandsString.append("\n");

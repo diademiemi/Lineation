@@ -87,6 +87,7 @@ LINE_OPTIONS_START: |2-
   &8- &7Teleport illegalarea: $TPILLEGALAREA$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Illegal Area gamemodes: $GAMEMODES$
+  &8- &7Illegal Areas: $ILLEGALAREAS$
   &8- &7Linked line: $LINKED$
 LINE_OPTIONS_FINISH: |2-
   &f&lLine Options
