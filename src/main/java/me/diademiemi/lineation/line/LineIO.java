@@ -41,6 +41,8 @@ public class LineIO {
             line.setBlockSequence(lineConfig.getConfig().getString(name + ".option.blocksequence"));
         if (lineConfig.getConfig().get(name + ".option.linked" ) != null)
             line.setLinkedLine(lineConfig.getConfig().getString(name + ".option.linked"));
+		if (lineConfig.getConfig().get(name + ".option.gamemodes") != null)
+			line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
 
         if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null)
             line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
@@ -108,9 +110,6 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".option.commands") != null) {
                 line.setCommands(lineConfig.getConfig().getStringList(name + ".option.commands"));
             }
-            if (lineConfig.getConfig().get(name + ".option.gamemodes") != null) {
-                line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
-            }
             if (lineConfig.getConfig().get(name + ".option.laps") != null) {
                 line.setLaps(lineConfig.getConfig().getInt(name + ".option.laps"));
             }
@@ -165,6 +164,7 @@ public class LineIO {
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
+		if (line.getGameModes() != null) lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
 
         if (line.getArea() != null) {
             double[][] area = line.getArea();
@@ -207,7 +207,6 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".lastwinners", line.getWinners());
             lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
             lineConfig.getConfig().set(name + ".option.commands", line.getCommands());
-            lineConfig.getConfig().set(name + ".option.gamemodes", line.getGameModesString());
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
         }
 		

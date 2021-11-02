@@ -448,13 +448,25 @@ public class Line {
          *
          * @param gameModes   Comma seperated string of gamemode names
          */
-        public void setGameModes(String gameModes) {
-            String[] gameModesArray = gameModes.split(",");
-            ArrayList<GameMode> allowedGameModes = new ArrayList<GameMode>();
-            for (String g : gameModesArray) {
-                allowedGameModes.add(GameMode.valueOf(g));
-            }
-            this.allowedGameModes = allowedGameModes;
+        public boolean setGameModes(String gameModes) {
+
+			if (LineTools.validateGamemodes(gameModes)) {
+
+				String[] gameModesArray = gameModes.split(",");
+				ArrayList<GameMode> allowedGameModes = new ArrayList<GameMode>();
+
+				for (String g : gameModesArray) {
+					allowedGameModes.add(GameMode.valueOf(g));
+				}
+
+				this.allowedGameModes = allowedGameModes;
+
+			} else {
+				return false;
+			}
+
+			return true;
+
         }
 
         /**
