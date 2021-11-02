@@ -6,8 +6,9 @@ HELP_INDEX: |2-
   &7/lineation help lines &r: View commands relating to line
   &7/lineation help options &r: Shows more advanced options for lines
   &7/lineation config reload &r: Saves and reloads config files
-  &7/lineation config maxwins <int> &r: Sets the maximum amount of times someone can win
+  &7/lineation config maxwins <number> &r: Sets the maximum amount of times someone can win
   &7/lineation config forget <username/uuid> &r: Forget a players wins for maxwins.
+  &r&ohttps://diademiemi.github.io/Lineation/wiki/
 HELP_LINE: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7/lineation line create <type> <name> &r: Create a line with a specified type and name
@@ -18,21 +19,27 @@ HELP_LINE: |2-
   &7/lineation line <name> stop &r: Stops and closes this line
   &7/lineation line <name> setarea &r: Sets the detection area for this line using your current WorldEdit selection
   &7/lineation line <name> addborder &r: Adds a border to set blocks at for this line using your current WorldEdit selection
-  &7/lineation line <name> removeborder &r: Removes a border by number
+  &7/lineation line <name> removeborder <number/all> &r: Removes a border by number
   &7/lineation line <name> addcheckpoint &r Adds a checkpoint players have to cross first before being counted to win
   &7/lineation line <name> removecheckpoint &r: Removes a checkpoint by number 
   &7/lineation line <name> getwinners &r: Gets the last winners of this line
+  &r&ohttps://diademiemi.github.io/Lineation/wiki/
 HELP_OPTION: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7/lineation line <name> option blocksequence <block1,block2...> &r: Comma seperated list of blocks to use for the opening sequence
-  &7/lineation line <name> option teleport <here/disable> &r: Makes players teleport to this current location when a start line opens or when they finish
+  &7/lineation line <name> option blocksequence <block1,block2...> &r: Comma or space seperated list of blocks to use for the opening sequence
+  &7/lineation line <name> option teleport setlocation &r: Sets the location players will teleport if using the teleport function described below
+  &7/lineation line <name> option teleport <onstart/onfinish/illegalarea> <true/false> &r: Makes players in the area teleport to this location when the line opens, when they finish or enter an illegal area  
   &7/lineation line <name> option maxwinners <number> &r: Number of players that have to finish before the line closes
   &7/lineation line <name> option addcommand <command> &r: Sets a command to run when a player finishes. Placeholders: %player%, %uuid%
   &7/lineation line <name> option removecommand <number> &r: Removes a command by number
   &7/lineation line <name> option laps <number> &r: Amount of times players have to go through the course before winning
   &7/lineation line <name> option messagereach <all/world/disabled> &r: Sets who the announcement messages will target
-  &7/lineation line <name> option gamemodes <survival,adventure> &r: Comma seperated list of gamemodes players have to be in to be counted
+  &7/lineation line <name> option gamemodes <survival,adventure> &r: Comma or space seperated list of gamemodes players have to be in to be counted
+  &7/lineation line <name> option illegalarea add &r: Adds an area that will teleport players to the start line if teleport illegalarea is set to true 
+  &7/lineation line <name> option illegalarea remove <number/all>&r: Removes an illegal area 
+  &7/lineation line <name> option illegalarea gamemodes &r: Comma or space seperated list of gamemodes players have to be in to get teleported after entering an illegal area
   &7/lineation line <name> option link <line name> &r: This links a line of the other type to automatically start or stop at the same time
+  &r&ohttps://diademiemi.github.io/Lineation/wiki/
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
