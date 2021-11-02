@@ -40,6 +40,11 @@ public class Line {
      */
     private static HashMap<String, Line> startedFinishLines = new HashMap<>();
 
+	/**
+	 * HashMap of all started start lines with illegal areas
+	 */
+	private static HashMap<String, Line> startedStartLinesIA = new HashMap<>();
+
     /**
      * Name of the line
      */
@@ -247,6 +252,15 @@ public class Line {
             return startedFinishLines;
         }
 
+		/**
+		 * Gets HashMap of all started start lines with illegal areas
+		 *
+		 * @return	HashMap of all started start lines with illegal areas
+		 */
+		public static HashMap<String, Line> getStartedStartLinesIA() {
+			return startedStartLinesIA;
+		}
+
 
         /**
          * Get the name of this line
@@ -312,9 +326,16 @@ public class Line {
             if (this.type.equalsIgnoreCase("finish")) {
                 startedFinishLines.put(name, this);
             }
+			if (this.type.equalsIgnoreCase("start")) {
+				if (this.getIllegalAreas().size() != 0) {
+					startedStartLinesIA.put(name, this);
+				}
+			}
             if (startedFinishLines.size() == 1) {
                 new LineListener(Lineation.getInstance());
-            }
+            } else if (startedStartLinesIA.size() == 1) {
+				new LineListener(Lineation.getInstance());
+			}
         }
 
         /**
@@ -329,7 +350,9 @@ public class Line {
             }
             if (startedFinishLines.size() == 0) {
                 LineListener.unregisterPluginEvents(Lineation.getInstance());
-            }
+            } else if (startedStartLinesIA.size() == 0) {
+				LineListener.unregisterPluginEvents(Lineation.getInstance());
+			}
         }
 
         /**
