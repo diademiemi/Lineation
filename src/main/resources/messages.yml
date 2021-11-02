@@ -99,7 +99,7 @@ LINE_OPTIONS_START: |2-
 LINE_OPTIONS_FINISH: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
-  &8- &7Block sequence: $BLOCKSEQUENCE$
+  &8- &7Block: $BLOCKSEQUENCE$
   &8- &7Teleport onfinish: $TPONFINISH$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Close on wins: $ALLOWEDWINNERS$

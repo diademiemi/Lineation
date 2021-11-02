@@ -39,7 +39,7 @@ public class LineTools {
      * @param player Player that finished
      */
     public static void playerFinish(Line line, Player player) {
-        if (!line.isWinner(player) && line.getGameModes().contains(player.getGameMode()) &&
+        if (!line.isWinner(player) &&
                 line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
             line.addPlayerCheckpoint(player, 0);
             line.addPlayerLap(player, line.getPlayerLaps(player) + 1);

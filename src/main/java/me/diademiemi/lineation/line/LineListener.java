@@ -42,17 +42,20 @@ public class LineListener implements Listener {
     public void onMove(PlayerMoveEvent e) {
         if (e.getFrom().getBlockX() != e.getTo().getBlockX() || e.getFrom().getBlockY() != e.getTo().getBlockY() || e.getFrom().getBlockZ() != e.getTo().getBlockZ()) {
             for(Map.Entry<String, Line> entry: Line.getStartedFinishLines().entrySet()) {
-                if (entry.getValue().contains(e.getPlayer())) {
-                    LineTools.playerFinish(entry.getValue(), e.getPlayer());
-                } else {
-                    int i = entry.getValue().checkpointsContain(e.getPlayer());
-                    if (i != 0) {
-                        if (i - 1 <= entry.getValue().getPlayerCheckpoint(e.getPlayer())) {
-                            entry.getValue().addPlayerCheckpoint(e.getPlayer(), i);
-                        }
-                    }
-                }
-            }
+             	if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
+					if (entry.getValue().contains(e.getPlayer())) {
+						LineTools.playerFinish(entry.getValue(), e.getPlayer());
+					} else {
+						int i = entry.getValue().checkpointsContain(e.getPlayer());
+						if (i != 0) {
+							if (i - 1 <= entry.getValue().getPlayerCheckpoint(e.getPlayer())) {
+								entry.getValue().addPlayerCheckpoint(e.getPlayer(), i);
+							}
+						}
+					}
+				}
+			}
+
 			for(Map.Entry<String, Line> entry: Line.getStartedStartLinesIA().entrySet()) {
 				if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
 					if (entry.getValue().illegalAreaContains(e.getPlayer())) {
@@ -60,7 +63,6 @@ public class LineListener implements Listener {
 					}
 				}
 			}
-        }
-    }
+		}
+	}
 }
-
