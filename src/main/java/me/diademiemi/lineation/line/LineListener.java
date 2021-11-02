@@ -42,7 +42,7 @@ public class LineListener implements Listener {
     public void onMove(PlayerMoveEvent e) {
         if (e.getFrom().getBlockX() != e.getTo().getBlockX() || e.getFrom().getBlockY() != e.getTo().getBlockY() || e.getFrom().getBlockZ() != e.getTo().getBlockZ()) {
             for(Map.Entry<String, Line> entry: Line.getStartedFinishLines().entrySet()) {
-				if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
+             	if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
 					if (entry.getValue().contains(e.getPlayer())) {
 						LineTools.playerFinish(entry.getValue(), e.getPlayer());
 					} else {
@@ -55,7 +55,14 @@ public class LineListener implements Listener {
 					}
 				}
 			}
-        }
-    }
-}
 
+			for(Map.Entry<String, Line> entry: Line.getStartedStartLinesIA().entrySet()) {
+				if (entry.getValue().getGameModes().contains(e.getPlayer().getGameMode())) {
+					if (entry.getValue().illegalAreaContains(e.getPlayer())) {
+						e.getPlayer().teleport(entry.getValue().getTeleportLocation());
+					}
+				}
+			}
+		}
+	}
+}

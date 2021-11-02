@@ -40,6 +40,11 @@ public class Line {
      */
     private static HashMap<String, Line> startedFinishLines = new HashMap<>();
 
+	/**
+	 * HashMap of all started start lines with illegal areas
+	 */
+	private static HashMap<String, Line> startedStartLinesIA = new HashMap<>();
+
     /**
      * Name of the line
      */
@@ -64,6 +69,11 @@ public class Line {
      * Borders for the invisible checkpoints
      */
     private ArrayList<double[][]> checkpoints;
+
+	/**
+	 * Illegal areas for start lines
+	 */
+	private ArrayList<double[][]> illegalAreas;
 
     /**
      * HashMap of player and checkpoint counter
@@ -131,6 +141,11 @@ public class Line {
     private boolean teleportEnabled;
 
     /**
+     * Boolean to check if teleportation is enabled for illegal areas
+     */
+    private boolean teleportEnabledIllegalArea;
+
+    /**
      * Location to teleport players to
      */
     private Location teleportLocation;
@@ -161,11 +176,11 @@ public class Line {
         borders = new ArrayList<double[][]>();
         
         this.setBlockSequence(Config.getPluginConfig().getConfig().getString("linedefaults.option.blocksequence"));
+        this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
             maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
-            this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
             teleportLocation = new Location(world, 0, 0, 0, 0, 0);
             laps = 1;
             checkpoints = new ArrayList<double[][]>();
@@ -173,6 +188,9 @@ public class Line {
             lapCount = new HashMap<Player, Integer>();
             this.setCommands(Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands"));
         }
+		if (type.equalsIgnoreCase("start")) {
+			illegalAreas = new ArrayList<double[][]>();
+		}
 
         lines.put(name, this);
     }
@@ -233,6 +251,15 @@ public class Line {
         public static HashMap<String, Line> getStartedFinishLines() {
             return startedFinishLines;
         }
+
+		/**
+		 * Gets HashMap of all started start lines with illegal areas
+		 *
+		 * @return	HashMap of all started start lines with illegal areas
+		 */
+		public static HashMap<String, Line> getStartedStartLinesIA() {
+			return startedStartLinesIA;
+		}
 
 
         /**
@@ -299,9 +326,18 @@ public class Line {
             if (this.type.equalsIgnoreCase("finish")) {
                 startedFinishLines.put(name, this);
             }
+			if (this.type.equalsIgnoreCase("start")) {
+				if (teleportEnabledIllegalArea) {
+					if (this.getIllegalAreas().size() != 0) {
+						startedStartLinesIA.put(name, this);
+					}
+				}
+			}
             if (startedFinishLines.size() == 1) {
                 new LineListener(Lineation.getInstance());
-            }
+            } else if (startedStartLinesIA.size() == 1) {
+				new LineListener(Lineation.getInstance());
+			}
         }
 
         /**
@@ -316,7 +352,11 @@ public class Line {
             }
             if (startedFinishLines.size() == 0) {
                 LineListener.unregisterPluginEvents(Lineation.getInstance());
-            }
+            } else if (startedStartLinesIA.size() == 0) {
+				LineListener.unregisterPluginEvents(Lineation.getInstance());
+			} else if (!teleportEnabledIllegalArea) {
+				LineListener.unregisterPluginEvents(Lineation.getInstance());
+			}
         }
 
         /**
@@ -518,6 +558,30 @@ public class Line {
         public void setTeleportEnabled(boolean b) {
             teleportEnabled = b;
         }
+
+        /**
+         * Gets boolean of if teleport is enabled on illegal areas
+         *
+         * @return  True if teleport is enabled for illegal areas
+         */
+        public boolean isTeleportEnabledIllegalArea() {
+            return teleportEnabledIllegalArea;
+        }
+        /**
+         * Sets whether teleport is enabled
+         *
+         * @param b   Boolean of if teleport is enabled
+         */
+        public void setTeleportEnabledIllegalArea(boolean b) {
+            teleportEnabledIllegalArea = b;
+			if (b) {
+				if (this.isStarted()) {
+					startedStartLinesIA.put(name, this);
+				}
+			} else {
+				startedStartLinesIA.remove(name);
+			}
+        }
         
         /**
          * Gets the area of this line
@@ -702,6 +766,73 @@ public class Line {
          */
         public void clearCheckpoints() {
             checkpoints.clear();
+        }
+
+        /**
+         * Get list of all illegalAreas of this line
+         *
+         * @return  ArrayList of all illegal areas of this line
+         */
+        public ArrayList<double[][]> getIllegalAreas() {
+            return illegalAreas;
+        }
+
+        /**
+         * Use WorldEdit to add an illegal area to this line
+         *
+         * @param player   Player to get WorldEdit selection from
+         */
+        public void addIllegalArea(Player player) {
+            WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+            com.sk89q.worldedit.regions.Region selection;
+            try {
+                selection = worldEdit.getSession(player).getSelection(worldEdit.getSession(player).getSelectionWorld());
+            } catch (Exception e) {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+                return;
+            }
+            double[][] ia = new double[2][3];
+
+            if (selection != null && world == BukkitAdapter.adapt(selection.getWorld())) {
+                ia[0][0] = selection.getMinimumPoint().getX();
+                ia[0][1] = selection.getMinimumPoint().getY();
+				ia[0][2] = selection.getMinimumPoint().getZ();
+                ia[1][0] = selection.getMaximumPoint().getX();
+                ia[1][1] = selection.getMaximumPoint().getY();
+                ia[1][2] = selection.getMaximumPoint().getZ();
+
+                illegalAreas.add(ia);
+                player.sendMessage(Message.SUCCESS_SET_ILLEGAL_AREA.replace("$LINE$", name));
+
+            } else {
+                player.sendMessage(Message.ERROR_NULL_AREA);
+            }
+        }
+
+        /**
+         * Add an illegal area to this line
+         * 
+         * @param ia	Double of the illegal area to add to this line
+         */
+        public void addIllegalArea(double[][] ia) {
+			illegalAreas.add(ia);
+        }
+        
+        /**
+         * Remove an illegal area by number
+         *
+         * @param i   Number of the illegal area to remove
+         */
+        public void removeIllegalArea(int i) {
+			illegalAreas.remove(i - 1);
+        }
+
+        /**
+         * Remove all illegal areas of this line
+         */
+        public void clearIllegalAreas() {
+            illegalAreas.clear();
         }
 
         /**
@@ -995,6 +1126,42 @@ public class Line {
                 i++;
             } 
             return 0;
+        }
+
+        /**
+         * Get if this player is in an illegal area
+         *
+         * @param player    Player to check the location of
+         * @return	Boolean of whether player is in an illegal area
+         */
+        public boolean illegalAreaContains(Player player) {
+            return illegalAreaContains(player.getLocation());
+        }
+
+        /**
+         * Get if this location is in an illegal area
+         *
+         * @param l Location to check
+         * @return  Boolean of whether this location is in an illegal area
+         */
+        public boolean illegalAreaContains(Location l) {
+            int i = 1;
+            for (double[][] c : illegalAreas) {
+                double minx = c[0][0];
+                double miny = c[0][1];
+                double minz = c[0][2];
+                double maxx = c[1][0];
+                double maxy = c[1][1];
+                double maxz = c[1][2];
+                double tox = l.getBlock().getLocation().getX();
+                double toy = l.getBlock().getLocation().getY();
+                double toz = l.getBlock().getLocation().getZ();
+
+                if (l.getWorld().equals(world) && (tox <= maxx) && (tox >= minx) && (toy <= maxy) &&
+                        (toy >= miny) && (toz <= maxz) && (toz >= minz)) return true;
+                }
+
+            return false;
         }
 
 }

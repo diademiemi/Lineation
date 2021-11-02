@@ -44,16 +44,14 @@ public class LineIO {
 		if (lineConfig.getConfig().get(name + ".option.gamemodes") != null)
 			line.setGameModes(lineConfig.getConfig().getString(name + ".option.gamemodes"));
 
-        if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null) {
+        if (lineConfig.getConfig().get(name + ".option.teleport.enabled") != null)
             line.setTeleportEnabled(lineConfig.getConfig().getBoolean(name + ".option.teleport.enabled"));
-            if (lineConfig.getConfig().get(name + ".option.teleport.location") != null) {
-				line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
-                    .toLocation(Lineation.getInstance().getServer()
-                    .getWorld(lineConfig.getConfig().getString(name + ".world")),
-                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
-                    (float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
-			}
-
+		if (lineConfig.getConfig().get(name + ".option.teleport.location") != null) {
+			line.setTeleportLocation(lineConfig.getConfig().getVector(name + ".option.teleport.location")
+				.toLocation(Lineation.getInstance().getServer()
+				.getWorld(lineConfig.getConfig().getString(name + ".world")),
+				(float) lineConfig.getConfig().getDouble(name + ".option.teleport.yaw"),
+				(float) lineConfig.getConfig().getDouble(name + ".option.teleport.pitch")));
         }
 
         if (lineConfig.getConfig().get(name + ".area") != null) {
@@ -81,6 +79,26 @@ public class LineIO {
             line.addBorder(b);
             i++;
         }
+
+        if (type.equalsIgnoreCase("start")) {
+
+			if (lineConfig.getConfig().get(name + ".option.teleport.illegalarea") != null)
+				line.setTeleportEnabledIllegalArea(lineConfig.getConfig().getBoolean(name + ".option.teleport.illegalarea"));
+
+			i = 1;
+			while (lineConfig.getConfig().get(name + ".illegalarea." + i + ".min.x" ) != null) {
+				double[][] ia = new double[2][3];
+				ia[0][0] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".min.x");
+				ia[0][1] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".min.y");
+				ia[0][2] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".min.z");
+				ia[1][0] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".max.x");
+				ia[1][1] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".max.y");
+				ia[1][2] = lineConfig.getConfig().getDouble(name +  ".illegalarea." + i + ".max.z");
+				line.addIllegalArea(ia);
+				i++;
+			}
+
+		}
 
         if (type.equalsIgnoreCase("finish")) {
             if (lineConfig.getConfig().get(name + ".lastwinners") != null) {
@@ -142,6 +160,7 @@ public class LineIO {
         lineConfig.getConfig().set(name + ".option.blocksequence", line.getBlockSequenceString());
         lineConfig.getConfig().set(name + ".option.linked", line.getLinkedLine());
         lineConfig.getConfig().set(name + ".option.teleport.enabled", line.isTeleportEnabled());
+        lineConfig.getConfig().set(name + ".option.teleport.illegalarea", line.isTeleportEnabledIllegalArea());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.location", line.getTeleportLocation().toVector());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.yaw", (double) line.getTeleportLocation().getYaw());
         if (line.getTeleportLocation() != null) lineConfig.getConfig().set(name + ".option.teleport.pitch", (double) line.getTeleportLocation().getPitch());
@@ -190,6 +209,21 @@ public class LineIO {
             lineConfig.getConfig().set(name + ".option.commands", line.getCommands());
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
         }
+		
+		if (line.getType().equalsIgnoreCase("start")) {
+			if (line.getIllegalAreas() != null) {
+				int i = 1;
+				for (double[][] ia : line.getIllegalAreas()) {
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.x", ia[0][0]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.y", ia[0][1]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".min.z", ia[0][2]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.x", ia[1][0]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.y", ia[1][1]);
+					lineConfig.getConfig().set(name + ".illegalarea." + i + ".max.z", ia[1][2]);
+					i++;
+				}
+			}
+		}
 
     }
 

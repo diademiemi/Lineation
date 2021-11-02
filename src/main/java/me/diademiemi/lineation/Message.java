@@ -29,6 +29,7 @@ public class Message {
     public static String ERROR_NOT_START;
     public static String ERROR_NOT_FINISH;
     public static String ERROR_NO_CHECKPOINT;
+    public static String ERROR_NO_ILLEGAL_AREA;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
     public static String SUCCESS_LINE_STARTED;
@@ -37,9 +38,11 @@ public class Message {
     public static String SUCCESS_SET_AREA;
     public static String SUCCESS_SET_BORDER;
     public static String SUCCESS_SET_CHECKPOINT;
+    public static String SUCCESS_SET_ILLEGAL_AREA;
     public static String SUCCESS_LINE_REMOVED;
     public static String SUCCESS_BORDER_REMOVED;
     public static String SUCCESS_CHECKPOINT_REMOVED;
+	public static String SUCCESS_ILLEGAL_AREA_REMOVED;
     public static String SUCCESS_OPTION_SET;
     public static String SUCCESS_PLAYER_FORGOTTEN;
     public static String LINE_INFO_START;
@@ -76,6 +79,7 @@ public class Message {
         ERROR_NOT_START = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_START"));
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
+        ERROR_NO_ILLEGAL_AREA = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_ILLEGAL_AREA"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
         SUCCESS_LINE_STARTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STARTED"));
@@ -84,9 +88,11 @@ public class Message {
         SUCCESS_SET_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_AREA"));
         SUCCESS_SET_BORDER = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_BORDER"));
         SUCCESS_SET_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_CHECKPOINT"));
+        SUCCESS_SET_ILLEGAL_AREA = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_SET_ILLEGAL_AREA"));
         SUCCESS_LINE_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_REMOVED"));
         SUCCESS_BORDER_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_BORDER_REMOVED"));
         SUCCESS_CHECKPOINT_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_CHECKPOINT_REMOVED"));
+        SUCCESS_ILLEGAL_AREA_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_ILLEGAL_AREA_REMOVED"));
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         SUCCESS_PLAYER_FORGOTTEN = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_PLAYER_FORGOTTEN"));
         LINE_INFO_START = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO_START"));

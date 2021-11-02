@@ -229,24 +229,39 @@ public class LineTools {
      * @param player    Player to send message to
      */
     public static void getLineOptions(Line line, CommandSender player) {
-        StringBuilder teleportString = new StringBuilder("");
-        if (line.isTeleportEnabled()) {
-            teleportString.append("(" + (int)line.getTeleportLocation().getX() + "," +
-                    (int)line.getTeleportLocation().getY() + "," + 
-                    (int)line.getTeleportLocation().getZ() + ")");
-        } else teleportString.append("disabled");
+        StringBuilder teleportLocation = new StringBuilder("");
+		teleportLocation.append("(" + (int)line.getTeleportLocation().getX() + "," +
+				(int)line.getTeleportLocation().getY() + "," + 
+				(int)line.getTeleportLocation().getZ() + ")");
+        ArrayList<double[][]> illegalAreas = line.getIllegalAreas();
+		int i = 1;
         switch (line.getType()) {
             case "start":
+                StringBuilder illegalAreasString = new StringBuilder("");
+                i = 1;
+                for (double[][] ia : illegalAreas) {
+                    if (i> 1) {
+                        illegalAreasString.append("\n");
+                    }
+                    illegalAreasString.append(i);
+                    illegalAreasString.append(": " + "(" + ia[0][0] + "," + ia[0][1] + "," + ia[0][2] + ") -> (" +
+                            ia[1][0] + "," + ia[1][1] + "," + ia[1][2] + ")");
+                    i++;
+                }
                 player.sendMessage(Message.LINE_OPTIONS_START
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", teleportString)
+						.replace("$TPONSTART$", Boolean.toString(line.isTeleportEnabled()))
+						.replace("$TPILLEGALAREA$", Boolean.toString(line.isTeleportEnabledIllegalArea()))
+                        .replace("$TELEPORTLOCATION$", teleportLocation)
+						.replace("$GAMEMODES$", line.getGameModesString())
+						.replace("$ILLEGALAREAS$", illegalAreasString)
                         .replace("$LINKED$", line.getLinkedLine()));
                 break;
             case "finish":
                 ArrayList<String> commands = line.getCommands();
                 StringBuilder commandsString = new StringBuilder("");
-                int i = 1;
+                i = 1;
                 for (String c : commands) {
                     if (i> 1) {
                         commandsString.append("\n");
@@ -259,7 +274,8 @@ public class LineTools {
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
-                        .replace("$TELEPORTLOCATION$", teleportString)
+						.replace("$TPONFINISH$", Boolean.toString(line.isTeleportEnabled()))
+                        .replace("$TELEPORTLOCATION$", teleportLocation)
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())

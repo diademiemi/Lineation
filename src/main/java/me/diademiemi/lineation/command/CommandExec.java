@@ -103,7 +103,7 @@ public class CommandExec implements CommandExecutor {
                                     sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                             }
                             break;
-                        } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help"));
+                        } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help"));
                         break;
                     case "line": 
                         if (args.length > 1) {
@@ -301,7 +301,7 @@ public class CommandExec implements CommandExecutor {
                                                                             break;
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "addcommand":
                                                                 if (args.length > 4) {
@@ -319,7 +319,7 @@ public class CommandExec implements CommandExecutor {
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "removecommand":
                                                                 if (args.length > 4) {
@@ -344,7 +344,7 @@ public class CommandExec implements CommandExecutor {
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "messagereach":
                                                                 if (args.length > 4) {
@@ -363,7 +363,7 @@ public class CommandExec implements CommandExecutor {
                                                                             sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                     }
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "gamemodes":
                                                                 if (args.length > 4) {
@@ -381,7 +381,7 @@ public class CommandExec implements CommandExecutor {
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "blocksequence":
                                                                 if (args.length > 4) {
@@ -397,30 +397,124 @@ public class CommandExec implements CommandExecutor {
                                                                         }
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
+															case "illegalarea":
+																if (args.length > 4) {
+																	switch (args[4].toLowerCase()) {
+																		case "add":
+																			if (sender.hasPermission("lineation.line.option.illegalarea.add") && sender instanceof Player) {
+																				if (line.getType().equalsIgnoreCase("start")) {
+																					line.addIllegalArea((Player) sender);
+																				} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
+																			} else sender.sendMessage(Message.ERROR_NO_PERMS);
+																			break;
+																		case "remove":
+																			if (sender.hasPermission("lineation.line.option.illegalarea.remove")) {
+																				if (line.getType().equalsIgnoreCase("start")) {
+																					if (args.length > 5) {
+																						switch (args[5].toLowerCase()) {
+																							case "all":
+																								line.clearIllegalAreas();
+																								sender.sendMessage(Message.SUCCESS_ILLEGAL_AREA_REMOVED);
+																								break;
+																							default:
+																								try {
+																									int i = Integer.parseInt(args[5]);
+																									line.removeIllegalArea(i);
+																									sender.sendMessage(Message.SUCCESS_ILLEGAL_AREA_REMOVED);
+																								} catch (Exception e) {
+																									sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																								}
+																								break;
+																						}
+																					} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																					break;
+																				} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
+																				break;
+																			} else sender.sendMessage(Message.ERROR_NO_PERMS);
+																			break;
+																		case "gamemodes":
+																			if (args.length > 5) {
+																				if (sender.hasPermission("lineation.line.option.illegalarea.gamemodes")) {
+																					if (line.getType().equalsIgnoreCase("start")) {
+																						try {
+																							if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 5, args.length)).replaceAll("\\s", "").toUpperCase())) {
+																								sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							} else {
+																								sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
+																							}
+																						} catch (Exception e) {
+																							sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																						}
+																					} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
+																				} else sender.sendMessage(Message.ERROR_NO_PERMS);
+																				break;
+																			} sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																			break;
+																		default:
+																			sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																			break;
+																	}
+																} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																break;	
                                                             case "teleport":
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.teleport")) {
                                                                         switch (args[4].toLowerCase()) {
-                                                                            case "here":
+                                                                            case "setlocation":
                                                                                 if (sender instanceof Player) {
                                                                                     line.setTeleportLocation((Player) sender);
-                                                                                    line.setTeleportEnabled(true);
                                                                                     sender.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                 } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                                 break;
-                                                                            case "disable":
-                                                                                line.setTeleportEnabled(false);
-                                                                                sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                break;
+																			case "onstart":
+																			case "onfinish":
+																				if (args.length > 5) {
+																					switch (args[5].toLowerCase()) {
+																						case "true":
+																							line.setTeleportEnabled(true);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						case "false":
+																							line.setTeleportEnabled(false);
+																							sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																							break;
+																						default:
+																							sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																					}
+																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																				break;
+																			case "illegalarea":
+																				if (args.length > 5) {
+																					if (line.getType().equalsIgnoreCase("start")) {
+																						switch (args[5].toLowerCase()) {
+																							case "true":
+																								if (line.getIllegalAreas().size() != 0) {
+																									line.setTeleportEnabledIllegalArea(true);
+																									sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																									break;
+																								} else {
+																									sender.sendMessage(Message.ERROR_NO_ILLEGAL_AREA.replace("$LINE$", args[1]));
+																									break;
+																								}
+																							case "false":
+																								line.setTeleportEnabledIllegalArea(false);
+																								sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																								break;
+																							default:
+																									sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																						}
+																					} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
+																				} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																				break;
                                                                             default:
-                                                                            sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																				sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                                                         }
                                                                         break;
-                                                                    } sender.sendMessage(Message.ERROR_NO_PERMS);
+                                                                    } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                     break;
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "laps":
                                                                 if (args.length > 4) {
@@ -439,7 +533,7 @@ public class CommandExec implements CommandExecutor {
                                                                             break;
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                } sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
                                                             case "link":
                                                                 if (args.length > 4) {
@@ -452,14 +546,14 @@ public class CommandExec implements CommandExecutor {
                                                                                     linkLine.setLinkedLine(args[1]);
                                                                                     sender.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                     break;
-                                                                                } sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[4]));
+                                                                                } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[4]));
                                                                             } else if (line.getType().equalsIgnoreCase("finish")) {
                                                                                 if (linkLine.getType().equalsIgnoreCase("start")) {
                                                                                     line.setLinkedLine(args[4]);
                                                                                     linkLine.setLinkedLine(args[1]);
                                                                                     sender.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                     break;
-                                                                                } sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
+                                                                                } else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
                                                                             }
                                                                         } else sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[4]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
