@@ -201,7 +201,7 @@ public class CommandTabComplete implements TabCompleter {
 
                         if (args[3].equalsIgnoreCase("")) {
 
-                            if (player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
+                            if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
                             if (player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
                             if (player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
                             if (player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
@@ -213,7 +213,7 @@ public class CommandTabComplete implements TabCompleter {
                             
                         }
 
-                        if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("messagereach");
+                        if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
                         if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
                         if ("addcommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
                         if ("removecommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
@@ -278,7 +278,24 @@ public class CommandTabComplete implements TabCompleter {
                     
                     if (args[2].equalsIgnoreCase("option")) {
 
-                        if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
+						if (args[3].equalsIgnoreCase("messagereach") && player.hasPermission("lineation.line.option.messagereach")) {
+
+							if (args[4].equalsIgnoreCase("")) {
+
+								tabList.add("area");
+								tabList.add("all");
+								tabList.add("world");
+								tabList.add("100");
+								tabList.add("disabled");
+
+							}
+
+							if ("area".startsWith(args[4])) tabList.add("area");
+							if ("all".startsWith(args[4])) tabList.add("all");
+							if ("world".startsWith(args[4])) tabList.add("world");
+							if ("disabled".startsWith(args[4])) tabList.add("disabled");
+
+						} else if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
 
                             if (args[4].equalsIgnoreCase("")) {
 								
