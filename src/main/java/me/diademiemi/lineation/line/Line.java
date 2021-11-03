@@ -177,11 +177,11 @@ public class Line {
         
         this.setBlockSequence(Config.getPluginConfig().getConfig().getString("linedefaults.option.blocksequence"));
         this.setGameModes(Config.getPluginConfig().getConfig().getString("linedefaults.option.gamemodes"));
+        this.teleportLocation = new Location(world, 0, 0, 0, 0, 0);
 
         if (type.equalsIgnoreCase("finish")) {
             winners = new ArrayList<String>();
             maxWinners = Config.getPluginConfig().getConfig().getInt("linedefaults.option.maxwinners");
-            teleportLocation = new Location(world, 0, 0, 0, 0, 0);
             laps = 1;
             checkpoints = new ArrayList<double[][]>();
             checkpointCount = new HashMap<Player, Integer>();

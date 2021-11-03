@@ -287,6 +287,8 @@ public class CommandTabComplete implements TabCompleter {
 								if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
 									tabList.add("onstart");
 									tabList.add("illegalarea");
+									if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
+
 								} else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
 									tabList.add("onfinish");
 								}
@@ -297,6 +299,7 @@ public class CommandTabComplete implements TabCompleter {
 							if ("onstart".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("onstart");
 							if ("illegalarea".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
 							if ("onfinish".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("onfinish");
+							if ("gamemodes".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start") && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
 
                         } else if (args[3].equalsIgnoreCase("removecommand")) {
 

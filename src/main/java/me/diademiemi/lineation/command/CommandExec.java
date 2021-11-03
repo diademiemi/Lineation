@@ -434,24 +434,6 @@ public class CommandExec implements CommandExecutor {
 																				break;
 																			} else sender.sendMessage(Message.ERROR_NO_PERMS);
 																			break;
-																		case "gamemodes":
-																			if (args.length > 5) {
-																				if (sender.hasPermission("lineation.line.option.illegalarea.gamemodes")) {
-																					if (line.getType().equalsIgnoreCase("start")) {
-																						try {
-																							if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 5, args.length)).replaceAll("\\s", "").toUpperCase())) {
-																								sender.sendMessage(Message.SUCCESS_OPTION_SET);
-																							} else {
-																								sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
-																							}
-																						} catch (Exception e) {
-																							sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-																						}
-																					} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
-																				} else sender.sendMessage(Message.ERROR_NO_PERMS);
-																				break;
-																			} sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
-																			break;
 																		default:
 																			sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
 																			break;
@@ -468,6 +450,24 @@ public class CommandExec implements CommandExecutor {
                                                                                     sender.sendMessage(Message.SUCCESS_OPTION_SET);
                                                                                 } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                                 break;
+																			case "gamemodes":
+																				if (args.length > 5) {
+																					if (sender.hasPermission("lineation.line.option.gamemodes")) {
+																						if (line.getType().equalsIgnoreCase("start")) {
+																							try {
+																								if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 5, args.length)).replaceAll("\\s", "").toUpperCase())) {
+																									sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																								} else {
+																									sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
+																								}
+																							} catch (Exception e) {
+																								sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																							}
+																						} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[1]));
+																					} else sender.sendMessage(Message.ERROR_NO_PERMS);
+																					break;
+																				} sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																				break;
 																			case "onstart":
 																			case "onfinish":
 																				if (args.length > 5) {

@@ -28,6 +28,7 @@ HELP_OPTION: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7/lineation line <name> option blocksequence <block1,block2...> &r: Comma or space seperated list of blocks to use for the opening sequence
   &7/lineation line <name> option teleport setlocation &r: Sets the location players will teleport if using the teleport function described below
+  &7/lineation line <name> option teleport gamemodes &r: Comma or space seperated list of gamemodes players have to be in to get teleported 
   &7/lineation line <name> option teleport <onstart/onfinish/illegalarea> <true/false> &r: Makes players in the area teleport to this location when the line opens, when they finish or enter an illegal area  
   &7/lineation line <name> option maxwinners <number> &r: Number of players that have to finish before the line closes
   &7/lineation line <name> option addcommand <command> &r: Sets a command to run when a player finishes. Placeholders: %player%, %uuid%
@@ -37,7 +38,6 @@ HELP_OPTION: |2-
   &7/lineation line <name> option gamemodes <survival,adventure> &r: Comma or space seperated list of gamemodes players have to be in to be counted
   &7/lineation line <name> option illegalarea add &r: Adds an area that will teleport players to the start line if teleport illegalarea is set to true 
   &7/lineation line <name> option illegalarea remove <number/all>&r: Removes an illegal area 
-  &7/lineation line <name> option illegalarea gamemodes &r: Comma or space seperated list of gamemodes players have to be in to get teleported after entering an illegal area
   &7/lineation line <name> option link <line name> &r: This links a line of the other type to automatically start or stop at the same time
   &r&ohttps://diademiemi.github.io/Lineation/wiki/
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'

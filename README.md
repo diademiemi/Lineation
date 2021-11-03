@@ -63,13 +63,14 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 - `/lineation line <name> removeborder <number>` - Removes a border by number  
 - `/lineation line <name> addcheckpoint` - Adds a checkpoint players have to cross first before being counted to win  
   (Finish line only. Multiple checkpoints can be set, players have to pass through them in order)  
-- `/lieation line <name> removecheckpoint` - Removes a checkpoint by number  
+- `/lineation line <name> removecheckpoint` - Removes a checkpoint by number  
 - `/lineation line <name> getwinners` - Gets the last winners of this line  
   
   ##### Line options
 - `/lineation line <name> option blocksequence <block1,block2,block3...>` - Comma or space seperated list of blocks to use for the opening sequence  
   (The first block is used when stopped. Only one is required. For every block added the countdown takes one second longer.)  
 - `/lineation line <name> option teleport setlocation` - Sets the location players will teleport if using the teleport function described below  
+- `/lineation line <name> option teleport gamemodes` - Comma or space seperated list of gamemodes players have to be in to get teleported
 - `/lineation line <name> option teleport <onstart/onfinish/illegalarea> <true/false>` - Makes players in the area teleport to this location when the line opens, when they finish or enter an illegal area  
 - `/lineation line <name> option maxwinners <number>` - Number of players that have to finish before the line closes  
 - `/lineation line <name> option addcommand <command>` - Sets a command to run when a player finishes. Placeholders: %player%, %uuid%  
@@ -80,8 +81,6 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 - `/ineation line <name> option gamemodes <survival,adventure>` - Comma seperated list of gamemodes players have to be in to be counted  
 - `/lineation line <name> option illegalarea add` - Adds an area that will teleport players to the start line if teleport illegalarea is set to true  
 - `/lineation line <name> option illegalarea remove <number/all>` - Removes an illegal area  
-- `/lineation line <name> option illegalarea gamemodes` - Comma or space seperated list of gamemodes players have to be in to get teleported after ent  
-  ering an illegal area
 - `/lineation line <name> option link <line name>` - This links a line of the other type to automatically start or stop at the same time  
 
 ### Permissions
@@ -111,7 +110,6 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 - `lineation.line.option.illegalarea` - Allows using the illegal area option
 - `lineation.line.option.illegalarea.add` - Allow adding illegal areas to a line
 - `lineation.line.option.illegalarea.remove` - Allow removing set illegal areas
-- `lineation.line.option.illegalarea.gamemodes` - Allow setting the gamemodes which will trigger the illegal area
 - `lineation.line.option.link` - Allows linking lines  
 
 ## Installation
