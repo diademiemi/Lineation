@@ -6,8 +6,8 @@
 # Players wins can be wiped with /lineation config forget USERNAME
 linedefaults:
   option:
-    blocksequence: glass,red_stained_glass,yellow_stained_glass,lime_stained_glass
-    messagereach: world
+    blocksequence: glass, red_stained_glass, yellow_stained_glass, lime_stained_glass
+    messagereach: '250'
     maxwinners: 3
     commands: []
     gamemodes: SURVIVAL,ADVENTURE
