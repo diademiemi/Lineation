@@ -24,7 +24,7 @@ Huge thanks to [@jeremynoesen](https://github.com/jeremynoesen) for helping a gr
 | First I create a start and finish line<br> And then I link these two together<br> So they start and stop at the same time | I then set the first border for this start line                                                                                                           |
 | ![Demo1](img/demo1.png)                                                                                                   | ![Demo2](img/demo2.png)                                                                                                                                   |
 | Step 3                                                                                                                    | Step 4                                                                                                                                                    |
-| I then define a second border for the start line<br> This way the players can not jump over the line                      | I then set an area for this start line<br>In start lines this is only for sending the messages<br>So I make this area big to include potential spectators |
+| I then define a second border for the start line<br> This way the players can not jump over the line                      | I then set an area for this start line<br>In start lines this is used to send the announcement messages, target players to teleport and more				|
 | ![Demo3](img/demo3.png)                                                                                                   | ![Demo4](img/demo4.png)                                                                                                                                   |
 | Step 5                                                                                                                    | Step 6                                                                                                                                                    |
 | I now set a border for the finish line                                                                                    | And finally, I set an area for the finish line too<br>In finish lines this is the area used to detect players                                             |
@@ -118,7 +118,7 @@ To install Lineation, download the latest release and place the JAR file in your
 
 This plugin also has WorldEdit as a dependency, so please install that too. WorldEdit is used to make selections and set the blocks of the finish line.  
 
-The plugin has been tested in Minecraft 1.16.5 using Java 16 with WorldEdit 7.2.0. It might work on older versions, but I will not be guaranteeing compatability with older versions.  
+The plugin has been tested on Minecraft 1.13.2 using Java 11 and Minecraft 1.16.4 and 1.17.1 using Java 16 with WorldEdit 7.2.0.
 
 ## Configuration
 
