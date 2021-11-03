@@ -44,7 +44,7 @@ Some commands require a WorldEdit selection, these can not be used from command 
 - `/lineation line <name> option removecommand <number>` - Removes a command by number  
 - `/lineation line <name> option laps <number>` - Amount of times players have to go through the course before winning  
   (This requires at least one checkpoint to be set, place them appropriately around your course)  
-- `/lineation line <name> option messagereach <all/world/disabled>` - Sets who the announcement messages will target  
+- `/lineation line <name> option messagereach <all/area/world/number/disabled>` - Sets if messages will target all players, players in the area, players in the world, players a certain distance from the center of the area or send no messages.
 - `/ineation line <name> option gamemodes <survival,adventure>` - Comma seperated list of gamemodes players have to be in to be counted  
 - `/lineation line <name> option illegalarea add` - Adds an area that will teleport players to the start line if teleport illegalarea is set to true  
 - `/lineation line <name> option illegalarea remove <number/all>` - Removes an illegal area  
