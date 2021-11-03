@@ -69,7 +69,6 @@ public class Lineation extends JavaPlugin {
 		pm.addPermission(new Permission("lineation.line.option.illegalarea"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.add"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.remove"));
-		pm.addPermission(new Permission("lineation.line.option.illegalarea.gamemodes"));
 
         getCommand("lineation").setExecutor(new CommandExec());
         getCommand("lineation").setTabCompleter(new CommandTabComplete());
