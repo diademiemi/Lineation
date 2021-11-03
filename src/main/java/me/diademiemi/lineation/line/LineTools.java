@@ -104,15 +104,15 @@ public class LineTools {
 				try {
 					int i = Integer.parseInt(line.getMessageReach());
 					double[][] a = line.getArea();
-					double[] areaCenter = new double[2];
-					areaCenter[0] = a[0][0] / a[1][0];
-					areaCenter[1] = a[0][1] / a[1][1];
-					areaCenter[2] = a[0][2] / a[1][2];
+					double[] areaCenter = new double[3];
+					areaCenter[0] = (a[0][0] + a[1][0]) / 2.0;
+					areaCenter[1] = (a[0][1] + a[1][1]) / 2.0;
+					areaCenter[2] = (a[0][2] + a[1][2]) / 2.0;
 					Location centerLocation = new Location(line.getWorld(), areaCenter[0], areaCenter[1], areaCenter[2]);
-					players = line.getWorld().getPlayers();
-					for (Player p : players) {
-						if (centerLocation.distance(p.getLocation()) > i) {
-							players.remove(p);
+					players = new ArrayList<>();
+					for (Player p : line.getWorld().getPlayers()) {
+						if (centerLocation.distance(p.getLocation()) < (double)i) {
+							players.add(p);
 						}
 					}
 				} catch (Exception e) {
