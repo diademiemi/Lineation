@@ -369,6 +369,7 @@ public class CommandExec implements CommandExecutor {
 																		}
 																	} else sender.sendMessage(Message.ERROR_NO_PERMS);
 																} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+																break;
                                                             case "gamemodes":
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.gamemodes")) {
