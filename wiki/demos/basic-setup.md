@@ -19,7 +19,7 @@ This way the players can not jump over the line
 
 ### Step 4
 I then set an area for this start line  
-In start lines this is only for sending the messages and teleporting players if enabled  
+In start lines this is used to send the announcement messages, target players to teleport and more  
 ![Demo4](assets/basic-setup4.png)  
 
 ### Step 5
