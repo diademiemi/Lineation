@@ -273,6 +273,7 @@ public class LineTools {
 						.replace("$TPONSTART$", Boolean.toString(line.isTeleportEnabled()))
 						.replace("$TPILLEGALAREA$", Boolean.toString(line.isTeleportEnabledIllegalArea()))
                         .replace("$TELEPORTLOCATION$", teleportLocation)
+                        .replace("$MESSAGEREACH$", line.getMessageReach())
 						.replace("$GAMEMODES$", line.getGameModesString())
 						.replace("$ILLEGALAREAS$", illegalAreasString)
                         .replace("$LINKED$", line.getLinkedLine()));
