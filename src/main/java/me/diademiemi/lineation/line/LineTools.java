@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Location;
 import org.bukkit.World;
 
 import me.diademiemi.lineation.Lineation;
@@ -76,6 +77,52 @@ public class LineTools {
 
         }
     }
+
+	/**
+	 * Get a list of players that a message should be sent to according to the lines messagereach option
+	 *
+	 * @param line	Line to get message reach from
+	 *
+	 * @return	List of players
+	 */
+	public static List<Player> getMessagePlayers(Line line) {
+		List<Player> players;
+		switch (line.getMessageReach()) {
+			case "all":
+				players = new ArrayList<>(Bukkit.getOnlinePlayers());
+				break;
+            case "world":
+                players = line.getWorld().getPlayers();
+				break;
+			case "area":
+				players = line.getPlayers();
+				break;
+			case "disabled":
+				players = new ArrayList<>();
+				break;
+			default:
+				try {
+					int i = Integer.parseInt(line.getMessageReach());
+					double[][] a = line.getArea();
+					double[] areaCenter = new double[3];
+					areaCenter[0] = (a[0][0] + a[1][0]) / 2.0;
+					areaCenter[1] = (a[0][1] + a[1][1]) / 2.0;
+					areaCenter[2] = (a[0][2] + a[1][2]) / 2.0;
+					Location centerLocation = new Location(line.getWorld(), areaCenter[0], areaCenter[1], areaCenter[2]);
+					players = new ArrayList<>();
+					for (Player p : line.getWorld().getPlayers()) {
+						if (centerLocation.distance(p.getLocation()) < (double)i) {
+							players.add(p);
+						}
+					}
+				} catch (Exception e) {
+					players = new ArrayList<>();
+				}
+				break;
+		}
+		return players;
+	}
+	
   
     /**
      * Send finish message when someone finishes
@@ -85,21 +132,11 @@ public class LineTools {
      * @param place Place number player got
      */
     public static void finishMessage(Line line, Player player, Integer place) {
-        switch (line.getMessageReach()) {
-            case "world":
-                List<Player> players = line.getWorld().getPlayers();
-                for (Player p : players) {
-                    p.sendMessage(Message.PLAYER_FINISHED
-                            .replace("$NAME$", player.getName())
-                            .replace("$PLACE$", Message.ordinal(place)));
-                }
-                break;
-            case "all":
-                Bukkit.broadcastMessage(Message.PLAYER_FINISHED
-                        .replace("$NAME$", player.getName())
-                        .replace("$PLACE$", Message.ordinal(place)));
-                break;
-        }
+		for (Player p : getMessagePlayers(line)) {
+			p.sendMessage(Message.PLAYER_FINISHED
+					.replace("$NAME$", player.getName())
+					.replace("$PLACE$", Message.ordinal(place)));
+		}
     }
    
     /**
@@ -110,21 +147,11 @@ public class LineTools {
      * @param i Number of the lap
      */
     public static void lapMessage(Line line, Player player, Integer i) {
-        switch (line.getMessageReach()) {
-            case "world":
-                List<Player> players = line.getWorld().getPlayers();
-                for (Player p : players) {
-                    p.sendMessage(Message.PLAYER_LAP
-                            .replace("$NAME$", player.getName())
-                            .replace("$LAP$", i + "/" + line.getLaps()));
-                }
-                break;
-            case "all":
-                Bukkit.broadcastMessage(Message.PLAYER_LAP
-                        .replace("$NAME$", player.getName())
-                        .replace("$LAP$", i + "/" + line.getLaps()));
-                break;
-        }
+		for (Player p : getMessagePlayers(line)) {
+			p.sendMessage(Message.PLAYER_LAP
+					.replace("$NAME$", player.getName())
+					.replace("$LAP$", i + "/" + line.getLaps()));
+		}
     }
 
     /**
@@ -147,17 +174,9 @@ public class LineTools {
             i++;
         }
 
-        switch (line.getMessageReach()) {
-            case "world":
-                List<Player> players = line.getWorld().getPlayers();
-                for (Player p : players) {
-                    p.sendMessage(announcement.toString());
-                }
-                break;
-            case "all":
-                Bukkit.broadcastMessage(announcement.toString());
-                break;
-        }
+		for (Player p : getMessagePlayers(line)) {
+			p.sendMessage(announcement.toString());
+		}
     }
                     
 
@@ -254,6 +273,7 @@ public class LineTools {
 						.replace("$TPONSTART$", Boolean.toString(line.isTeleportEnabled()))
 						.replace("$TPILLEGALAREA$", Boolean.toString(line.isTeleportEnabledIllegalArea()))
                         .replace("$TELEPORTLOCATION$", teleportLocation)
+                        .replace("$MESSAGEREACH$", line.getMessageReach())
 						.replace("$GAMEMODES$", line.getGameModesString())
 						.replace("$ILLEGALAREAS$", illegalAreasString)
                         .replace("$LINKED$", line.getLinkedLine()));
@@ -530,15 +550,15 @@ public class LineTools {
                             replaceBlocks(es, b, line.getWorld(), "air", blockSequence.get(i - 1));
                         }
 
-                        for (Player p : players) {
+                        for (Player p : getMessagePlayers(line)) {
                             p.sendMessage(Message.STARTING_NOW);
                         }
 
                         if (line.isTeleportEnabled()) {
                             for (Player p : players) {
-				if(line.getGameModes().contains(p.getGameMode())) {
+								if(line.getGameModes().contains(p.getGameMode())) {
                                     p.teleport(line.getTeleportLocation());
-				}
+								}
                             }
                         }
 
@@ -548,7 +568,7 @@ public class LineTools {
                             replaceBlocks(es, b, line.getWorld(), blockSequence.get(i), blockSequence.get(i - 1));
                         }
 
-                        for (Player p : players) {
+                        for (Player p : getMessagePlayers(line)) {
                             p.sendMessage(Message.STARTING_IN.replace("$SECONDS$", String.valueOf(blockSequence.size() - i)));
                         }
 
