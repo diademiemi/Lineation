@@ -348,23 +348,27 @@ public class CommandExec implements CommandExecutor {
                                                                 break;
                                                             case "messagereach":
                                                                 if (args.length > 4) {
-                                                                    switch (args[4].toLowerCase()) {
-                                                                        case "world":
-                                                                        case "disabled":
-                                                                        case "all":
-                                                                            if (sender.hasPermission("lineation.line.option.messagereach")) {
-                                                                                if (line.getType().equalsIgnoreCase("finish")) {
-                                                                                    line.setMessageReach(args[4]);
-                                                                                    sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
-                                                                            } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                            break;
-                                                                        default:
-                                                                            sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                                                    }
-                                                                    break;
-                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
-                                                                break;
+																	if (sender.hasPermission("lineation.line.option.messagereach")) {
+																		switch (args[4].toLowerCase()) {
+																			case "disabled":
+																			case "world":
+																			case "area":
+																			case "all":
+																					line.setMessageReach(args[4]);
+																					sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																				break;
+																			default:
+																				try {
+																					Integer.parseInt(args[4]);
+																					line.setMessageReach(args[4]);
+																					sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																				} catch (Exception e) {
+																					sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+																				}
+																				break;
+																		}
+																	} else sender.sendMessage(Message.ERROR_NO_PERMS);
+																} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                             case "gamemodes":
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.gamemodes")) {
