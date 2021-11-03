@@ -536,7 +536,9 @@ public class LineTools {
 
                         if (line.isTeleportEnabled()) {
                             for (Player p : players) {
-                                p.teleport(line.getTeleportLocation());
+				if(line.getGameModes().contains(p.getGameMode()) {
+                                    p.teleport(line.getTeleportLocation());
+				}
                             }
                         }
 
