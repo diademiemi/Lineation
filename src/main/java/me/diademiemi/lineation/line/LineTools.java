@@ -205,6 +205,7 @@ public class LineTools {
             case "start":
                 player.sendMessage(Message.LINE_INFO_START
                         .replace("$NAME$", line.getName())
+                        .replace("$LINKED$", line.getLinkedLine())
                         .replace("$STARTED$", Boolean.toString(line.isStarted()))
                         .replace("$TYPE$", line.getType())
                         .replace("$WORLD$", line.getWorld().getName())
@@ -228,6 +229,7 @@ public class LineTools {
                 }
                 player.sendMessage(Message.LINE_INFO_FINISH
                         .replace("$NAME$", line.getName())
+                        .replace("$LINKED$", line.getLinkedLine())
                         .replace("$STARTED$", Boolean.toString(line.isStarted()))
                         .replace("$TYPE$", line.getType())
                         .replace("$WORLD$", line.getWorld().getName())
@@ -275,8 +277,7 @@ public class LineTools {
                         .replace("$TELEPORTLOCATION$", teleportLocation)
                         .replace("$MESSAGEREACH$", line.getMessageReach())
 						.replace("$GAMEMODES$", line.getGameModesString())
-						.replace("$ILLEGALAREAS$", illegalAreasString)
-                        .replace("$LINKED$", line.getLinkedLine()));
+						.replace("$ILLEGALAREAS$", illegalAreasString));
                 break;
             case "finish":
                 ArrayList<String> commands = line.getCommands();
@@ -300,8 +301,7 @@ public class LineTools {
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
                         .replace("$COMMANDS$", commandsString)
-                        .replace("$GAMEMODES$", line.getGameModesString())
-                        .replace("$LINKED$", line.getLinkedLine()));
+                        .replace("$GAMEMODES$", line.getGameModesString()));
 
                 break;
         }           
