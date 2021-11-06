@@ -89,7 +89,7 @@ HELP_OPTIONS_FINISH: |2-
   The block to set the borders to when the line is stopped
   &7&o/lineation line <name> option gamemodes &r:
   A list of gamemodes that players need to be in to be counted to finish
-  &7&o/lineation line <name> option laps <number> &r
+  &7&o/lineation line <name> option laps <number> &r:
   Amount of laps a player has to do for this course to win. Requires at least one checkpoint to be set!
   &7&o/lineation line <name> option maxwinners <number> &r:
   Sets the amount of players that need to finish before the line closes
