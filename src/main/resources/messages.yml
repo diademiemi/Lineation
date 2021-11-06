@@ -4,22 +4,23 @@ HELP_GENERAL: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation help &r: 
   Show this page
-  &7/lineation help lines &r:
+  &7&o/lineation help lines &r:
   View commands relating to lines
-  &7/lineation config maxwins <number> &r: 
+  &7&o/lineation config maxwins <number> &r: 
   Sets a limit on the amount of times a player can win
-  &7/lineation config forget <username/uuid> &r:
+  &7&o/lineation config forget <username/uuid> &r:
   Forget a players total wins for maxwins
-  &r&ohttps://diademiemi.github.io/Lineation/wiki/
+  &8https://diademiemi.github.io/Lineation/wiki/
 HELP_LINES: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation line create <start/finish> <name> &r:
   Creates a start or finish line with this name
   &7&o/lineation line remove <name> &r:
   Deletes a line with this name
   &7&o/lineation line list <start/finish>&r:
   Lists all lines that are defined. Specifying a type is optional
-  &8For more help about lines with a certain type, check &7&o/lineation help <start/finish>
-  &8For advanced options of lines, check &7&o/lineation help options <start/finish>
+  &rFor more help about lines with a certain type, check &7&o/lineation help <start/finish>
+  &rFor advanced options of lines, check &7&o/lineation help options <start/finish>
 HELP_START: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation line <name> start &r:
@@ -29,10 +30,12 @@ HELP_START: |2-
   &7&o/lineation line <name> setarea &r:
   Sets the area where players will be detected. Check /lineation help areas for explanation
   &7&o/lineation line <name> addborder &r:
-  Adds a border where blocks are set at your current WorldEdit selection
+  Adds a border where blocks will be set at your current WorldEdit selection
   &7&o/lineation line <name> removeborder <number/all> &r:
   Remove a border by number
-  &8View /lineation line <name> info to see information about a line
+  &7&o/lineation line <name> link <name> &r:
+  Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &rView &7&o/lineation line <name> info&r to see this information from a line
 HELP_FINISH: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation line <name> start &r:
@@ -42,7 +45,7 @@ HELP_FINISH: |2-
   &7&o/lineation line <name> setarea &r:
   Sets the area where players will be detected. Check /lineation help areas for explanation
   &7&o/lineation line <name> addborder &r:
-  Adds a border where blocks are set at your current WorldEdit selection
+  Adds a border where blocks will be set at your current WorldEdit selection
   &7&o/lineation line <name> removeborder <number/all> &r:
   Remove a border by number
   &7&o/lineation line <name> addcheckpoint &r:
@@ -51,10 +54,12 @@ HELP_FINISH: |2-
   Remove a checkpoint by number
   &7&o/lineation line <name> getwinners &r:
   Get the players that last won this line
-  &8View /lineation line <name> info to see information about a line
+  &7&o/lineation line <name> link <name> &r:
+  Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &rView &7&o/lineation line <name> info&r to see this information from a line
 HELP_OPTIONS: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &8Please specify a line type:
+  &rPlease specify a line type:
   &7&o/lineation help options start
   &7&o/lineation help options finish
 HELP_OPTIONS_START: |2-
@@ -73,7 +78,7 @@ HELP_OPTIONS_START: |2-
   A list of gamemodes affected by the teleport feature
   &7&o/lineation line <name> option teleport <onstart/illegalarea> <true/false> &r:
   Whether players get teleported when this line opens or when they enter an illegal area
-  &8View /lineation line <name> info options to see a lines currently set options
+  &rView &7&o/lineation line <name> info options &rto see what options a line has set
 HELP_OPTIONS_FINISH: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation line <name> option block <block> &r:
@@ -90,22 +95,22 @@ HELP_OPTIONS_FINISH: |2-
   Sets the location which will be used to teleport players to if this feature is used
   &7&o/lineation line <name> option teleport onfinish <true/false> &r:
   Whether players get teleported when to the teleport point when they finish
-  &8View /lineation line <name> info options to see the currently set options
+  &rView &7&o/lineation line <name> info options &rto see what options a line has set
 HELP_AREAS: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7A line's area is used to detect players, and to know where the line is located.
+  &rA line's area is used to detect players, and to know where the line is located.
   The center of the area is used to calculate the distance to a player, used in the messagereach option.
   In starting lines, it is possible to teleport all players in the area to a location when the line starts with the teleport option.
-  In finish lines, this area is used to detect players. It's vital to set an area that players enter or cross through when they finish.
-  If your players are moving at a high speed, such as in elytra races, be sure to set a large area. If your server is lagging, this could result in missed player wins.  
+  In finish lines, this area is used to detect players. It's vital to set an area that players enter or cross through when they should finish.
+  &7If your players are moving at a high speed, such as in elytra races, be sure to set a large area. If your server is lagging, not doing so could result in missed player wins.  
 HELP_BORDERS: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7You can set borders on lines, these are cuboid shapes where blocks will be set when the line is stopped.
+  &rYou can set borders on lines, these are cuboid shapes where blocks will be set when the line is stopped.
   In finish lines, the block that is set when the line is stopped is defined in the block option.
-  To change the block used, run &7&o/lineation line <line> option block <block>&r&7.
+  To change the block used, run &7&o/lineation line <line> option block <block>&r.
   In start lines, there is a countdown which is defined by the blocksequence option.
   For every block defined in the blocksequence option after the first (The resting position), the borders will take one second to start.
-  By default this is set to "glass, red_stained_glass, yellow_stained_glass, lime_stained_glass", this creates a countdown of 3 seconds. 
+  By default this is set to &7"glass, red_stained_glass, yellow_stained_glass, lime_stained_glass"&r, this creates a countdown of 3 seconds. 
 GUIDE_CREATED_START: |2-
   &r&7Created a line! Next, please set an area for this line.
   In starting lines, this is used to detect players, and by default the center of this area is used to calculate distances from players, for example for messages.
