@@ -44,6 +44,7 @@ public class Message {
     public static String ERROR_NOT_FINISH;
     public static String ERROR_NO_CHECKPOINT;
     public static String ERROR_NO_ILLEGAL_AREA;
+    public static String ERROR_NO_LINE_HERE;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
     public static String SUCCESS_LINE_STARTED;
@@ -108,6 +109,7 @@ public class Message {
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
         ERROR_NO_ILLEGAL_AREA = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_ILLEGAL_AREA"));
+        ERROR_NO_LINE_HERE = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_LINE_HERE"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
         SUCCESS_LINE_STARTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STARTED"));

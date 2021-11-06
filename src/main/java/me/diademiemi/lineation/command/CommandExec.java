@@ -166,6 +166,13 @@ public class CommandExec implements CommandExecutor {
                                     }
                                     else sender.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<type>, <name>"));
                                     break;
+								case "here":
+									if (sender instanceof Player && sender.hasPermission("lineation.line.here")) {
+										if (Line.get((Player)sender) != null ) {
+											LineTools.getLineInfo(Line.get((Player)sender), sender);
+										} else sender.sendMessage(Message.ERROR_NO_LINE_HERE);
+									} else sender.sendMessage(Message.ERROR_NO_PERMS);
+									break;
                                 case "list":
                                     if (args.length > 2) {
                                         switch (args[2].toLowerCase()) {
