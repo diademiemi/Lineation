@@ -351,49 +351,6 @@ public class CommandExec implements CommandExecutor {
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                 } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options finish"));
                                                                 break;
-                                                            case "addcommand":
-                                                                if (args.length > 4) {
-                                                                    if (sender.hasPermission("lineation.line.option.addcommand")) {
-                                                                        if (line.getType().equalsIgnoreCase("finish")) {
-                                                                            StringBuilder com = new StringBuilder("");
-                                                                            for (int i = 4; i < args.length; i++) {
-                                                                                com.append(args[i]);
-                                                                                if (i + 1 != args.length) {
-                                                                                    com.append(" ");
-                                                                                }
-                                                                            }
-                                                                            line.addCommand(com.toString());
-                                                                            sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                        } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
-                                                                    } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                    break;
-                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
-                                                                break;
-                                                            case "removecommand":
-                                                                if (args.length > 4) {
-                                                                    if (sender.hasPermission("lineation.line.option.removecommand")) {
-                                                                        if (line.getType().equalsIgnoreCase("finish")) {
-                                                                            switch (args[4].toLowerCase()) {
-                                                                                case "all":
-                                                                                    line.clearCommands();
-                                                                                    sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                    break;
-                                                                                default: 
-                                                                                    try {
-                                                                                        int i = Integer.parseInt(args[4]);
-                                                                                        line.removeCommand(i);
-                                                                                        sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                    } catch (Exception e) {
-                                                                                        sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                                                                    }
-                                                                                    break;
-                                                                            }
-                                                                            break;
-                                                                        } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
-                                                                    } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                    break;
-                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
-                                                                break;
                                                             case "messagereach":
                                                                 if (args.length > 4) {
 																	if (sender.hasPermission("lineation.line.option.messagereach")) {

@@ -58,14 +58,6 @@ public class LineTools {
                         player.teleport(line.getTeleportLocation());
                     }
 
-                    ArrayList<String> commands = line.getCommands();
-
-                    for (String c : commands) {
-                        Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), c
-                                .replace("%player%", player.getName())
-                                .replace("%uuid%", uuid));
-                    }
-
                     data.getConfig().set(uuid, data.getConfig().getInt(uuid) + 1);
 
                     if (line.getWinners().size() == line.getMaxWinners()) {
@@ -280,18 +272,6 @@ public class LineTools {
 						.replace("$ILLEGALAREAS$", illegalAreasString));
                 break;
             case "finish":
-                ArrayList<String> commands = line.getCommands();
-                StringBuilder commandsString = new StringBuilder("");
-                i = 1;
-                for (String c : commands) {
-                    if (i> 1) {
-                        commandsString.append("\n");
-                    }
-                    commandsString.append(i);
-                    commandsString.append(": " + c);
-                    i++;
-                }
-
                 player.sendMessage(Message.LINE_OPTIONS_FINISH
                         .replace("$NAME$", line.getName())
                         .replace("$BLOCKSEQUENCE$", line.getBlockSequenceString())
@@ -300,7 +280,6 @@ public class LineTools {
                         .replace("$ALLOWEDWINNERS$", Integer.toString(line.getMaxWinners()))
                         .replace("$LAPS$", Integer.toString(line.getLaps()))
                         .replace("$MESSAGEREACH$", line.getMessageReach())
-                        .replace("$COMMANDS$", commandsString)
                         .replace("$GAMEMODES$", line.getGameModesString()));
 
                 break;

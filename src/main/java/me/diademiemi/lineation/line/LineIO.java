@@ -107,9 +107,6 @@ public class LineIO {
             if (lineConfig.getConfig().get(name + ".option.maxwinners") != null) {
                 line.setMaxWinners(lineConfig.getConfig().getInt(name + ".option.maxwinners"));
             }
-            if (lineConfig.getConfig().get(name + ".option.commands") != null) {
-                line.setCommands(lineConfig.getConfig().getStringList(name + ".option.commands"));
-            }
             if (lineConfig.getConfig().get(name + ".option.laps") != null) {
                 line.setLaps(lineConfig.getConfig().getInt(name + ".option.laps"));
             }
@@ -206,7 +203,6 @@ public class LineIO {
 
             lineConfig.getConfig().set(name + ".lastwinners", line.getWinners());
             lineConfig.getConfig().set(name + ".option.maxwinners", line.getMaxWinners());
-            lineConfig.getConfig().set(name + ".option.commands", line.getCommands());
             lineConfig.getConfig().set(name + ".option.laps", line.getLaps());
         }
 		

@@ -131,11 +131,6 @@ public class Line {
     private ArrayList<GameMode> allowedGameModes;
 
     /**
-     * Commands to execute on finish
-     */
-    private ArrayList<String> commands;
-
-    /**
      * Boolean to check if teleportation is enabled
      */
     private boolean teleportEnabled;
@@ -186,7 +181,6 @@ public class Line {
             checkpoints = new ArrayList<double[][]>();
             checkpointCount = new HashMap<Player, Integer>();
             lapCount = new HashMap<Player, Integer>();
-            this.setCommands(Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands"));
         }
 		if (type.equalsIgnoreCase("start")) {
 			illegalAreas = new ArrayList<double[][]>();
@@ -907,51 +901,6 @@ public class Line {
          */
         public void clearPlayerLaps() {
             lapCount.clear();
-        }
-
-        /**
-         * Get a list of all commands to execute at finish
-         *
-         * @return  ArrayList of commands to execute
-         */
-        public ArrayList<String> getCommands() {
-            return commands;
-        }
-
-        /**
-         * Add a command to execute at finish
-         *
-         * @param command Command to execute
-         */
-        public void addCommand(String command) {
-            commands.add(command);
-        }
-
-        /**
-         * Sets the commands list
-         *
-         * @param commands  List of commands
-         */
-        public void setCommands(List<String> commands) {
-            ArrayList<String> commandsList = new ArrayList<String>(commands);
-            this.commands = commandsList;
-        }
-
-
-        /**
-         * Remove a command by number
-         *
-         * @param i Number of the command to remove
-         */
-        public void removeCommand(int i) {
-            commands.remove(i - 1);
-        }
-
-        /**
-         * Clear all commands of this line
-         */
-        public void clearCommands() {
-            commands.clear();
         }
 
         /**
