@@ -13,9 +13,23 @@ public class Message {
     private static final Config messageConfig = Config.getMessageConfig();
 
     public static String PREFIX;
-    public static String HELP_INDEX;
-    public static String HELP_LINE;
-    public static String HELP_OPTION;
+	public static String HELP_GENERAL;
+	public static String HELP_LINES;
+	public static String HELP_START;
+	public static String HELP_FINISH;
+    public static String HELP_OPTIONS;
+	public static String HELP_OPTIONS_START;
+	public static String HELP_OPTIONS_FINISH;
+	public static String HELP_AREAS;
+	public static String HELP_BORDERS;
+	public static String GUIDE_CREATED_START;
+	public static String GUIDE_CREATED_FINISH;
+	public static String GUIDE_AREA_SET_START;
+	public static String GUIDE_AREA_SET_FINISH;
+	public static String GUIDE_BORDER_SET_START;
+	public static String GUIDE_BORDER_SET_FINISH;
+	public static String GUIDE_SUGGEST_LINK_START;
+	public static String GUIDE_SUGGEST_LINK_FINISH;
     public static String ERROR_NO_PERMS;
     public static String ERROR_UNKNOWN_ARGS;
     public static String ERROR_MISSING_ARGS;
@@ -30,6 +44,7 @@ public class Message {
     public static String ERROR_NOT_FINISH;
     public static String ERROR_NO_CHECKPOINT;
     public static String ERROR_NO_ILLEGAL_AREA;
+    public static String ERROR_NO_LINE_HERE;
     public static String ERROR_LINE_EXISTS;
     public static String SUCCESS_RELOAD;
     public static String SUCCESS_LINE_STARTED;
@@ -63,9 +78,23 @@ public class Message {
      */
     public static void reloadMessages() {
         PREFIX = format(messageConfig.getConfig().getString("PREFIX"));
-        HELP_INDEX = format(messageConfig.getConfig().getString("HELP_INDEX"));
-        HELP_LINE = format(messageConfig.getConfig().getString("HELP_LINE"));
-        HELP_OPTION = format(messageConfig.getConfig().getString("HELP_OPTION"));
+        HELP_GENERAL = format(messageConfig.getConfig().getString("HELP_GENERAL"));
+        HELP_LINES = format(messageConfig.getConfig().getString("HELP_LINES"));
+        HELP_START = format(messageConfig.getConfig().getString("HELP_START"));
+        HELP_FINISH = format(messageConfig.getConfig().getString("HELP_FINISH"));
+        HELP_OPTIONS = format(messageConfig.getConfig().getString("HELP_OPTIONS"));
+        HELP_OPTIONS_START = format(messageConfig.getConfig().getString("HELP_OPTIONS_START"));
+        HELP_OPTIONS_FINISH = format(messageConfig.getConfig().getString("HELP_OPTIONS_FINISH"));
+        HELP_AREAS = format(messageConfig.getConfig().getString("HELP_AREAS"));
+        HELP_BORDERS = format(messageConfig.getConfig().getString("HELP_BORDERS"));
+		GUIDE_CREATED_START = format(messageConfig.getConfig().getString("GUIDE_CREATED_START"));
+		GUIDE_CREATED_FINISH = format(messageConfig.getConfig().getString("GUIDE_CREATED_FINISH"));
+		GUIDE_AREA_SET_START = format(messageConfig.getConfig().getString("GUIDE_AREA_SET_START"));
+		GUIDE_AREA_SET_FINISH = format(messageConfig.getConfig().getString("GUIDE_AREA_SET_FINISH"));
+		GUIDE_BORDER_SET_START = format(messageConfig.getConfig().getString("GUIDE_BORDER_SET_START"));
+		GUIDE_BORDER_SET_FINISH = format(messageConfig.getConfig().getString("GUIDE_BORDER_SET_FINISH"));
+		GUIDE_SUGGEST_LINK_START = format(messageConfig.getConfig().getString("GUIDE_SUGGEST_LINK_START"));
+		GUIDE_SUGGEST_LINK_FINISH = format(messageConfig.getConfig().getString("GUIDE_SUGGEST_LINK_FINISH"));
         ERROR_NO_PERMS = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_PERMS"));
         ERROR_UNKNOWN_ARGS = PREFIX + format(messageConfig.getConfig().getString("ERROR_UNKNOWN_ARGS"));
         ERROR_MISSING_ARGS = PREFIX + format(messageConfig.getConfig().getString("ERROR_MISSING_ARGS"));
@@ -80,6 +109,7 @@ public class Message {
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
         ERROR_NO_ILLEGAL_AREA = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_ILLEGAL_AREA"));
+        ERROR_NO_LINE_HERE = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_LINE_HERE"));
         ERROR_LINE_EXISTS = PREFIX + format(messageConfig.getConfig().getString("ERROR_LINE_EXISTS"));
         SUCCESS_RELOAD = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_RELOAD"));
         SUCCESS_LINE_STARTED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_LINE_STARTED"));

@@ -44,10 +44,12 @@ public class Lineation extends JavaPlugin {
         pm = getServer().getPluginManager();
 
         pm.addPermission(new Permission("lineation.help"));
-        pm.addPermission(new Permission("lineation.reload"));
-        pm.addPermission(new Permission("lineation.maxwins"));
-        pm.addPermission(new Permission("lineation.forget"));
+		pm.addPermission(new Permission("lineation.config"));
+        pm.addPermission(new Permission("lineation.config.reload"));
+        pm.addPermission(new Permission("lineation.config.maxwins"));
+        pm.addPermission(new Permission("lineation.config.forget"));
         pm.addPermission(new Permission("lineation.line.list"));
+		pm.addPermission(new Permission("lineation.line.here"));
         pm.addPermission(new Permission("lineation.line.create"));
         pm.addPermission(new Permission("lineation.line.remove"));
         pm.addPermission(new Permission("lineation.line.setarea"));
@@ -57,15 +59,14 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.removecheckpoint"));
         pm.addPermission(new Permission("lineation.line.start"));
         pm.addPermission(new Permission("lineation.line.stop"));
+		pm.addPermission(new Permission("lineation.line.tp"));
+        pm.addPermission(new Permission("lineation.line.link"));
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
         pm.addPermission(new Permission("lineation.line.option.maxwinners"));
-        pm.addPermission(new Permission("lineation.line.option.addcommand"));
-        pm.addPermission(new Permission("lineation.line.option.removecommand"));
         pm.addPermission(new Permission("lineation.line.option.gamemodes"));
         pm.addPermission(new Permission("lineation.line.option.blocksequence"));
         pm.addPermission(new Permission("lineation.line.option.teleport"));
         pm.addPermission(new Permission("lineation.line.option.laps"));
-        pm.addPermission(new Permission("lineation.line.option.link"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.add"));
 		pm.addPermission(new Permission("lineation.line.option.illegalarea.remove"));

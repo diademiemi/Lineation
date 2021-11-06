@@ -131,11 +131,6 @@ public class Line {
     private ArrayList<GameMode> allowedGameModes;
 
     /**
-     * Commands to execute on finish
-     */
-    private ArrayList<String> commands;
-
-    /**
      * Boolean to check if teleportation is enabled
      */
     private boolean teleportEnabled;
@@ -186,7 +181,6 @@ public class Line {
             checkpoints = new ArrayList<double[][]>();
             checkpointCount = new HashMap<Player, Integer>();
             lapCount = new HashMap<Player, Integer>();
-            this.setCommands(Config.getPluginConfig().getConfig().getStringList("linedefaults.option.commands"));
         }
 		if (type.equalsIgnoreCase("start")) {
 			illegalAreas = new ArrayList<double[][]>();
@@ -632,6 +626,22 @@ public class Line {
         public void setArea(double[][] area) {
             this.area = area;
         }
+
+		/**
+		 * Set the area of this line to the players location.
+		 * This is just a temporary area until it's defined manually, but this removes some possible error.
+		 *
+		 * @param loc	Location to set the area to
+		 */
+		public void setArea(Location loc) {
+			area[0][0] = loc.getBlockX();
+			area[0][1] = loc.getBlockY();
+			area[0][2] = loc.getBlockZ();
+			area[1][0] = loc.getBlockX();
+			area[1][1] = loc.getBlockY();
+			area[1][2] = loc.getBlockZ();
+			world = loc.getWorld();
+		}
             
         /**
          * Get list of all borders of this line
@@ -907,51 +917,6 @@ public class Line {
          */
         public void clearPlayerLaps() {
             lapCount.clear();
-        }
-
-        /**
-         * Get a list of all commands to execute at finish
-         *
-         * @return  ArrayList of commands to execute
-         */
-        public ArrayList<String> getCommands() {
-            return commands;
-        }
-
-        /**
-         * Add a command to execute at finish
-         *
-         * @param command Command to execute
-         */
-        public void addCommand(String command) {
-            commands.add(command);
-        }
-
-        /**
-         * Sets the commands list
-         *
-         * @param commands  List of commands
-         */
-        public void setCommands(List<String> commands) {
-            ArrayList<String> commandsList = new ArrayList<String>(commands);
-            this.commands = commandsList;
-        }
-
-
-        /**
-         * Remove a command by number
-         *
-         * @param i Number of the command to remove
-         */
-        public void removeCommand(int i) {
-            commands.remove(i - 1);
-        }
-
-        /**
-         * Clear all commands of this line
-         */
-        public void clearCommands() {
-            commands.clear();
         }
 
         /**

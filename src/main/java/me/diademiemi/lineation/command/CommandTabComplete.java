@@ -18,6 +18,44 @@ import me.diademiemi.lineation.line.Line;
  */
 public class CommandTabComplete implements TabCompleter {
 
+	/**
+	 * Private boolean to determine whether this option should get completed
+	 *
+	 * @param option	Option to check
+	 * @param current	Currently typed
+	 *
+	 * @return	Boolean of whether to complete
+	 */
+	private void shouldTab(String option, String current) {
+		if (current.equals("")) {
+			tabList.add(option);
+		} else if (option.startsWith(current.toLowerCase())) {
+			tabList.add(option);
+		}
+	}
+
+	/**
+	 * Private boolean to determine whether this option should get completed
+	 *
+	 * @param option	Option to check
+	 * @param current	Currently typed
+	 * @param player	Player to check for
+	 * @param permission	String of the permission required
+	 *
+	 * @return	Boolean of whether to complete
+	 */
+	private void shouldTab(String option, String current, Player player, String permission) {
+		if (player.hasPermission(permission)) {
+			if (current.equals("")) {
+				tabList.add(option);
+			} else if (option.startsWith(current.toLowerCase())) {
+				tabList.add(option);
+			} 
+		}
+	}
+
+	public ArrayList<String> tabList;
+
     /**
      * Method to implement tab completion
      *
@@ -29,8 +67,8 @@ public class CommandTabComplete implements TabCompleter {
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-
-        ArrayList<String> tabList = new ArrayList<>();
+		
+		tabList = new ArrayList<>();
 
         Set<String> lines = Line.getLines().keySet();
         Set<String> startLines = Line.getStartLines().keySet();
@@ -42,67 +80,37 @@ public class CommandTabComplete implements TabCompleter {
 
             if (args.length == 0 || args.length == 1) {
 
-                if (args[0].equalsIgnoreCase("")) {
-
-                    tabList.add("line");
-                    if (player.hasPermission("lineation.help")) tabList.add("help");
-                    if (player.hasPermission("lineation.config")) tabList.add("config");
-                }
-
-                if ("line".startsWith(args[0])) tabList.add("line");
-                if ("help".startsWith(args[0]) && player.hasPermission("lineation.help")) tabList.add("help");
-                if ("config".startsWith(args[0]) && player.hasPermission("lineation.help")) tabList.add("config");
+				shouldTab("line", args[0]);
+				shouldTab("config", args[0], player, "lineation.config");
+				shouldTab("help", args[0], player, "lineation.help");
             
             } else if (args.length == 2) {
 
-                if (args[0].equalsIgnoreCase("help")) {
+                if (args[0].equalsIgnoreCase("help") && player.hasPermission("lineation.help")) {
 
-                    if (args[1].equalsIgnoreCase("")) {
-
-                        if (player.hasPermission("lineation.help")) {
-
-                            tabList.add("lines");
-                            tabList.add("options");
-
-                        }
-
-                    }
-
-                    if ("lines".startsWith(args[1]) && player.hasPermission("lineation.help")) tabList.add("lines");
-                    if ("options".startsWith(args[1]) && player.hasPermission("lineation.help")) tabList.add("options");
+					shouldTab("lines", args[1]);
+					shouldTab("start", args[1]);
+					shouldTab("finish", args[1]);
+					shouldTab("options", args[1]);
+					shouldTab("areas", args[1]);
+					shouldTab("borders", args[1]);
 
                 } else if (args[0].equalsIgnoreCase("config")) {
                     
-                    if (args[1].equalsIgnoreCase("")) {
-                        
-                        if (player.hasPermission("lineation.reload")) tabList.add("reload");
-                        if (player.hasPermission("lineation.maxwins")) tabList.add("maxwins");
-                        if (player.hasPermission("lineation.forget")) tabList.add("forget");
-
-                    }
-
-                    if ("reload".startsWith(args[1]) && player.hasPermission("lineation.reload")) tabList.add("reload");
-                    if ("mawins".startsWith(args[1]) && player.hasPermission("lineation.maxwins")) tabList.add("maxwins");
-                    if ("forget".startsWith(args[1]) && player.hasPermission("lineation.forget")) tabList.add("forget");
+					shouldTab("reload", args[1], player, "lineation.config.reload");
+					shouldTab("maxwins", args[1], player, "lineation.config.maxwins");
+					shouldTab("forget", args[1], player, "lineation.config.forget");
 
                 } else if (args[0].equalsIgnoreCase("line")) {
 
-                    if (args[1].equalsIgnoreCase("")) {
-                        
-                        if (player.hasPermission("lineation.line.create")) tabList.add("create");
-                        if (player.hasPermission("lineation.line.remove")) tabList.add("remove");
-                        if (player.hasPermission("lineation.line.list")) tabList.add("list");
-                        
-                    }
-                    if ("create".startsWith(args[1]) && player.hasPermission("lineation.line.create")) tabList.add("create");
-                    if ("remove".startsWith(args[1]) && player.hasPermission("lineation.line.remove")) tabList.add("remove");
-                    if ("list".startsWith(args[1]) && player.hasPermission("lineation.line.list")) tabList.add("list");
+					shouldTab("create", args[1], player, "lineation.line.create");
+					shouldTab("remove", args[1], player, "lineation.line.remove");
+					shouldTab("list", args[1], player, "lineation.line.list");
+					shouldTab("here", args[1], player, "lineation.line.here");
 
                     if (player.hasPermission("lineation.line.list")) {
                         for (String line : lines) {
-                            if (line.startsWith(args[1])) {
-                                tabList.add(line);
-                            }
+							shouldTab(line, args[1]);
                         }
                     }
                 }
@@ -111,85 +119,48 @@ public class CommandTabComplete implements TabCompleter {
 
                 if (lines.contains(args[1])) {
 
-                    if (args[2].equalsIgnoreCase("")) {
+					shouldTab("info", args[2], player, "lineation.line.info");
+					shouldTab("start", args[2], player, "lineation.line.start");
+					shouldTab("stop", args[2], player, "lineation.line.stop");
+					shouldTab("setarea", args[2], player, "lineation.line.setarea");
+					shouldTab("addborder", args[2], player, "lineation.line.setarea");
+					shouldTab("removeborder", args[2], player, "lineation.line.removeborder");
+					shouldTab("link", args[2], player, "lineation.line.link");
+					shouldTab("tp", args[2], player, "lineation.line.tp");
+					shouldTab("option", args[2], player, "lineation.line.list"); // Require a permission so line list cant be brute forced
 
-                        if (player.hasPermission("lineation.line.info")) tabList.add("info");
-                        if (player.hasPermission("lineation.line.start")) tabList.add("start");
-                        if (player.hasPermission("lineation.line.stop")) tabList.add("stop");
-                        if (player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
-                        if (player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                        if (player.hasPermission("lineation.line.addcheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcheckpoint");
-                        if (player.hasPermission("lineation.line.removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecheckpoint");
-                        if (player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
-                        if (player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
-                        if (player.hasPermission("lineation.line.list")) tabList.add("option");
+					if (Line.getLines().get(args[1]).getType().equals("finish")) {
 
-                    } 
+						shouldTab("addcheckpoint", args[2], player, "lineation.line.addcheckpoint");
+						shouldTab("removecheckpoint", args[2], player, "lineation.line.removecheckpoint");
+						shouldTab("getwinners", args[2], player, "lineation.line.getwinners");
 
-                    if ("info".startsWith(args[2]) && player.hasPermission("lineation.line.info")) tabList.add("info");
-                    if ("start".startsWith(args[2]) && player.hasPermission("lineation.line.start")) tabList.add("start");
-                    if ("stop".startsWith(args[2]) && player.hasPermission("lineation.line.stop")) tabList.add("stop");
-                    if ("setarea".startsWith(args[2]) && player.hasPermission("lineation.line.setarea")) tabList.add("setarea");
-                    if ("addborder".startsWith(args[2]) && player.hasPermission("lineation.line.addborder")) tabList.add("addborder");
-                    if ("removeborder".startsWith(args[2]) && player.hasPermission("lineation.line.removeborder")) tabList.add("removeborder");
-                    if ("addcheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.addcheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcheckpoint");
-                    if ("removecheckpoint".startsWith(args[2]) && player.hasPermission("lineation.line.removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecheckpoint");
-                    if ("getwinners".startsWith(args[2]) && player.hasPermission("lineation.line.getwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("getwinners");
-                    if ("option".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("option"); 
+					}
 
                 } else if (args[1].equalsIgnoreCase("create")) {
 
-                    if (args[2].equalsIgnoreCase("")) {
-
-                        if (player.hasPermission("lineation.line.create")) {
-
-                            tabList.add("start");
-                            tabList.add("finish");
-
-                        }
-
-                    }
-
-                    if ("start".startsWith(args[2]) && player.hasPermission("lineation.line.create")) tabList.add("start");
-                    if ("finish".startsWith(args[2]) && player.hasPermission("lineation.line.create")) tabList.add("finish");
+					shouldTab("start", args[2], player, "lineation.line.create");
+					shouldTab("finish", args[2], player, "lineation.line.create");
                 
                 } else if (args[1].equalsIgnoreCase("remove")) {
-
-                    if (args[2].equalsIgnoreCase("")) {
-
-                        if (player.hasPermission("lineation.line.remove") && player.hasPermission("lineation.line.list")) {
-
-                            for (String line : lines) {
-                                tabList.add(line);
-                            }
-
-                        }
-
-                    }
 
                     if (player.hasPermission("lineation.line.remove") && player.hasPermission("lineation.line.list")) {
 
                         for (String line : lines) {
-
-                            if (line.startsWith(args[2])) {
-                                tabList.add(line);
-                            }
-
+							shouldTab(line, args[2]);
                         }
 
                     }
 
                 } else if (args[1].equalsIgnoreCase("list")) {
-                    if (args[2].equalsIgnoreCase("")) {
 
-                        if (player.hasPermission("lineation.line.list")) tabList.add("start");
-                        if (player.hasPermission("lineation.line.list")) tabList.add("finish");
-                        if (player.hasPermission("lineation.line.list")) tabList.add("started");
-                    }
+					if (player.hasPermission("lineation.line.list")) {
 
-                    if ("start".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("start");
-                    if ("finish".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("finish");
-                    if ("started".startsWith(args[2]) && player.hasPermission("lineation.line.list")) tabList.add("started");
+						shouldTab("start", args[2]);
+						shouldTab("finish", args[2]);
+						shouldTab("started", args[2]);
+					
+					}
 
                 }
 
@@ -199,40 +170,26 @@ public class CommandTabComplete implements TabCompleter {
 
                     if (args[2].equalsIgnoreCase("option")) {
 
-                        if (args[3].equalsIgnoreCase("")) {
+						shouldTab("messagereach", args[3], player, "lineation.line.option.messagereach");
+						shouldTab("gamemodes", args[3], player, "lineation.line.option.gamemodes");
+						shouldTab("teleport", args[3], player, "lineation.line.option.teleport");
 
-                            if (player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                            if (player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
-                            if (player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
-                            if (player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
-                            if (player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
-                            if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
-                            if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
-                            if (player.hasPermission("lineation.line.option.laps") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("laps");
-                            if (player.hasPermission("lineation.line.option.link")) tabList.add("link");
-                            
-                        }
+						if (Line.getLines().get(args[1]).getType().equals("start")) {
 
-                        if ("messagereach".startsWith(args[3]) && player.hasPermission("lineation.line.option.messagereach")) tabList.add("messagereach");
-                        if ("maxwins".startsWith(args[3]) && player.hasPermission("lineation.line.option.maxwinners") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("maxwinners");
-                        if ("addcommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
-                        if ("removecommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
-                        if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
-                        if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
-                        if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
-                        if ("laps".startsWith(args[3]) && player.hasPermission("lineation.line.option.laps") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("laps");
-                        if ("link".startsWith(args[3]) && player.hasPermission("lineation.line.option.link")) tabList.add("link");
-                        if ("illegalarea".startsWith(args[3]) && player.hasPermission("lineation.line.option.illegalarea") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
+							shouldTab("blocksequence", args[3], player, "lineation.line.option.blocksequence");
+							shouldTab("illegalarea", args[3], player, "lineation.line.option.illegalarea");
+
+						} else if (Line.getLines().get(args[1]).getType().equals("finish")) {
+
+							shouldTab("block", args[3], player, "lineation.line.option.blocksequence");
+							shouldTab("laps", args[3], player, "lineation.line.option.laps");
+							shouldTab("maxwins", args[3], player, "lineation.line.option.maxwins");
+							
+						}
 
                     } else if (args[2].equalsIgnoreCase("info")) {
 
-                        if (args[3].equalsIgnoreCase("")) {
-
-                            if (player.hasPermission("lineation.line.info.options")) tabList.add("options");
-
-                        }
-
-                        if ("options".startsWith(args[3]) && player.hasPermission("lineation.line.info.options")) tabList.add("options");
+						shouldTab("options", args[3], player, "lineation.line.info.options");
 
                     } else if (args[2].equalsIgnoreCase("removeborder")) {
 
@@ -250,6 +207,22 @@ public class CommandTabComplete implements TabCompleter {
                             }
 
                         }
+
+					} else if (args[2].equalsIgnoreCase("link") && player.hasPermission("lineation.line.option.link") && player.hasPermission("lineation.line.list")) {
+
+						if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
+							
+							for (String line : finishLines) {
+								shouldTab(line, args[3]);
+							}
+
+						} else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
+
+							for (String line : startLines) {
+								shouldTab(line, args[3]);
+							}
+
+						}
 
                     } else if (args[2].equalsIgnoreCase("removecheckpoint") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
 
@@ -280,106 +253,31 @@ public class CommandTabComplete implements TabCompleter {
 
 						if (args[3].equalsIgnoreCase("messagereach") && player.hasPermission("lineation.line.option.messagereach")) {
 
-							if (args[4].equalsIgnoreCase("")) {
+							if (args[4].equalsIgnoreCase("")) tabList.add("100");
 
-								tabList.add("area");
-								tabList.add("all");
-								tabList.add("world");
-								tabList.add("100");
-								tabList.add("disabled");
-
-							}
-
-							if ("area".startsWith(args[4])) tabList.add("area");
-							if ("all".startsWith(args[4])) tabList.add("all");
-							if ("world".startsWith(args[4])) tabList.add("world");
-							if ("disabled".startsWith(args[4])) tabList.add("disabled");
+							shouldTab("area", args[4]);
+							shouldTab("all", args[4]);
+							shouldTab("world", args[4]);
+							shouldTab("disabled", args[4]);
 
 						} else if (args[3].equalsIgnoreCase("teleport") && player.hasPermission("lineation.line.option.teleport")) {
 
-                            if (args[4].equalsIgnoreCase("")) {
+							shouldTab("setlocation", args[4]);
+
+							if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
 								
-								tabList.add("setlocation");
+								shouldTab("onstart", args[4]);
+								shouldTab("illegalarea", args[4]);
+								shouldTab("gamemodes", args[4], player, "lineation.line.option.gamemodes");
 
-								if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
-									tabList.add("onstart");
-									tabList.add("illegalarea");
-									if (player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
-
-								} else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
-									tabList.add("onfinish");
-								}
-
+							} else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
+								shouldTab("onfinish", args[4]);
 							}
-
-							if ("setlocation".startsWith(args[4])) tabList.add("setlocation");
-							if ("onstart".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("onstart");
-							if ("illegalarea".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("illegalarea");
-							if ("onfinish".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("onfinish");
-							if ("gamemodes".startsWith(args[4]) && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start") && player.hasPermission("lineation.line.option.gamemodes")) tabList.add("gamemodes");
-
-                        } else if (args[3].equalsIgnoreCase("removecommand")) {
-
-                            if (args[4].equalsIgnoreCase("")) {
-
-                                if (player.hasPermission("lineation.line.option.removecommand")) {
-                                    int i = 1;
-                                    int c = Line.getLines().get(args[1]).getCommands().size();
-
-                                    while (i <= c) {
-                                        tabList.add(String.valueOf(i));
-                                        i++;
-                                    }
-                                
-                                }
-
-                            }
-
-                        } else if (args[3].equalsIgnoreCase("link") && player.hasPermission("lineation.line.option.link") && player.hasPermission("lineation.line.list")) {
-
-                            if (args[4].equalsIgnoreCase("")) {
-
-                                if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
-                                    
-                                    for (String line : finishLines) {
-                                        tabList.add(line);
-                                    }
-
-                                } else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
-
-                                    for (String line : startLines) {
-                                        tabList.add(line);
-                                    }
-
-                                }
-
-                            }
-
-                            if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
-                                
-                                for (String line : finishLines) {
-                                    if (line.startsWith(args[4])) tabList.add(line);
-                                }
-
-                            } else if (Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) {
-
-                                for (String line : startLines) {
-                                    if (line.startsWith(args[4])) tabList.add(line);
-                                }
-
-                            }
 
                         } else if (args[3].equalsIgnoreCase("illegalarea") && player.hasPermission("lineation.line.option.illegalarea") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) {
 
-							if (args[4].equalsIgnoreCase("")) {
-								if (player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("add");
-								if (player.hasPermission("lineation.line.option.illegalarea.remove")) tabList.add("remove");
-								if (player.hasPermission("lineation.line.option.illegalarea.gamemodes")) tabList.add("gamemodes");
-							}
-
-							if ("add".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("add");
-							if ("remove".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.remove")) tabList.add("remove");
-							if ("gamemodes".startsWith(args[4]) && player.hasPermission("lineation.line.option.illegalarea.add")) tabList.add("gamemodes");
+							shouldTab("add", args[4], player, "lineation.line.option.illegalarea.add");
+							shouldTab("remove", args[4], player, "lineation.line.option.illegalarea.remove");
 
 						}
 
@@ -399,8 +297,8 @@ public class CommandTabComplete implements TabCompleter {
 								case "illegalarea":
 								case "onstart":
 								case "onfinish":
-									tabList.add("true");
-									tabList.add("false");
+									shouldTab("true", args[5]);
+									shouldTab("false", args[5]);
 									break;
 								default:
 									break;

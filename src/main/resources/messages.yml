@@ -1,45 +1,156 @@
 # Messages for Lineation plugin
 PREFIX: '&f&l[&8&lL&f&lN&8&l] '
-HELP_INDEX: |2-
+HELP_GENERAL: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7/lineation help &r: Show global commands
-  &7/lineation help lines &r: View commands relating to line
-  &7/lineation help options &r: Shows more advanced options for lines
-  &7/lineation config reload &r: Saves and reloads config files
-  &7/lineation config maxwins <number> &r: Sets the maximum amount of times someone can win
-  &7/lineation config forget <username/uuid> &r: Forget a players wins for maxwins.
-  &r&ohttps://diademiemi.github.io/Lineation/wiki/
-HELP_LINE: |2-
+  &7&o/lineation help &r: 
+  Show this page
+  &7&o/lineation help lines &r:
+  View commands relating to lines
+  &7&o/lineation config maxwins <number> &r: 
+  Sets a limit on the amount of times a player can win
+  &7&o/lineation config forget <username/uuid> &r:
+  Forget a players total wins for maxwins
+  &8https://diademiemi.github.io/Lineation/wiki/
+HELP_LINES: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7/lineation line create <type> <name> &r: Create a line with a specified type and name
-  &7/lineation line remove <name> &r: Remove a line by name
-  &7/lineation line list <type> &r: Lists all lines, type is optional
-  &7/lineation line <name> info &r: Gets information about specified line
-  &7/lineation line <name> start &r: Starts and opens this line
-  &7/lineation line <name> stop &r: Stops and closes this line
-  &7/lineation line <name> setarea &r: Sets the detection area for this line using your current WorldEdit selection
-  &7/lineation line <name> addborder &r: Adds a border to set blocks at for this line using your current WorldEdit selection
-  &7/lineation line <name> removeborder <number/all> &r: Removes a border by number
-  &7/lineation line <name> addcheckpoint &r Adds a checkpoint players have to cross first before being counted to win
-  &7/lineation line <name> removecheckpoint &r: Removes a checkpoint by number 
-  &7/lineation line <name> getwinners &r: Gets the last winners of this line
-  &r&ohttps://diademiemi.github.io/Lineation/wiki/
-HELP_OPTION: |2-
+  &7&o/lineation line create <start/finish> <name> &r:
+  Creates a start or finish line with this name
+  &7&o/lineation line remove <name> &r:
+  Deletes a line with this name
+  &7&o/lineation line list <start/finish/started>&r:
+  Lists all lines that are defined. Specifying a type is optional
+  &rFor more help about lines with a certain type, check &7&o/lineation help <start/finish>
+  &rFor advanced options of lines, check &7&o/lineation help options <start/finish>
+HELP_START: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
-  &7/lineation line <name> option blocksequence <block1,block2...> &r: Comma or space seperated list of blocks to use for the opening sequence
-  &7/lineation line <name> option teleport setlocation &r: Sets the location players will teleport if using the teleport function described below
-  &7/lineation line <name> option teleport gamemodes &r: Comma or space seperated list of gamemodes players have to be in to get teleported 
-  &7/lineation line <name> option teleport <onstart/onfinish/illegalarea> <true/false> &r: Makes players in the area teleport to this location when the line opens, when they finish or enter an illegal area  
-  &7/lineation line <name> option maxwinners <number> &r: Number of players that have to finish before the line closes
-  &7/lineation line <name> option addcommand <command> &r: Sets a command to run when a player finishes. Placeholders: %player%, %uuid%
-  &7/lineation line <name> option removecommand <number> &r: Removes a command by number
-  &7/lineation line <name> option laps <number> &r: Amount of times players have to go through the course before winning
-  &7/lineation line <name> option messagereach <all/area/world/number/disabled> &r: Sets if messages will target all players, players in the area, players in the world, players a certain distance from the center of the area or send no messages.
-  &7/lineation line <name> option gamemodes <survival,adventure> &r: Comma or space seperated list of gamemodes players have to be in to be counted
-  &7/lineation line <name> option illegalarea add &r: Adds an area that will teleport players to the start line if teleport illegalarea is set to true 
-  &7/lineation line <name> option illegalarea remove <number/all>&r: Removes an illegal area 
-  &7/lineation line <name> option link <line name> &r: This links a line of the other type to automatically start or stop at the same time
-  &r&ohttps://diademiemi.github.io/Lineation/wiki/
+  &7&o/lineation line <name> start &r:
+  Starts this line, opens borders if there are any
+  &7&o/lineation line <name> stop &r:
+  Stops this line, closes borders if there are any
+  &7&o/lineation line <name> setarea &r:
+  Sets the area where players will be detected. Check /lineation help areas for explanation
+  &7&o/lineation line <name> addborder &r:
+  Adds a border where blocks will be set at your current WorldEdit selection
+  &7&o/lineation line <name> removeborder <number/all> &r:
+  Remove a border by number
+  &7&o/lineation line <name> link <name> &r:
+  Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &7&o/lineation line <name> tp &r:
+  Teleports you to this lines teleport point
+  &rView &7&o/lineation line <name> info&r to see this information from a line
+HELP_FINISH: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7&o/lineation line <name> start &r:
+  Starts this line, opens borders if there are any
+  &7&o/lineation line <name> stop &r:
+  Stops this line, closes borders if there are any and announces results to chat
+  &7&o/lineation line <name> setarea &r:
+  Sets the area where players will be detected. Check /lineation help areas for explanation
+  &7&o/lineation line <name> addborder &r:
+  Adds a border where blocks will be set at your current WorldEdit selection
+  &7&o/lineation line <name> removeborder <number/all> &r:
+  Remove a border by number
+  &7&o/lineation line <name> addcheckpoint &r:
+  Adds a checkpoint, players have to cross through these in order before winning
+  &7&o/lineation line <name> removecheckpoint <number/all> &r:
+  Remove a checkpoint by number
+  &7&o/lineation line <name> getwinners &r:
+  Get the players that last won this line
+  &7&o/lineation line <name> link <name> &r:
+  Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &7&o/lineation line <name> tp &r:
+  Teleports you to this lines teleport point
+  &rView &7&o/lineation line <name> info&r to see this information from a line
+HELP_OPTIONS: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &rPlease specify a line type:
+  &7&o/lineation help options start
+  &7&o/lineation help options finish
+HELP_OPTIONS_START: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7&o/lineation line <name> option blocksequence <block1 block2 block3> &r:
+  A list of blocks to set the borders to when the line is stopped or opening
+  &7&o/lineation line <name> option illegalarea add &r:
+  Add an area that when entered by a player will teleport them back to the teleport point
+  &7&o/lineation line <name> option illegalarea remove <number/all> &r:
+  Remove an illegal areas by number
+  &7&o/lineation line <name> option messagereach <all/area/world/number/disabled> &r:
+  Sets if the messages will target all players, players in the area, in the world or a certain distance from the area.
+  &7&o/lineation line <name> option teleport setlocation &r:
+  Sets the location which will be used to teleport players to if this feature is used
+  &7&o/lineation line <name> option teleport gamemodes &r:
+  A list of gamemodes affected by the teleport feature
+  &7&o/lineation line <name> option teleport <onstart/illegalarea> <true/false> &r:
+  Whether players get teleported when this line opens or when they enter an illegal area
+  &rView &7&o/lineation line <name> info options &rto see what options a line has set
+HELP_OPTIONS_FINISH: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7&o/lineation line <name> option block <block> &r:
+  The block to set the borders to when the line is stopped
+  &7&o/lineation line <name> option gamemodes &r:
+  A list of gamemodes that players need to be in to be counted to finish
+  &7&o/lineation line <name> option laps <number> &r:
+  Amount of laps a player has to do for this course to win. Requires at least one checkpoint to be set!
+  &7&o/lineation line <name> option maxwinners <number> &r:
+  Sets the amount of players that need to finish before the line closes
+  &7&o/lineation line <name> option messagereach <all/area/world/number/disabled> &r:
+  Sets if the messages will target all players, players in the area, in the world or a certain distance from the area.
+  &7&o/lineation line <name> option teleport setlocation &r:
+  Sets the location which will be used to teleport players to if this feature is used
+  &7&o/lineation line <name> option teleport onfinish <true/false> &r:
+  Whether players get teleported when to the teleport point when they finish
+  &rView &7&o/lineation line <name> info options &rto see what options a line has set
+HELP_AREAS: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &rA line's area is used to detect players, and to know where the line is located.
+  The center of the area is used to calculate the distance to a player, used in the messagereach option.
+  In starting lines, it is possible to teleport all players in the area to a location when the line starts with the teleport option.
+  In finish lines, this area is used to detect players. It's vital to set an area that players enter or cross through when they should finish.
+  &7If your players are moving at a high speed, such as in elytra races, be sure to set a large area. If your server is lagging, not doing so could result in missed player wins.  
+HELP_BORDERS: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &rYou can set borders on lines, these are cuboid shapes where blocks will be set when the line is stopped.
+  In finish lines, the block that is set when the line is stopped is defined in the block option.
+  To change the block used, run &7&o/lineation line <line> option block <block>&r.
+  In start lines, there is a countdown which is defined by the blocksequence option.
+  For every block defined in the blocksequence option after the first (The resting position), the borders will take one second to start.
+  By default this is set to &7"glass, red_stained_glass, yellow_stained_glass, lime_stained_glass"&r, this creates a countdown of 3 seconds. 
+GUIDE_CREATED_START: |2-
+  &r&7Created a line! Next, please set an area for this line.
+  In starting lines, this is used to detect players, and by default the center of this area is used to calculate distances from players, for example for messages.
+  To set an area, make a WorldEdit selection and run &7&o/lineation line $LINE$ setarea&r&7.
+  &r&7See &7&o/lineation help areas &r&7for more information.
+GUIDE_CREATED_FINISH: |2-
+  &r&7Created a line! Next, please set an area for this line.
+  In finish lines, this is what detects when players finish. So set this to encompass the area where players finish at.
+  To set an area, make a WorldEdit selection and run &7&o/lineation line $LINE$ setarea&r&7.
+  &r&7See &7&o/lineation help areas &r&7for more information.
+GUIDE_AREA_SET_START: |2-
+  &r&7Area set! Next, you can a border for this line.
+  In start lines, borders are set to glass (or whatever blocks specified in the blocksequence option) when the line is stopped. Then when the line starts, these are set to air to allow players to start the race!
+  To add a border, make a WorldEdit selection and run &7&o/lineation line $LINE$ addborder&r&7.
+  &r&7You can add multiple borders, or none. See &7&o/lineation help borders &r&7for more information.
+GUIDE_AREA_SET_FINISH: |2-
+  &r&7Area set! Next, you can a border for this line.
+  In finish lines, borders are set to glass (or whatever block specified in the block option) when the line is stopped. When the line starts, these are set to air to allow players through. Once the line closes, it's set back to the block.
+  To add a border, make a WorldEdit selection and run &7&o/lineation line $LINE$ addborder&r&7.
+  &r&7You can add multiple borders, or none. See &7&o/lineation help borders &r&7for more information.
+GUIDE_BORDER_SET_START: |2-
+  &r&7Awesome, a border has been defined! The line is now ready for basic races.
+  To start this line, run &7&o/lineation line $LINE$ start&r&7.
+  For more settings you can set, check &7&o/lineation help start&r&7.
+  For some more advanced options you can set, check &7&o/lineation help options start&r&7.
+GUIDE_BORDER_SET_FINISH: |2-
+  &r&7Awesome, a border has been defined! The line is now ready for basic races.
+  To start this line, run &7&o/lineation line $LINE$ start&r&7.
+  For more settings you can set, check &7&o/lineation help finish&r&7.
+  For some more advanced options you can set, check &7&o/lineation help options finish&r&7.
+GUIDE_SUGGEST_LINK_START: |2-
+  &r&7You likely also have a finish line for this race.
+  You can link them to start/stop at the same time with &7o/lineation line $LINE$ option link <name>&r&7.
+GUIDE_SUGGEST_LINK_FINISH: |2-
+  &r&7You likely also have a start line for this race.
+  You can link them to start/stop at the same time with &7o/lineation line $LINE$ option link <name>&r&7.
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
@@ -54,6 +165,7 @@ ERROR_NOT_START: '&7The line &f&l$LINE$&r&7 is not a start line!'
 ERROR_NOT_FINISH: '&7The line &f&l$LINE$&r&7 is not a finish line!'
 ERROR_NO_CHECKPOINT: '&7The line &f&l$LINE$&r&7 has no checkpoints! This is required for lines with multiple laps to prevent players from cheating.'
 ERROR_NO_ILLEGAL_AREA: '&7The line &f&l$LINE$&r&7 has illegal areas defined!'
+ERROR_NO_LINE_HERE: '&7There is no line defined here!'
 ERROR_LINE_EXISTS: '&7 A line with this name already exists!'
 SUCCESS_RELOAD: '&7Reload successful!'
 SUCCESS_LINE_STARTED: '&7Line &f&l$LINE$&r&7 has been started!'
@@ -72,6 +184,7 @@ SUCCESS_PLAYER_FORGOTTEN: '&7Forgot player wins for &f&l$PLAYER$&r&7!'
 LINE_INFO_START: |2-
   &f&lLine Info
   &8- &7Name: $NAME$
+  &8- &7Linked line: $LINKED$
   &8- &7Started: $STARTED$
   &8- &7Type: $TYPE$
   &8- &7World: $WORLD$
@@ -80,6 +193,7 @@ LINE_INFO_START: |2-
 LINE_INFO_FINISH: |2-
   &f&lLine Info
   &8- &7Name: $NAME$
+  &8- &7Linked line: $LINKED$
   &8- &7Started: $STARTED$
   &8- &7Type: $TYPE$
   &8- &7World: $WORLD$
@@ -90,25 +204,23 @@ LINE_OPTIONS_START: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
   &8- &7Block sequence: $BLOCKSEQUENCE$
+  &8- &7Illegal Area gamemodes: $GAMEMODES$
+  &8- &7Illegal Areas: $ILLEGALAREAS$
   &8- &7Teleport onstart: $TPONSTART$
   &8- &7Teleport illegalarea: $TPILLEGALAREA$
   &8- &7Teleport location: $TELEPORTLOCATION$
   &8- &7Message reach: $MESSAGEREACH$
-  &8- &7Illegal Area gamemodes: $GAMEMODES$
-  &8- &7Illegal Areas: $ILLEGALAREAS$
-  &8- &7Linked line: $LINKED$
 LINE_OPTIONS_FINISH: |2-
   &f&lLine Options
   &8- &7Name: $NAME$
   &8- &7Block: $BLOCKSEQUENCE$
+  &8- &7Allowed gamemodes: $GAMEMODES$
   &8- &7Teleport onfinish: $TPONFINISH$
   &8- &7Teleport location: $TELEPORTLOCATION$
-  &8- &7Close on wins: $ALLOWEDWINNERS$
   &8- &7Laps: $LAPS$
+  &8- &7Maximum winners: $ALLOWEDWINNERS$
   &8- &7Message reach: $MESSAGEREACH$
   &8- &7Commands: $COMMANDS$
-  &8- &7Allowed gamemodes: $GAMEMODES$
-  &8- &7Linked line: $LINKED$
 LINE_LIST: '&7Lines: &f $LINES$'
 LINE_WINNERS: '&7Winners: &f&l$NAMES$'
 STARTING_IN: '&7Starting in &f&l$SECONDS$&r&7!'

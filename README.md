@@ -18,17 +18,17 @@ Huge thanks to [@jeremynoesen](https://github.com/jeremynoesen) for helping a gr
 
 ## Basic Example
 
-| <br>                                                                                                                      | <br>                                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Step 1                                                                                                                    | Step 2                                                                                                                                                    |
-| First I create a start and finish line<br> And then I link these two together<br> So they start and stop at the same time | I then set the first border for this start line                                                                                                           |
-| ![Demo1](img/demo1.png)                                                                                                   | ![Demo2](img/demo2.png)                                                                                                                                   |
-| Step 3                                                                                                                    | Step 4                                                                                                                                                    |
-| I then define a second border for the start line<br> This way the players can not jump over the line                      | I then set an area for this start line<br>In start lines this is used to send the announcement messages, target players to teleport and more				|
-| ![Demo3](img/demo3.png)                                                                                                   | ![Demo4](img/demo4.png)                                                                                                                                   |
-| Step 5                                                                                                                    | Step 6                                                                                                                                                    |
-| I now set a border for the finish line                                                                                    | And finally, I set an area for the finish line too<br>In finish lines this is the area used to detect players                                             |
-| ![Demo5](img/demo5.png)                                                                                                   | ![Demo6](img/demo6.png)                                                                                                                                   |
+| <br>                                                                                                                      | <br>                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Step 1                                                                                                                    | Step 2                                                                                                                                       |
+| First I create a start and finish line<br> And then I link these two together<br> So they start and stop at the same time | I then set the first border for this start line                                                                                              |
+| ![Demo1](img/demo1.png)                                                                                                   | ![Demo2](img/demo2.png)                                                                                                                      |
+| Step 3                                                                                                                    | Step 4                                                                                                                                       |
+| I then define a second border for the start line<br> This way the players can not jump over the line                      | I then set an area for this start line<br>In start lines this is used to send the announcement messages, target players to teleport and more |
+| ![Demo3](img/demo3.png)                                                                                                   | ![Demo4](img/demo4.png)                                                                                                                      |
+| Step 5                                                                                                                    | Step 6                                                                                                                                       |
+| I now set a border for the finish line                                                                                    | And finally, I set an area for the finish line too<br>In finish lines this is the area used to detect players                                |
+| ![Demo5](img/demo5.png)                                                                                                   | ![Demo6](img/demo6.png)                                                                                                                      |
 
 It's all set up now! See the GIF underneath for a demonstration of what I just set up in action.
 
@@ -40,56 +40,63 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 
 ### Commands
 
-##### Global commands
+Not all commands are listed here, to view all commands, check the [wiki page](https://diademiemi.github.io/Lineation/wiki/commands.html)  
 
-- `/lineation help` - Show global commands  
-- `/lineation help lines` - Shows commands relating to lines  
-- `/lineation help options` - Shows more advanced options for lines  
-- `/lineation config reload` - Saves and reloads config files  
-- `/lineation config maxwins <number>` - Sets the maximum amount of times someone can win  
-- `/lineation config forget <uuid/username>` - Forgets a players wins for maxwins  
-- `/lineation line create <type> <name>` - Create a line with a specified type and name  
-- `/lineation line remove <name>` - Remove a line by name
-- `/lineation line list <type>` - Lists all lines, type is optional
-  
-  ##### Line specific commands
-- `/lineation line <name> info` - Gets information about specified line  
-- `/lineation line <name> start` - Starts and opens this line  
-- `/lineation line <name> stop` - Stops and closes this line  
-- `/lineation line <name> setarea` - Sets the detection area for this line using your current WorldEdit selection  
-  (This sets the detection area used to send the countdown for start lines and to count players for finish lines)  
-- `/lineation line <name> addborder` - Adds a border to set blocks at for this line using your current WorldEdit selection  
-  (This adds a border which is used to set blocks with WorldEdit)  
-- `/lineation line <name> removeborder <number>` - Removes a border by number  
-- `/lineation line <name> addcheckpoint` - Adds a checkpoint players have to cross first before being counted to win  
-  (Finish line only. Multiple checkpoints can be set, players have to pass through them in order)  
-- `/lineation line <name> removecheckpoint` - Removes a checkpoint by number  
-- `/lineation line <name> getwinners` - Gets the last winners of this line  
-  
-  ##### Line options
-- `/lineation line <name> option blocksequence <block1,block2,block3...>` - Comma or space seperated list of blocks to use for the opening sequence  
-  (The first block is used when stopped. Only one is required. For every block added the countdown takes one second longer.)  
-- `/lineation line <name> option teleport setlocation` - Sets the location players will teleport if using the teleport function described below  
-- `/lineation line <name> option teleport gamemodes` - Comma or space seperated list of gamemodes players have to be in to get teleported
-- `/lineation line <name> option teleport <onstart/onfinish/illegalarea> <true/false>` - Makes players in the area teleport to this location when the line opens, when they finish or enter an illegal area  
-- `/lineation line <name> option maxwinners <number>` - Number of players that have to finish before the line closes  
-- `/lineation line <name> option addcommand <command>` - Sets a command to run when a player finishes. Placeholders: %player%, %uuid%  
-- `/lineation line <name> option removecommand <number>` - Removes a command by number  
-- `/lineation line <name> option laps <number>` - Amount of times players have to go through the course before winning  
-  (This requires at least one checkpoint to be set, place them appropriately around your course)  
-- `/lineation line <name> option messagereach <all/area/world/number/disabled>` - Sets if messages will target all players, players in the area, players in the world, players a certain distance from the center of the area or send no messages.
-- `/ineation line <name> option gamemodes <survival,adventure>` - Comma seperated list of gamemodes players have to be in to be counted  
-- `/lineation line <name> option illegalarea add` - Adds an area that will teleport players to the start line if teleport illegalarea is set to true  
-- `/lineation line <name> option illegalarea remove <number/all>` - Removes an illegal area  
-- `/lineation line <name> option link <line name>` - This links a line of the other type to automatically start or stop at the same time  
+#### General Commands
+
+-  `/lineation help` :   
+   Show this page  
+
+- `/lineation help lines` :  
+   View commands relating to lines
+
+-  `/lineation line create <start/finish> <name>` :  
+   Creates a start or finish line with this name  
+
+-  `/lineation line remove <name>` :  
+   Deletes a line with this name  
+
+-  `/lineation line list <start/finish/started>`:  
+   Lists all lines that are defined. Specifying a type is optional
+
+#### Line Commands
+
+-  `/lineation line <name> start` :  
+   Starts this line, opens borders if there are any  
+
+- `/lineation line <name> stop` :  
+   Stops this line, closes borders if there are any  
+
+- ` /lineation line <name> setarea` :  
+   Sets the area where players will be detected  
+
+-  `/lineation line <name> addborder` :  
+   Adds a border where blocks will be set at your current WorldEdit selection  
+
+-  `/lineation line <name> removeborder <number/all>` :  
+   Remove a border by number  
+
+-  `/lineation line <name> link <name>` :  
+   Link this line with a different line with the opposite type. This makes them start/stop at the same time.  
+
+-  `/lineation line <name> tp` :  
+   Teleports you to this lines teleport point  
+   View /lineation line <name> info to see this information from a line
+
+-  `/lineation line <name> addcheckpoint` :  
+   Adds a checkpoint, players have to cross through these in order before winning  
+
+-  `/lineation line <name> removecheckpoint <number/all>` :  
+   Remove a checkpoint by number
 
 ### Permissions
 
 - `lineation.help` - Allow using the help commands  
-- `lineation.reload` - Allow reloading the plugin config files  
-- `lineation.maxwins` - Allow setting maxwins  
-- `lineation.forget` - Allow forgetting a players wins  
+- `lineation.config.reload` - Allow reloading the plugin config files  
+- `lineation.config.maxwins` - Allow setting the maximum amount of times someone can win  
+- `lineation.config.forget` - Allow forgetting a players wins  
 - `lineation.line.list` - Allow seeing the list of lines  
+- `lineation.line.here` - Allow seeing information about the line you're currently standing in
 - `lineation.line.create` - Allow creating new lines  
 - `lineation.line.remove` - Allow removing lines  
 - `lineation.line.setarea` - Allow setting the area for a line  
@@ -97,8 +104,10 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 - `lineation.line.removeborder` - Allow removing borders for a line  
 - `lineation.line.addcheckpoint` - Allow adding checkpoints for a line  
 - `lineation.line.removecheckpoint` - Allow removing checkpoints for a line  
+- `lineation.line.tp` - Allow teleporting to a lines teleport point
 - `lineation.line.start` - Allow starting lines  
 - `lineation.line.stop` - Allow stopping lines  
+- `lineation.line.link` - Allows linking lines
 - `lineation.line.option.blocksequence` - Allow setting the block sequence for a line  
 - `lineation.line.option.teleport` - Allow setting a teleport location for a line  
 - `lineation.line.option.maxwinners` - Allow setting the max winners for a line  
@@ -110,7 +119,6 @@ See more examples on the [Wiki](https://diademiemi.github.io/Lineation/wiki/inde
 - `lineation.line.option.illegalarea` - Allows using the illegal area option
 - `lineation.line.option.illegalarea.add` - Allow adding illegal areas to a line
 - `lineation.line.option.illegalarea.remove` - Allow removing set illegal areas
-- `lineation.line.option.link` - Allows linking lines  
 
 ## Installation
 
