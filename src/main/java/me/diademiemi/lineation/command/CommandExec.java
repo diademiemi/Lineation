@@ -142,7 +142,8 @@ public class CommandExec implements CommandExecutor {
                                                             if (!args[3].equalsIgnoreCase("help")
                                                                 && !args[3].equalsIgnoreCase("create")
                                                                 && !args[3].equalsIgnoreCase("remove")
-                                                                && !args[3].equalsIgnoreCase("list")) {
+                                                                && !args[3].equalsIgnoreCase("list")
+																&& !args[3].equalsIgnoreCase("here")) {
                                                                 new Line(args[3], args[2].toLowerCase());
                                                                 sender.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
                                                             } else sender.sendMessage(Message.ERROR_INVALID_NAME);

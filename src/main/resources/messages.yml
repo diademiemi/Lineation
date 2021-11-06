@@ -17,7 +17,7 @@ HELP_LINES: |2-
   Creates a start or finish line with this name
   &7&o/lineation line remove <name> &r:
   Deletes a line with this name
-  &7&o/lineation line list <start/finish>&r:
+  &7&o/lineation line list <start/finish/started>&r:
   Lists all lines that are defined. Specifying a type is optional
   &rFor more help about lines with a certain type, check &7&o/lineation help <start/finish>
   &rFor advanced options of lines, check &7&o/lineation help options <start/finish>
