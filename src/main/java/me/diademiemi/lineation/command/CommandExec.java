@@ -388,6 +388,7 @@ public class CommandExec implements CommandExecutor {
                                                                     break;
                                                                 } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
+															case "block":
                                                             case "blocksequence":
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.blocksequence")) {

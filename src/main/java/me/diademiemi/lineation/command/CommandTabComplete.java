@@ -206,7 +206,8 @@ public class CommandTabComplete implements TabCompleter {
                             if (player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
                             if (player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
                             if (player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
-                            if (player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
+                            if (player.hasPermission("lineation.line.option.blocksequence") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("blocksequence");
+                            if (player.hasPermission("lineation.line.option.block") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("block");
                             if (player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                             if (player.hasPermission("lineation.line.option.laps") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("laps");
                             if (player.hasPermission("lineation.line.option.link")) tabList.add("link");
@@ -218,7 +219,8 @@ public class CommandTabComplete implements TabCompleter {
                         if ("addcommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.addcommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("addcommand");
                         if ("removecommand".startsWith(args[3]) && player.hasPermission("lineation.line.option.removecommand") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("removecommand");
                         if ("gamemodes".startsWith(args[3]) && player.hasPermission("lineation.line.option.gamemodes") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("gamemodes");
-                        if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence")) tabList.add("blocksequence");
+                        if ("blocksequence".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("start")) tabList.add("blocksequence");
+                        if ("block".startsWith(args[3]) && player.hasPermission("lineation.line.option.blocksequence") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("block");
                         if ("teleport".startsWith(args[3]) && player.hasPermission("lineation.line.option.teleport")) tabList.add("teleport");
                         if ("laps".startsWith(args[3]) && player.hasPermission("lineation.line.option.laps") && Line.getLines().get(args[1]).getType().equalsIgnoreCase("finish")) tabList.add("laps");
                         if ("link".startsWith(args[3]) && player.hasPermission("lineation.line.option.link")) tabList.add("link");
