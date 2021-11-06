@@ -57,6 +57,7 @@ public class Lineation extends JavaPlugin {
         pm.addPermission(new Permission("lineation.line.removecheckpoint"));
         pm.addPermission(new Permission("lineation.line.start"));
         pm.addPermission(new Permission("lineation.line.stop"));
+		pm.addPermission(new Permission("lineation.line.tp"));
         pm.addPermission(new Permission("lineation.line.option.messagereach"));
         pm.addPermission(new Permission("lineation.line.option.maxwinners"));
         pm.addPermission(new Permission("lineation.line.option.addcommand"));

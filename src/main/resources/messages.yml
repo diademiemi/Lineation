@@ -35,6 +35,8 @@ HELP_START: |2-
   Remove a border by number
   &7&o/lineation line <name> link <name> &r:
   Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &7&o/lineation line <name> teleport &r:
+  Teleports you to this lines teleport point
   &rView &7&o/lineation line <name> info&r to see this information from a line
 HELP_FINISH: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
@@ -56,6 +58,8 @@ HELP_FINISH: |2-
   Get the players that last won this line
   &7&o/lineation line <name> link <name> &r:
   Link this line with a different line with the opposite type. This makes them start/stop at the same time.
+  &7&o/lineation line <name> teleport &r:
+  Teleports you to this lines teleport point
   &rView &7&o/lineation line <name> info&r to see this information from a line
 HELP_OPTIONS: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r

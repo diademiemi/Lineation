@@ -126,6 +126,7 @@ public class CommandTabComplete implements TabCompleter {
 					shouldTab("addborder", args[2], player, "lineation.line.setarea");
 					shouldTab("removeborder", args[2], player, "lineation.line.removeborder");
 					shouldTab("link", args[2], player, "lineation.line.link");
+					shouldTab("tp", args[2], player, "lineation.line.tp");
 					shouldTab("option", args[2], player, "lineation.line.list"); // Require a permission so line list cant be brute forced
 
 					if (Line.getLines().get(args[1]).getType().equals("finish")) {

@@ -310,7 +310,7 @@ public class CommandExec implements CommandExecutor {
                                                     break;
 												case "link":
 													if (args.length > 3) {
-														if (sender.hasPermission("lineation.line.option.link")) {
+														if (sender.hasPermission("lineation.line.link")) {
 															if (Line.getLines().get(args[3]) != null) {
 																Line linkLine = Line.getLines().get(args[3]);
 																if (line.getType().equalsIgnoreCase("start")) {
@@ -331,6 +331,11 @@ public class CommandExec implements CommandExecutor {
 															} else sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[3]));
 														} else sender.sendMessage(Message.ERROR_NO_PERMS);
 													} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help start"));
+													break;
+												case "tp":
+													if (sender instanceof Player && sender.hasPermission("lineation.line.tp")) {
+														((Player)sender).teleport(line.getTeleportLocation());
+													} else sender.sendMessage(Message.ERROR_NO_PERMS);
 													break;
                                                 case "option":
                                                     if (args.length > 3) {
