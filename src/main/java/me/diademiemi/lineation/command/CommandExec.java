@@ -284,6 +284,30 @@ public class CommandExec implements CommandExecutor {
                                                                 .replace("$LINE$", args[1]));
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
+												case "link":
+													if (args.length > 3) {
+														if (sender.hasPermission("lineation.line.option.link")) {
+															if (Line.getLines().get(args[3]) != null) {
+																Line linkLine = Line.getLines().get(args[3]);
+																if (line.getType().equalsIgnoreCase("start")) {
+																	if (linkLine.getType().equalsIgnoreCase("finish")) {
+																		line.setLinkedLine(args[3]);
+																		linkLine.setLinkedLine(args[1]);
+																		sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																		break;
+																	} else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[3]));
+																} else if (line.getType().equalsIgnoreCase("finish")) {
+																	if (linkLine.getType().equalsIgnoreCase("start")) {
+																		line.setLinkedLine(args[3]);
+																		linkLine.setLinkedLine(args[3]);
+																		sender.sendMessage(Message.SUCCESS_OPTION_SET);
+																		break;
+																	} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
+																}
+															} else sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[3]));
+														} else sender.sendMessage(Message.ERROR_NO_PERMS);
+													} else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
+													break;
                                                 case "option":
                                                     if (args.length > 3) {
                                                         switch (args[3].toLowerCase()) {
@@ -538,30 +562,6 @@ public class CommandExec implements CommandExecutor {
                                                                             } else sender.sendMessage(Message.ERROR_NO_CHECKPOINT.replace("$LINE$", args[1]));
                                                                             break;
                                                                         } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[1]));
-                                                                    } else sender.sendMessage(Message.ERROR_NO_PERMS);
-                                                                } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
-                                                                break;
-                                                            case "link":
-                                                                if (args.length > 4) {
-                                                                    if (sender.hasPermission("lineation.line.option.link")) {
-                                                                        if (Line.getLines().get(args[4]) != null) {
-                                                                            Line linkLine = Line.getLines().get(args[4]);
-                                                                            if (line.getType().equalsIgnoreCase("start")) {
-                                                                                if (linkLine.getType().equalsIgnoreCase("finish")) {
-                                                                                    line.setLinkedLine(args[4]);
-                                                                                    linkLine.setLinkedLine(args[1]);
-                                                                                    sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                    break;
-                                                                                } else sender.sendMessage(Message.ERROR_NOT_FINISH.replace("$LINE$", args[4]));
-                                                                            } else if (line.getType().equalsIgnoreCase("finish")) {
-                                                                                if (linkLine.getType().equalsIgnoreCase("start")) {
-                                                                                    line.setLinkedLine(args[4]);
-                                                                                    linkLine.setLinkedLine(args[1]);
-                                                                                    sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                                                                    break;
-                                                                                } else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
-                                                                            }
-                                                                        } else sender.sendMessage(Message.ERROR_UNKNOWN_LINE.replace("$LINE$", args[4]));
                                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                                 } else sender.sendMessage(Message.ERROR_SEE_HELP.replace("$COMMAND$", "/lineation help options"));
                                                                 break;
