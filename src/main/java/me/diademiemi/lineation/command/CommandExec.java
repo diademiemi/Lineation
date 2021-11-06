@@ -146,13 +146,19 @@ public class CommandExec implements CommandExecutor {
 																&& !args[3].equalsIgnoreCase("here")) {
                                                                 new Line(args[3], args[2].toLowerCase());
 
+																Line line = Line.getLines().get(args[3]);
 																if (sender instanceof Player) {
-																	Line line = Line.getLines().get(args[3]);
+
 																	line.setTeleportLocation((Player) sender);
 																	line.setArea(((Player)sender).getLocation());
 																}
-
                                                                 sender.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
+
+																if (Config.getPluginConfig().getConfig().getBoolean("guides")) {
+																	if (args[2].equalsIgnoreCase("start")) sender.sendMessage(Message.GUIDE_CREATED_START.replace("$LINE$", line.getName()));
+																	if (args[2].equalsIgnoreCase("finish")) sender.sendMessage(Message.GUIDE_CREATED_FINISH.replace("$LINE$", line.getName()));
+																}
+
                                                             } else sender.sendMessage(Message.ERROR_INVALID_NAME);
                                                         } else sender.sendMessage(Message.ERROR_LINE_EXISTS);
                                                     } else sender.sendMessage(Message.ERROR_MISSING_ARGS.replace("$MISSING$", "<name>"));
@@ -246,12 +252,33 @@ public class CommandExec implements CommandExecutor {
                                                 case "setarea":
                                                     if (sender.hasPermission("lineation.line.setarea") && sender instanceof Player) {
                                                         line.setArea((Player) sender);
+														if (Config.getPluginConfig().getConfig().getBoolean("guides")) {
+															if (line.getBorders().size() == 0) {
+																if (line.getType().equalsIgnoreCase("start")) sender.sendMessage(Message.GUIDE_AREA_SET_START.replace("$LINE$", line.getName()));
+																if (line.getType().equalsIgnoreCase("finish")) sender.sendMessage(Message.GUIDE_AREA_SET_FINISH.replace("$LINE$", line.getName()));
+															}
+
+														}
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 case "addborder":
                                                     if (sender.hasPermission("lineation.line.addborder") && sender instanceof Player) {
                                                         line.addBorder((Player) sender);
+														if (Config.getPluginConfig().getConfig().getBoolean("guides")) {
+															if (line.getBorders().size() == 1) {
+																if (line.getType().equalsIgnoreCase("start")) sender.sendMessage(Message.GUIDE_BORDER_SET_START.replace("$LINE$", line.getName()));
+																if (line.getType().equalsIgnoreCase("finish")) sender.sendMessage(Message.GUIDE_BORDER_SET_FINISH.replace("$LINE$", line.getName()));
+
+																if (line.getLinkedLine() == null) {
+																	if (line.getType().equalsIgnoreCase("start")) sender.sendMessage(Message.GUIDE_SUGGEST_LINK_START.replace("$LINE$", line.getName()));
+																	if (line.getType().equalsIgnoreCase("finish")) sender.sendMessage(Message.GUIDE_SUGGEST_LINK_FINISH.replace("$LINE$", line.getName()));
+																}
+
+															}
+
+														}
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
+
                                                     break;
                                                 case "removeborder":
                                                     if (sender.hasPermission("lineation.line.removeborder")) {
