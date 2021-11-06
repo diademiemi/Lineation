@@ -13,10 +13,6 @@ It also includes demonstrations on how to set up certain scenarios.
 [Installation](./installation.html)  
 [Javadoc](https://diademiemi.github.io/Lineation/javadoc/)  
 
-## Information
-
-[Options](./options.html)  
-
 ## Demos
 
 [Basic Setup](./demos/basic-setup.html)  
