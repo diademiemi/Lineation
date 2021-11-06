@@ -145,6 +145,13 @@ public class CommandExec implements CommandExecutor {
                                                                 && !args[3].equalsIgnoreCase("list")
 																&& !args[3].equalsIgnoreCase("here")) {
                                                                 new Line(args[3], args[2].toLowerCase());
+
+																if (sender instanceof Player) {
+																	Line line = Line.getLines().get(args[3]);
+																	line.setTeleportLocation((Player) sender);
+																	line.setArea(((Player)sender).getLocation());
+																}
+
                                                                 sender.sendMessage(Message.SUCCESS_LINE_CREATED.replace("$LINE$", args[3]));
                                                             } else sender.sendMessage(Message.ERROR_INVALID_NAME);
                                                         } else sender.sendMessage(Message.ERROR_LINE_EXISTS);

@@ -626,6 +626,22 @@ public class Line {
         public void setArea(double[][] area) {
             this.area = area;
         }
+
+		/**
+		 * Set the area of this line to the players location.
+		 * This is just a temporary area until it's defined manually, but this removes some possible error.
+		 *
+		 * @param loc	Location to set the area to
+		 */
+		public void setArea(Location loc) {
+			area[0][0] = loc.getBlockX();
+			area[0][1] = loc.getBlockY();
+			area[0][2] = loc.getBlockZ();
+			area[1][0] = loc.getBlockX();
+			area[1][1] = loc.getBlockY();
+			area[1][2] = loc.getBlockZ();
+			world = loc.getWorld();
+		}
             
         /**
          * Get list of all borders of this line
