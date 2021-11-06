@@ -73,7 +73,7 @@ HELP_OPTIONS_START: |2-
   A list of gamemodes affected by the teleport feature
   &7&o/lineation line <name> option teleport <onstart/illegalarea> <true/false> &r:
   Whether players get teleported when this line opens or when they enter an illegal area
-  &8View /lineation line <name> info options to see a lines currently set options.
+  &8View /lineation line <name> info options to see a lines currently set options
 HELP_OPTIONS_FINISH: |2-
   &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
   &7&o/lineation line <name> option block <block> &r:
@@ -90,7 +90,58 @@ HELP_OPTIONS_FINISH: |2-
   Sets the location which will be used to teleport players to if this feature is used
   &7&o/lineation line <name> option teleport onfinish <true/false> &r:
   Whether players get teleported when to the teleport point when they finish
-  &8View /lineation line <name> info options to see the currently set options.
+  &8View /lineation line <name> info options to see the currently set options
+HELP_AREAS: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7A line's area is used to detect players, and to know where the line is located.
+  The center of the area is used to calculate the distance to a player, used in the messagereach option.
+  In starting lines, it is possible to teleport all players in the area to a location when the line starts with the teleport option.
+  In finish lines, this area is used to detect players. It's vital to set an area that players enter or cross through when they finish.
+  If your players are moving at a high speed, such as in elytra races, be sure to set a large area. If your server is lagging, this could result in missed player wins.  
+HELP_BORDERS: |2-
+  &f&l[ &8&l-&f&l-&8&l- &f&lLineation &8&l-&f&l-&8&l-&f&l ]&r
+  &7You can set borders on lines, these are cuboid shapes where blocks will be set when the line is stopped.
+  In finish lines, the block that is set when the line is stopped is defined in the block option.
+  To change the block used, run &7&o/lineation line <line> option block <block>&r&7.
+  In start lines, there is a countdown which is defined by the blocksequence option.
+  For every block defined in the blocksequence option after the first (The resting position), the borders will take one second to start.
+  By default this is set to "glass, red_stained_glass, yellow_stained_glass, lime_stained_glass", this creates a countdown of 3 seconds. 
+GUIDE_CREATED_START: |2-
+  &r&7Created a line! Next, please set an area for this line.
+  In starting lines, this is used to detect players, and by default the center of this area is used to calculate distances from players, for example for messages.
+  To set an area, make a WorldEdit selection and run &7&o/lineation line $LINE$ setarea&r&7.
+  &r&7See &7&o/lineation help areas &r&7for more information.
+GUIDE_CREATED_FINISH: |2-
+  &r&7Created a line! Next, please set an area for this line.
+  In finish lines, this is what detects when players finish. So set this to encompass the area where players finish at.
+  To set an area, make a WorldEdit selection and run &7&o/lineation line $LINE$ setarea&r&7.
+  &r&7See &7&o/lineation help areas &r&7for more information.
+GUIDE_AREA_SET_START: |2-
+  &r&7Area set! Next, you can a border for this line.
+  In start lines, borders are set to glass (or whatever blocks specified in the blocksequence option) when the line is stopped. Then when the line starts, these are set to air to allow players to start the race!
+  To add a border, make a WorldEdit selection and run &7&o/lineation line $LINE$ addborder&r&7.
+  &r&7You can add multiple borders, or none. See &7&o/lineation help borders &r&7for more information.
+GUIDE_AREA_SET_FINISH: |2-
+  &r&7Area set! Next, you can a border for this line.
+  In finish lines, borders are set to glass (or whatever block specified in the block option) when the line is stopped. When the line starts, these are set to air to allow players through. Once the line closes, it's set back to the block.
+  To add a border, make a WorldEdit selection and run &7&o/lineation line $LINE$ addborder&r&7.
+  &r&7You can add multiple borders, or none. See &7&o/lineation help borders &r&7for more information.
+GUIDE_BORDER_SET_START: |2-
+  &r&7Awesome, a border has been defined! The line is now ready for basic races.
+  To start this line, run &7&o/lineation line $LINE$ start&r&7.
+  For more settings you can set, check &7&o/lineation help start&r&7.
+  For some more advanced options you can set, check &7&o/lineation help options start&r&7.
+GUIDE_BORDER_SET_FINISH: |2-
+  &r&7Awesome, a border has been defined! The line is now ready for basic races.
+  To start this line, run &7&o/lineation line $LINE$ start&r&7.
+  For more settings you can set, check &7&o/lineation help finish&r&7.
+  For some more advanced options you can set, check &7&o/lineation help options finish&r&7.
+GUIDE_SUGGEST_LINK_START: |2-
+  &r&7You likely also have a finish line for this race.
+  You can link them to start/stop at the same time with &7o/lineation line $LINE$ option link <name>&r&7.
+GUIDE_SUGGEST_LINK_FINISH: |2-
+  &r&7You likely also have a start line for this race.
+  You can link them to start/stop at the same time with &7o/lineation line $LINE$ option link <name>&r&7.
 ERROR_NO_PERMS: '&7You are not permitted to execute this command!'
 ERROR_UNKNOWN_ARGS: '&7Uknown arguments!'
 ERROR_MISSING_ARGS: '&7Missing arguments: &f&l$MISSING$'
