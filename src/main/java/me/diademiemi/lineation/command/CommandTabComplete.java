@@ -137,12 +137,17 @@ public class CommandTabComplete implements TabCompleter {
 
 					}
 
-                } else if (args[1].equalsIgnoreCase("create")) {
+                } else if (args[0].equalsIgnoreCase("help") && args[1].equalsIgnoreCase("options")) {
+
+					shouldTab("start", args[2], player, "lineation.help");
+					shouldTab("finish", args[2], player, "lineation.help");
+
+                } else if (args[0].equalsIgnoreCase("line") && args[1].equalsIgnoreCase("create")) {
 
 					shouldTab("start", args[2], player, "lineation.line.create");
 					shouldTab("finish", args[2], player, "lineation.line.create");
                 
-                } else if (args[1].equalsIgnoreCase("remove")) {
+                } else if (args[0].equalsIgnoreCase("line") && args[1].equalsIgnoreCase("remove")) {
 
                     if (player.hasPermission("lineation.line.remove") && player.hasPermission("lineation.line.list")) {
 
@@ -152,7 +157,7 @@ public class CommandTabComplete implements TabCompleter {
 
                     }
 
-                } else if (args[1].equalsIgnoreCase("list")) {
+                } else if (args[0].equalsIgnoreCase("line") && args[1].equalsIgnoreCase("list")) {
 
 					if (player.hasPermission("lineation.line.list")) {
 
@@ -166,7 +171,7 @@ public class CommandTabComplete implements TabCompleter {
 
             } else if (args.length == 4) {
 
-                if (lines.contains(args[1])) {
+                if (args[0].equalsIgnoreCase("line") && lines.contains(args[1])) {
 
                     if (args[2].equalsIgnoreCase("option")) {
 
@@ -247,7 +252,7 @@ public class CommandTabComplete implements TabCompleter {
 
             } else if (args.length == 5) {
 
-                if (lines.contains(args[1])) {
+                if (args[0].equalsIgnoreCase("line") && lines.contains(args[1])) {
                     
                     if (args[2].equalsIgnoreCase("option")) {
 
