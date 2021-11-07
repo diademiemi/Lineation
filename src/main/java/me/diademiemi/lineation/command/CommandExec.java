@@ -426,7 +426,7 @@ public class CommandExec implements CommandExecutor {
                                                                     if (sender.hasPermission("lineation.line.option.gamemodes")) {
                                                                         if (line.getType().equalsIgnoreCase("finish")) {
                                                                             try {
-																				if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll("\\s", "").toUpperCase())) {
+																				if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll(",,", ",").replaceAll("\\s", "").toUpperCase())) {
 																					sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																				} else {
 																					sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
@@ -443,7 +443,7 @@ public class CommandExec implements CommandExecutor {
                                                                 if (args.length > 4) {
                                                                     if (sender.hasPermission("lineation.line.option.blocksequence")) {
                                                                         try {
-                                                                            if (line.setBlockSequence(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll("\\s", "").toLowerCase())) {
+                                                                            if (line.setBlockSequence(String.join(",", Arrays.copyOfRange(args, 4, args.length)).replaceAll(",,", ",").replaceAll("\\s", "").toLowerCase())) {
 																				sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																			} else {
 																				sender.sendMessage(Message.ERROR_INVALID_BLOCK);
@@ -527,7 +527,7 @@ public class CommandExec implements CommandExecutor {
 																					if (sender.hasPermission("lineation.line.option.gamemodes")) {
 																						if (line.getType().equalsIgnoreCase("start")) {
 																							try {
-																								if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 5, args.length)).replaceAll("\\s", "").toUpperCase())) {
+																								if (line.setGameModes(String.join(",", Arrays.copyOfRange(args, 5, args.length)).replaceAll(",,", ",").replaceAll("\\s", "").toUpperCase())) {
 																									sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																								} else {
 																									sender.sendMessage(Message.ERROR_INVALID_GAMEMODE);
