@@ -8,7 +8,7 @@ linedefaults:
     commands: []
     gamemodes: SURVIVAL,ADVENTURE
 # Prevent someone from winning multiple times set maxwins
-# This can be set in game with /lination config maxwins INT
+# This can be set in game with /lineation config maxwins INT
 # Set to 0 to disable.
 # Players wins can be wiped with /lineation config forget USERNAME
 maxwins: 0
