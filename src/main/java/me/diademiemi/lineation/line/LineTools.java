@@ -302,8 +302,8 @@ public class LineTools {
             if (i > 1) {
                 winnersString.append(", ");
             }
-            winnersString.append(Message.ordinal(i) + ": ");
-            winnersString.append(p);
+            winnersString.append(Message.format("&f&l") + Message.ordinal(i) + ": ");
+            winnersString.append(Message.format("&r&7") + p);
             i++;
         }
         player.sendMessage(Message.LINE_WINNERS
