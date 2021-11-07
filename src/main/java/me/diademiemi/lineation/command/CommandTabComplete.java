@@ -183,7 +183,7 @@ public class CommandTabComplete implements TabCompleter {
 
 							shouldTab("block", args[3], player, "lineation.line.option.blocksequence");
 							shouldTab("laps", args[3], player, "lineation.line.option.laps");
-							shouldTab("maxwins", args[3], player, "lineation.line.option.maxwins");
+							shouldTab("maxwinners", args[3], player, "lineation.line.option.maxwinners");
 							
 						}
 
