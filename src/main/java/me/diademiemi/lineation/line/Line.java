@@ -12,7 +12,6 @@ import me.diademiemi.lineation.Message;
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Config;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -394,7 +393,7 @@ public class Line {
          *
          * @return  List of names of this lines last winners
          */
-        public ArrayList getWinners() {
+        public ArrayList<String> getWinners() {
             return winners;
         }
 
@@ -1110,7 +1109,6 @@ public class Line {
          * @return  Boolean of whether this location is in an illegal area
          */
         public boolean illegalAreaContains(Location l) {
-            int i = 1;
             for (double[][] c : illegalAreas) {
                 double minx = c[0][0];
                 double miny = c[0][1];

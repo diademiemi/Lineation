@@ -153,7 +153,6 @@ public class LineTools {
      */
     public static void finishCloseMessage(Line line) {
         StringBuilder announcement = new StringBuilder("");
-        @SuppressWarnings("unchecked")
         ArrayList<String> winners = line.getWinners();
         int i = 1;
 
@@ -295,7 +294,6 @@ public class LineTools {
      */
     public static void getWinnersString(Line line, CommandSender player) {
         StringBuilder winnersString = new StringBuilder("");
-        @SuppressWarnings("unchecked")
         ArrayList<String> winners = line.getWinners();
         int i = 1;
         for (String p : winners) {
