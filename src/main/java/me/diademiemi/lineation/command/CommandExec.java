@@ -337,16 +337,21 @@ public class CommandExec implements CommandExecutor {
                                                     break;
                                                 case "start":
                                                     if (sender.hasPermission("lineation.line.start")) {
-                                                        LineTools.startLine(line);
-                                                        sender.sendMessage(Message.SUCCESS_LINE_STARTED
-                                                                .replace("$LINE$", args[1]));
+                                                        if (!line.isStarted()) {
+                                                            LineTools.startLine(line);
+                                                            sender.sendMessage(Message.SUCCESS_LINE_STARTED
+                                                                    .replace("$LINE$", args[1]));
+                                                        } else sender.sendMessage(Message.ERROR_ALREADY_STARTED);
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 case "stop":
                                                     if (sender.hasPermission("lineation.line.stop")) {
-                                                        LineTools.stopLine(line);
-                                                        sender.sendMessage(Message.SUCCESS_LINE_STOPPED
-                                                                .replace("$LINE$", args[1]));
+                                                            LineTools.stopLine(line);
+                                                            sender.sendMessage(Message.SUCCESS_LINE_STOPPED
+                                                                    .replace("$LINE$", args[1]));
+                                                        if (!line.isStarted()) {
+                                                            sender.sendMessage(Message.ALREADY_STOPPED);
+                                                        }
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
 												case "link":
