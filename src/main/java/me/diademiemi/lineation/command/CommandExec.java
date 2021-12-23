@@ -364,7 +364,7 @@ public class CommandExec implements CommandExecutor {
 																} else if (line.getType().equalsIgnoreCase("finish")) {
 																	if (linkLine.getType().equalsIgnoreCase("start")) {
 																		line.setLinkedLine(args[3]);
-																		linkLine.setLinkedLine(args[3]);
+																		linkLine.setLinkedLine(args[1]);
 																		sender.sendMessage(Message.SUCCESS_OPTION_SET);
 																		break;
 																	} else sender.sendMessage(Message.ERROR_NOT_START.replace("$LINE$", args[4]));
