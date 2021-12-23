@@ -40,6 +40,7 @@ public class Message {
     public static String ERROR_INVALID_NAME;
 	public static String ERROR_INVALID_BLOCK;
 	public static String ERROR_INVALID_GAMEMODE;
+    public static String ERROR_ALREADY_STARTED;
     public static String ERROR_NOT_START;
     public static String ERROR_NOT_FINISH;
     public static String ERROR_NO_CHECKPOINT;
@@ -60,6 +61,7 @@ public class Message {
 	public static String SUCCESS_ILLEGAL_AREA_REMOVED;
     public static String SUCCESS_OPTION_SET;
     public static String SUCCESS_PLAYER_FORGOTTEN;
+    public static String ALREADY_STOPPED;
     public static String LINE_INFO_START;
     public static String LINE_INFO_FINISH;
     public static String LINE_OPTIONS_START;
@@ -105,6 +107,7 @@ public class Message {
         ERROR_INVALID_NAME = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_NAME"));
         ERROR_INVALID_BLOCK = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_BLOCK"));
         ERROR_INVALID_GAMEMODE = PREFIX + format(messageConfig.getConfig().getString("ERROR_INVALID_GAMEMODE"));
+        ERROR_ALREADY_STARTED = PREFIX + format(messageConfig.getConfig().getString("ERROR_ALREADY_STARTED"));
         ERROR_NOT_START = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_START"));
         ERROR_NOT_FINISH = PREFIX + format(messageConfig.getConfig().getString("ERROR_NOT_FINISH"));
         ERROR_NO_CHECKPOINT = PREFIX + format(messageConfig.getConfig().getString("ERROR_NO_CHECKPOINT"));
@@ -125,6 +128,7 @@ public class Message {
         SUCCESS_ILLEGAL_AREA_REMOVED = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_ILLEGAL_AREA_REMOVED"));
         SUCCESS_OPTION_SET = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_OPTION_SET"));
         SUCCESS_PLAYER_FORGOTTEN = PREFIX + format(messageConfig.getConfig().getString("SUCCESS_PLAYER_FORGOTTEN"));
+        ALREADY_STOPPED = PREFIX + format(messageConfig.getConfig().getString("ALREADY_STOPPED"));
         LINE_INFO_START = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO_START"));
         LINE_INFO_FINISH = PREFIX + format(messageConfig.getConfig().getString("LINE_INFO_FINISH"));
         LINE_OPTIONS_START = PREFIX + format(messageConfig.getConfig().getString("LINE_OPTIONS_START"));

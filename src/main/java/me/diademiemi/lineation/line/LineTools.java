@@ -314,12 +314,14 @@ public class LineTools {
      * @param line  Start line to start
      */
     public static void startStartLine(Line line) {
-        line.setStarted();
-        ArrayList<double[][]> borders = line.getBorders();
-        ArrayList<String> blockSequence = line.getBlockSequence();
-        ArrayList<Player> players = line.getPlayers();
+        if (!line.isStarted()) {
+            line.setStarted();
+            ArrayList<double[][]> borders = line.getBorders();
+            ArrayList<String> blockSequence = line.getBlockSequence();
+            ArrayList<Player> players = line.getPlayers();
 
-        startLineSequence(borders, line, players, blockSequence, 1);
+            startLineSequence(borders, line, players, blockSequence, 1);
+        }
 
     }
 
@@ -329,19 +331,21 @@ public class LineTools {
      * @param line  Finish line to start
      */
     public static void startFinishLine(Line line) {
-        line.clearWinners();
-        line.setStarted();
-        World world = line.getWorld();
-        ArrayList<double[][]> borders = line.getBorders();
-        
-        String blockFrom = line.getBlockSequence().get(0);
-        
-        try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
+        if (!line.isStarted()) {
+            line.clearWinners();
+            line.setStarted();
+            World world = line.getWorld();
+            ArrayList<double[][]> borders = line.getBorders();
+            
+            String blockFrom = line.getBlockSequence().get(0);
+            
+            try (EditSession es = WorldEdit.getInstance().newEditSession(BukkitAdapter.adapt(world))) {
 
-            for (double[][] b : borders) {
-                replaceBlocks(es, b, world, "air", blockFrom);
+                for (double[][] b : borders) {
+                    replaceBlocks(es, b, world, "air", blockFrom);
+                }
+
             }
-
         }
 
     }
