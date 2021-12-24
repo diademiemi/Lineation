@@ -150,7 +150,6 @@ public class LineTools {
      *
      * @param line  Line player finished in
      * @param player    PLayer that finished
-     * @param place Place number player got
      */
     public static void finishNotCountedMessage(Line line, Player player) {
 		for (Player p : getMessagePlayers(line)) {
