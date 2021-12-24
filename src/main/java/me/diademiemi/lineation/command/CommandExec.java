@@ -341,17 +341,17 @@ public class CommandExec implements CommandExecutor {
                                                             LineTools.startLine(line);
                                                             sender.sendMessage(Message.SUCCESS_LINE_STARTED
                                                                     .replace("$LINE$", args[1]));
-                                                        } else sender.sendMessage(Message.ERROR_ALREADY_STARTED);
+                                                        } else sender.sendMessage(Message.ERROR_ALREADY_STARTED.replace("$LINE$", args[1]));
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
                                                 case "stop":
                                                     if (sender.hasPermission("lineation.line.stop")) {
+                                                        if (!line.isStarted()) {
+                                                            sender.sendMessage(Message.ALREADY_STOPPED.replace("$LINE$", args[1]));
+                                                        }
                                                             LineTools.stopLine(line);
                                                             sender.sendMessage(Message.SUCCESS_LINE_STOPPED
                                                                     .replace("$LINE$", args[1]));
-                                                        if (!line.isStarted()) {
-                                                            sender.sendMessage(Message.ALREADY_STOPPED);
-                                                        }
                                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                                     break;
 												case "link":
