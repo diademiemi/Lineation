@@ -42,8 +42,12 @@ public class LineTools {
     public static void playerFinish(Line line, Player player) {
         if (!line.isWinner(player) &&
                 line.getPlayerCheckpoint(player) == line.getCheckpoints().size()) {
+
             line.addPlayerCheckpoint(player, 0);
-            line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
+
+            if ((line.getLaps() > line.getPlayerLaps(player)) && (line.getPlayerLaps(player) >= 0)) {
+                line.addPlayerLap(player, line.getPlayerLaps(player) + 1);
+            }
 
             if (line.getLaps() == line.getPlayerLaps(player)) {
 
@@ -64,8 +68,18 @@ public class LineTools {
                         LineTools.stopLine(line);
                     }
 
+                } else {
+
+                    // This sets the players laps to negative 1, this will cause them to be ignored
+                    line.addPlayerLap(player, -1);
+                    finishNotCountedMessage(line, player);
+
+                    if (line.isTeleportEnabled()) {
+                        player.teleport(line.getTeleportLocation());
+                    }
+
                 }
-            } else LineTools.lapMessage(line, player, line.getPlayerLaps(player));
+            } else if (line.getPlayerLaps(player) > 0) LineTools.lapMessage(line, player, line.getPlayerLaps(player));
 
         }
     }
@@ -131,6 +145,20 @@ public class LineTools {
 		}
     }
    
+    /**
+     * Send finish message when someone finishes but wasn't counted due to maxwins
+     *
+     * @param line  Line player finished in
+     * @param player    PLayer that finished
+     * @param place Place number player got
+     */
+    public static void finishNotCountedMessage(Line line, Player player) {
+		for (Player p : getMessagePlayers(line)) {
+			p.sendMessage(Message.PLAYER_FINISHED_NOT_COUNTED
+					.replace("$NAME$", player.getName()));
+		}
+    }
+
     /**
      * Send announcement message when someone completes a lap
      *
