@@ -69,6 +69,7 @@ public class Message {
     public static String STARTING_IN;
     public static String STARTING_NOW;
     public static String PLAYER_FINISHED;
+    public static String PLAYER_FINISHED_NOT_COUNTED;
     public static String PLAYER_LAP;
     public static String FINISH_CLOSE;
     public static String FINISH_CLOSE_PLAYER;
@@ -134,6 +135,7 @@ public class Message {
         STARTING_IN = format(messageConfig.getConfig().getString("STARTING_IN"));
         STARTING_NOW = format(messageConfig.getConfig().getString("STARTING_NOW"));
         PLAYER_FINISHED = format(messageConfig.getConfig().getString("PLAYER_FINISHED"));
+        PLAYER_FINISHED_NOT_COUNTED = format(messageConfig.getConfig().getString("PLAYER_FINISHED_NOT_COUNTED"));
         PLAYER_LAP = format(messageConfig.getConfig().getString("PLAYER_LAP"));
         FINISH_CLOSE = format(messageConfig.getConfig().getString("FINISH_CLOSE"));
         FINISH_CLOSE_PLAYER = format(messageConfig.getConfig().getString("FINISH_CLOSE_PLAYER"));
