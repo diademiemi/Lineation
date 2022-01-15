@@ -28,7 +28,7 @@ repositories {
 dependencies {
      compileOnly 'org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT'
      /* Include WorldEdit API */
-     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0-SNAPSHOT'
+     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.8'
 }
 
  test {
