@@ -216,8 +216,10 @@ public class CommandExec implements CommandExecutor {
                                 case "remove":
                                     if (sender.hasPermission("lineation.line.remove")) {
                                         if (args.length > 2 && Line.getLines().get(args[2]) != null) {
-                                            if (Line.getLines().get(args[2]).getLinkedLine() != "") {
-                                                Line.getLines().remove(Line.getLines().get(args[2]).getLinkedLine());
+                                            Line line = Line.getLines().get(args[2]);
+                                            LineTools.stopLine(line);
+                                            if (line.getLinkedLine() != "") {
+                                                Line.getLines().remove(line.getLinkedLine());
                                             }
                                             Line.getLines().remove(args[2]);
                                             sender.sendMessage(Message.SUCCESS_LINE_REMOVED
