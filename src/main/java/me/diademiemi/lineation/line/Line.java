@@ -9,6 +9,7 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import me.diademiemi.lineation.Message;
+import me.diademiemi.lineation.listeners.MoveEvents;
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Config;
 
@@ -327,9 +328,9 @@ public class Line {
 				}
 			}
             if (startedFinishLines.size() == 1) {
-                new LineListener(Lineation.getInstance());
+                new MoveEvents(Lineation.getInstance());
             } else if (startedStartLinesIA.size() == 1) {
-				new LineListener(Lineation.getInstance());
+				new MoveEvents(Lineation.getInstance());
 			}
         }
 
@@ -344,11 +345,11 @@ public class Line {
                 startedFinishLines.remove(this.name);
             }
             if (startedFinishLines.size() == 0) {
-                LineListener.unregisterPluginEvents(Lineation.getInstance());
+                MoveEvents.unregisterPluginEvents(Lineation.getInstance());
             } else if (startedStartLinesIA.size() == 0) {
-				LineListener.unregisterPluginEvents(Lineation.getInstance());
+				MoveEvents.unregisterPluginEvents(Lineation.getInstance());
 			} else if (!teleportEnabledIllegalArea) {
-				LineListener.unregisterPluginEvents(Lineation.getInstance());
+				MoveEvents.unregisterPluginEvents(Lineation.getInstance());
 			}
         }
 
