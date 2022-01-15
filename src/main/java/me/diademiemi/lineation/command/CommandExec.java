@@ -94,32 +94,36 @@ public class CommandExec implements CommandExecutor {
                                     break;
                                 case "maxwins":
                                     if (sender.hasPermission("lineation.maxwins")) {
-                                        try {
-                                            int i = Integer.parseInt(args[2]);
-                                            Config.getPluginConfig().getConfig().set("maxwins", i);
-                                            sender.sendMessage(Message.SUCCESS_OPTION_SET);
-                                        } catch (Exception e) {
-                                            sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
-                                        }
+                                        if (args.length > 2) {
+                                            try {
+                                                int i = Integer.parseInt(args[2]);
+                                                Config.getPluginConfig().getConfig().set("maxwins", i);
+                                                sender.sendMessage(Message.SUCCESS_OPTION_SET);
+                                            } catch (Exception e) {
+                                                sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
+                                            }
+                                        } else sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                     break;
                                 case "forget":
                                     if (sender.hasPermission("lineation.forget")) {
-                                        try {
-                                            if (Config.getData().getConfig().isInt(args[2])) {
-                                                Config.getData().getConfig().set(args[2], null);
-                                                sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
-                                            } else if (args[2].equals("all")) {
-                                                Lineation.getInstance().saveResource("data.yml", true);
-                                                Config.getData().reloadConfig();
-                                                sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
-                                            } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
-                                                Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getUniqueId().toString(), null);
-                                                sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
-                                        } else sender.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
-                                        } catch (Exception e) {
-                                            sender.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
-                                        }
+                                        if (args.length > 2) {
+                                            try {
+                                                if (Config.getData().getConfig().isInt(args[2])) {
+                                                    Config.getData().getConfig().set(args[2], null);
+                                                    sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
+                                                } else if (args[2].equals("all")) {
+                                                    Lineation.getInstance().saveResource("data.yml", true);
+                                                    Config.getData().reloadConfig();
+                                                    sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
+                                                } else if (Config.getData().getConfig().isInt(Bukkit.getPlayer(args[2]).getUniqueId().toString())) {
+                                                    Config.getData().getConfig().set(Bukkit.getPlayer(args[2]).getUniqueId().toString(), null);
+                                                    sender.sendMessage(Message.SUCCESS_PLAYER_FORGOTTEN.replace("$PLAYER$", args[2]));
+                                            } else sender.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
+                                            } catch (Exception e) {
+                                                sender.sendMessage(Message.ERROR_UNKNOWN_PLAYER.replace("$PLAYER$", args[2]));
+                                            }
+                                        } else sender.sendMessage(Message.ERROR_UNKNOWN_ARGS);
                                     } else sender.sendMessage(Message.ERROR_NO_PERMS);
                                     break;
                                 default:
