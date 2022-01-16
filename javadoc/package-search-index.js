@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"me.diademiemi.lineation"},{"l":"me.diademiemi.lineation.command"},{"l":"me.diademiemi.lineation.line"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"me.diademiemi.lineation"},{"l":"me.diademiemi.lineation.command"},{"l":"me.diademiemi.lineation.config"},{"l":"me.diademiemi.lineation.line"},{"l":"me.diademiemi.lineation.listeners"}]
