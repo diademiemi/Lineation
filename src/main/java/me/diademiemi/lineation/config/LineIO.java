@@ -1,7 +1,7 @@
-package me.diademiemi.lineation.line;
+package me.diademiemi.lineation.config;
 
 import me.diademiemi.lineation.Lineation;
-import me.diademiemi.lineation.Config;
+import me.diademiemi.lineation.line.Line;
 
 import java.util.ArrayList;
 /**
@@ -21,7 +21,9 @@ public class LineIO {
      */
     public static void loadAll() {
         for (String name : lineConfig.getConfig().getKeys(false)) {
-            loadLine(name);
+            if (!name.equalsIgnoreCase("version")) {
+                loadLine(name);
+            }
         }
     }
 

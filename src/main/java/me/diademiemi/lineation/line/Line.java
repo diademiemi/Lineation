@@ -9,8 +9,10 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import me.diademiemi.lineation.Message;
+import me.diademiemi.lineation.config.Config;
+import me.diademiemi.lineation.listeners.MoveEvents;
+import me.diademiemi.lineation.listeners.Scheduled;
 import me.diademiemi.lineation.Lineation;
-import me.diademiemi.lineation.Config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -326,10 +328,12 @@ public class Line {
 					}
 				}
 			}
-            if (startedFinishLines.size() == 1) {
-                new LineListener(Lineation.getInstance());
-            } else if (startedStartLinesIA.size() == 1) {
-				new LineListener(Lineation.getInstance());
+            if (startedFinishLines.size() == 1 || startedStartLinesIA.size() == 1) {
+                if (Config.getPluginConfig().getConfig().getBoolean("aggressive-listener")) {
+                    Scheduled.checkMovements();
+                } else {
+                    new MoveEvents(Lineation.getInstance());
+                }
 			}
         }
 
@@ -343,13 +347,14 @@ public class Line {
             if (this.type.equalsIgnoreCase("finish")) {
                 startedFinishLines.remove(this.name);
             }
-            if (startedFinishLines.size() == 0) {
-                LineListener.unregisterPluginEvents(Lineation.getInstance());
-            } else if (startedStartLinesIA.size() == 0) {
-				LineListener.unregisterPluginEvents(Lineation.getInstance());
-			} else if (!teleportEnabledIllegalArea) {
-				LineListener.unregisterPluginEvents(Lineation.getInstance());
-			}
+
+            if (startedFinishLines.size() == 0 && startedStartLinesIA.size() == 0) {
+                if (Config.getPluginConfig().getConfig().getBoolean("aggressive-listener")) {
+                    Scheduled.cancelTasks(Lineation.getInstance());
+                } else {
+                    MoveEvents.unregisterPluginEvents(Lineation.getInstance());
+                }
+            }
         }
 
         /**

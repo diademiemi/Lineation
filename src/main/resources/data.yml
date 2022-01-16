@@ -1,2 +1,5 @@
 # File used to store player wins count
 # Format: UUID: number
+
+#NEVER CHANGE THIS, THIS IS USED FOR MIGRATING
+version: 1

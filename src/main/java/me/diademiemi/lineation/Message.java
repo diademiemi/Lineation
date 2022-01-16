@@ -2,6 +2,8 @@ package me.diademiemi.lineation;
 
 import org.bukkit.ChatColor;
 
+import me.diademiemi.lineation.config.Config;
+
 /**
  * Messages used within the plugin
  *

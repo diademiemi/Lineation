@@ -1,6 +1,9 @@
-package me.diademiemi.lineation;
+package me.diademiemi.lineation.config;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import me.diademiemi.lineation.Lineation;
+import me.diademiemi.lineation.Message;
 
 import java.io.File;
 import java.io.IOException;

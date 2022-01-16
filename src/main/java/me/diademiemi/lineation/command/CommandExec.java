@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Message;
-import me.diademiemi.lineation.Config;
+import me.diademiemi.lineation.config.Config;
+import me.diademiemi.lineation.config.LineIO;
 import me.diademiemi.lineation.line.Line;
-import me.diademiemi.lineation.line.LineIO;
 import me.diademiemi.lineation.line.LineTools;
 
 import java.util.Arrays;
@@ -144,6 +144,7 @@ public class CommandExec implements CommandExecutor {
                                                     if (args.length > 3) {
                                                         if (Line.getLines().get(args[3]) == null) {
                                                             if (!args[3].equalsIgnoreCase("help")
+                                                                && !args[3].equalsIgnoreCase("version")
                                                                 && !args[3].equalsIgnoreCase("create")
                                                                 && !args[3].equalsIgnoreCase("remove")
                                                                 && !args[3].equalsIgnoreCase("list")

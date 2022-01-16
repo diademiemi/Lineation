@@ -1,11 +1,20 @@
 # Default options used for lines
 # Reload the plugins config files with /lineation config reload
+
+#NEVER CHANGE THIS, THIS IS USED FOR MIGRATING
+version: 1
+
+# Set if the listener should be aggressive. 
+# This makes the plugin check every players' position every tick, instead of relying on player move events.
+# This can be laggier but is needed for compatibility with some vehicle plugins
+# true/false
+aggressive-listener: false
+
 linedefaults:
   option:
     blocksequence: glass, red_stained_glass, yellow_stained_glass, lime_stained_glass
     messagereach: '250'
     maxwinners: 3
-    commands: []
     gamemodes: SURVIVAL,ADVENTURE
 # Prevent someone from winning multiple times set maxwins
 # This can be set in game with /lineation config maxwins INT
