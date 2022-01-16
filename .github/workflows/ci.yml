@@ -5,8 +5,6 @@ name: Java CI check with Gradle
 
 on:
   push:
-    branches:
-     - main
   pull_request:
 
 jobs:
