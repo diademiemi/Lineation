@@ -7,7 +7,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.diademiemi.lineation.command.CommandExec;
 import me.diademiemi.lineation.command.CommandTabComplete;
-import me.diademiemi.lineation.line.LineIO;
+import me.diademiemi.lineation.config.Config;
+import me.diademiemi.lineation.config.LineIO;
 
 /**
  * Lineation plugin

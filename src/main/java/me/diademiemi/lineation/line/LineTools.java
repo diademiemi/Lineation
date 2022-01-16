@@ -18,7 +18,7 @@ import org.bukkit.World;
 
 import me.diademiemi.lineation.Lineation;
 import me.diademiemi.lineation.Message;
-import me.diademiemi.lineation.Config;
+import me.diademiemi.lineation.config.Config;
 
 import java.util.Arrays;
 import java.util.ArrayList;
