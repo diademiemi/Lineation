@@ -140,4 +140,4 @@ Please do not edit `lines.yml` by hand, this will likely break and I will offer 
 
   
 ## Notice
-Development of this plugin has been frozen. Functionality of this plugin will be moved to my ongoing project diademiemi/Dopamine.
+Development of this plugin has been frozen. Functionality of this plugin will be moved to my ongoing project [Dopamine](https://github.com/diademiemi/Dopamine)
