@@ -137,3 +137,7 @@ Please do not edit `lines.yml` by hand, this will likely break and I will offer 
 
 [Javadoc](https://diademiemi.github.io/Lineation/javadoc/)  
 [Wiki](https://diademiemi.github.io/Lineation/wiki/index.html)  
+
+  
+## Notice
+Development of this plugin has been frozen. Functionality of this plugin will be moved to my ongoing project diademiemi/Dopamine.
